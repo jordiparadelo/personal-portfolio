@@ -1,20 +1,19 @@
 import React from "react";
 // Lib
 import Lottie from "lottie-react";
+// Utils
+import {scrollToTarget} from "../../utils";
 // Assets
 import { images } from "../../constants";
 // Styles
 import "./Header.scss";
+import { DotNavigation, SocialMedia } from "../../components";
 
 const Header = () => {
-  function scrollToTarget(event, target) {
-    event.preventDefault();
-    const selectedTarget = document.querySelector(target) || document.querySelector(event.currentTarget.hash);
-
-    selectedTarget.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
-  }
+  
   return (
     <section id="Home" className="header">
+      <SocialMedia/>
       <div className="app__wrapper">
         <div className="header__content">
           <div className="header__title-container">
@@ -44,6 +43,7 @@ const Header = () => {
           <Lottie animationData={images.headerAnimation} loop={true} />
         </div>
       </div>
+      <DotNavigation/>
     </section>
   );
 };

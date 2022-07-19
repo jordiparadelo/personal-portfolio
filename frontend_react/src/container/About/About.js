@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Styles
 import "./About.scss";
 // Assets
@@ -6,23 +6,25 @@ import { images } from "../../constants";
 import { FaReact, FaFigma, FaSketch } from "react-icons/fa";
 import { SiNextdotjs, SiWebflow } from "react-icons/si";
 
-const services = [
-  {
-    title: "Web Design",
-    icon: <FaReact />,
-    description: "From Design to the website on live, included phase of development"
-  },
-  {
-    title: "Frontend Development",
-    icon: <FaReact />,
-    description: "Creation,fixes and enchacement of web functionalities and structure"
-  },
-  {
-    title: "Ux/Ui Analysis",
-    icon: <FaReact />,
-    description: "Analysis of usability and best practice to improve user experience"
-  },
-];
+import {urlFor, client} from '../../clients'
+
+// const services = [
+//   {
+//     title: "Web Design",
+//     icon: <FaReact />,
+//     description: "From Design to the website on live, included phase of development"
+//   },
+//   {
+//     title: "Frontend Development",
+//     icon: <FaReact />,
+//     description: "Creation,fixes and enchacement of web functionalities and structure"
+//   },
+//   {
+//     title: "Ux/Ui Analysis",
+//     icon: <FaReact />,
+//     description: "Analysis of usability and best practice to improve user experience"
+//   },
+// ];
 const technologies = [
   {
     name: "react",
@@ -52,7 +54,14 @@ const technologies = [
 ];
 
 const About = () => {
-    const [serviceActive, setServiceActive] = useState(true)
+    const [serviceActive, setServiceActive] = useState()
+    const [services , setServices] = useState([])
+    
+    useEffect(() => {
+      const query = '*[_type == "abouts"] |  order(order asc)' 
+      client.fetch(query).then((data)=> setServices(data))
+    }, [])
+    const cardRef = useRef(services.map(() => React.createRef()))
 
     function toggleService(event) {
         const {target, currentTarget} = event
@@ -64,7 +73,6 @@ const About = () => {
         allParagraph.forEach(paragraph => paragraph.setAttribute(label, true))
 
         if(!target.classList.contains("about__service-card")) return
-        
         paragraphHidden.setAttribute(label, false)
     }
   return (
@@ -98,7 +106,7 @@ const About = () => {
         </div>
         <div className="about__services" onClick={toggleService}>
           {services.map((service, index) => (
-            <figure className="about__service-card" key={`technology-${index}`}>
+            <figure className="about__service-card" aria-selected="false" key={`technology-${index}`} ref={cardRef.current[index]}>
               <picture className="about__card-icon">{service.icon}</picture>
               <figcaption className="about__card-description">
                 <h3>{service.title}</h3>

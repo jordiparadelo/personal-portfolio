@@ -4,7 +4,8 @@ import { images } from "../../constants";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
 // Lib
 import { useMediaQuery } from 'react-responsive'
-
+// Utils
+import {scrollToTarget} from "../../utils";
 // Syles
 import "./Navbar.scss";
 
@@ -12,13 +13,18 @@ const navLinks = [
   { name: "Home", url: "Home" },
   { name: "About", url: "About" },
   { name: "Contact", url: "Contact" },
-  { name: "Work", url: "Work" },
+  { name: "Work", url: "Works" },
   { name: "Skills", url: "Skills" },
 ];
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const isTabletOrMobile = useMediaQuery({query: '(max-width: 600px)'})
+
+  function handleNavClick(event) {
+    scrollToTarget(event)
+    setToggle((prevState) => !prevState)
+  }
 
   return (
     <nav className="navbar">
@@ -38,12 +44,12 @@ const Navbar = () => {
           className="navbar__navlinks"
           aria-hidden={isTabletOrMobile && !toggle}
         >
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <a
               href={`#${link.url}`}
-              key={`link-${link}`}
+              key={`link-${index}`}
               className="app__flex p-text"
-              onClick={() => setToggle((prevState) => !prevState)}
+              onClick={handleNavClick}
             >
               {link.name}
             </a>
