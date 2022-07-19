@@ -1,0 +1,129 @@
+#About {
+  .app__wrapper {
+    flex-direction: column;
+    gap: var(--spacing-xxl);
+  }
+
+  .about__content {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing);
+    align-items: center;
+
+    .about__title-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+    .about__description {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: var(--spacing-xl);
+    }
+    .about__technologies {
+      display: flex;
+      flex-direction: row;
+      gap: var(--spacing-lg);
+      margin-inline: auto;
+      flex-wrap: wrap;
+
+      .about__technology-disc {
+        --size: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--size);
+        height: var(--size);
+        border-radius: var(--corners-round);
+        box-shadow: var(--shadow-lg);
+
+        svg {
+          --icon-size: calc(var(--size) * 0.6);
+          width: var(--icon-size);
+          height: var(--icon-size);
+        }
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      *:is(.about__title-container, .about__description p) {
+        max-width: 35ch;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+
+      .about__technologies {
+        margin-inline: unset;
+        gap: var(--spacing);
+      }
+    }
+  }
+
+  .about__services {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing);
+    overflow-x: auto;
+
+    .about__service-card {
+      --card-size: 224px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+      align-items: flex-start;
+      padding: var(--spacing-xl);
+      min-width: 25ch;
+      min-height: var(--card-size);
+      height: 100%;
+      background-color: var(--white-color);
+
+      > * {
+        pointer-events: none;
+      }
+
+      .about__card-description {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing);
+        margin-block-start: auto;
+
+        hr {
+          --stroke: 3px;
+          width: 20%;
+          min-height: var(--stroke);
+          margin: unset;
+          border: unset;
+          border-radius: var(--corners-round);
+          background: var(--gray-color);
+        }
+
+        p {
+            transition: all 800ms var(--ease);
+          &:is([aria-hidden="false"]) {
+            max-height: 300px;
+            overflow: hidden;
+          }
+        }
+      }
+
+    //   Interactions
+      &:not(:hover) {
+        .about__card-description p:not([aria-hidden="false"]){
+        max-height: 0px;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 500ms var(--ease);
+    }
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 8px 20px;
+      margin-inline: -20px;
+      min-width: 100vw;
+    }
+  }
+}
