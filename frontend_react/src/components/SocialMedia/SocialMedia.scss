@@ -1,3 +1,23 @@
 .social-media {
-    
+  position: absolute;
+  bottom: 0;  
+  display: flex;
+  gap: var(--spacing-xs);
+
+  .social-media__link {
+    --size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--corners-round);
+    box-shadow: var(--shadow-lg);
+
+    svg {
+      --icon-size: calc(var(--size) * 0.5);
+      width: var(--icon-size);
+      height: var(--icon-size);
+    }
+  }
 }
