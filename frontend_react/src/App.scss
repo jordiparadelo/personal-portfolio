@@ -41,6 +41,20 @@
       max-width: 100%;
     }
   }
+
+  .app__section-label {
+    --size: 24px;
+    display: flex;
+    align-items: center;
+    padding-inline: var(--spacing-xs);
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    height: var(--size);
+    font-size: calc(var(--size) * 0.5);
+    border-radius: var(--corners-xs);
+    background-color: var(--dark-color);
+    color: var(--light-color);
+  }
   
   .copyright {
     width: 100%;

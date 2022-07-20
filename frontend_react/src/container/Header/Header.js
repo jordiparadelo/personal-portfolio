@@ -17,7 +17,7 @@ const Header = () => {
       <div className="app__wrapper">
         <div className="header__content">
           <div className="header__title-container">
-            <div className="header__label">Freelancer</div>
+            <div className="app__section-label">Freelancer</div>
             <h1 className="header__title">Web Designer And Developer</h1>
           </div>
           <div className="header__description">

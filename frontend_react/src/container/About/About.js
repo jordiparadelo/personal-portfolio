@@ -61,7 +61,7 @@ const About = () => {
       <div className="app__wrapper">
         <div className="about__content">
           <div className="about__title-container">
-            <div className="about__label">About</div>
+            <div className="app__section-label">About</div>
             <h2 className="about__title">
               Providing <strong>quality</strong> on all services
             </h2>
