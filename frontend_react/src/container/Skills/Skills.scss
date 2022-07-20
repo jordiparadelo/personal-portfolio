@@ -1,3 +1,109 @@
 #Skills {
-    
+  .app__wrapper {
+    gap: 5vw;
+    flex-wrap: wrap;
+  }
+
+  .skills__experience-container {
+    margin-block-start: var(--spacing);
+    display: flex;
+    gap: var(--spacing-lg);
+
+    .skills__experience-count {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--spacing-xs);
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: bold;
+      .year {
+        font-size: 3.5em;
+        line-height: 0.7;
+        color: var(--primary-color);
+      }
+      .label {
+        font-size: 1em;
+      }
+    }
+  }
+
+  .skills__list-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .skills__list-item {
+      display: flex;
+      gap: var(--spacing-xl);
+      min-width: 100%;
+
+      .skills__item-year {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .year {
+            --background: #;
+            --size: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: var(--size);
+            padding-inline: var(--spacing);
+            border-radius: var(--corners-round);
+            background-color: var(--background);
+
+            &.active {
+                --background: var(--dark-color);
+                color: white;
+            }
+        }
+
+
+        &:not(.active, .active ~ *) { 
+            .year {
+                --background: var(--gray-color);
+            }
+        }
+      }
+      
+      .skills__item-description {
+          display: flex;
+          flex-direction: column;
+          gap: var(--spacing-xs);
+          flex-grow: 1;
+
+        .company {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-xs);
+
+          .link {
+            --size: 20px;
+            width: vr(--size);
+            height: vr(--size);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 500ms var(--ease);
+
+            svg {
+              stroke: var(--primary-color);
+            }
+          }
+
+          &:not(:hover) {
+            .link {
+                transform: translateY(20%);
+                opacity: 0
+            }
+          }
+        }
+
+        .divider {
+            margin-block: var(--spacing-xl);
+        }
+      }
+    }
+  }
 }

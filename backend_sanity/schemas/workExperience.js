@@ -13,9 +13,19 @@ export default {
                 type:'string'
             },
             {
-                name:'desc',
-                title:'Desc',
+                name:'companyUrl',
+                title:'Company Url',
                 type:'string'
+            },
+            {
+                name:'year',
+                title:'Year',
+                type:'string'
+            },
+            {
+                name:'actualWork',
+                title:'Actual work',
+                type:"boolean"
             }
     ]
 }

@@ -2,20 +2,30 @@
   .app__wrapper {
     flex-direction: column;
     gap: var(--spacing-lg);
+
+    .works__container-grid {
+      --gap: clamp(var(--spacing-xl), 5vw, var(--spacing-xxl));
+      display: flex;
+      gap: var(--gap);
+
+      .works__container-column {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+        flex-grow: 1;
+      }
+    }
+
     .works__content {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       gap: var(--spacing-lg);
-      .works__header {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-xs);
-      }
 
       .works__filter {
         display: flex;
-        gap: var(--spacing);
+        gap: var(--spacing-xs);
+        flex-wrap: wrap;
 
         .works__fiter-item {
           --corners: var(--corners-round);
@@ -70,6 +80,7 @@
       .works__portofilio-image {
         max-width: 100%;
         overflow: hidden;
+        position: relative;
 
         img {
           transform: rotate(-10deg);
@@ -77,6 +88,49 @@
           aspect-ratio: 1/1;
           max-width: 100%;
           object-fit: contain;
+        }
+
+        .works__portofilio-actions {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: var(--spacing);
+          background: linear-gradient(0deg, var(--dark-color), transparent);
+          transition: all 500ms var(--ease);
+
+          .works__portofilio-link {
+            --size: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--size);
+            height: var(--size);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: var(--corners-round);
+            box-shadow: var(--shadow-lg);
+            transition: transform 300ms var(--ease);
+
+            svg {
+              --icon-size: calc(var(--size) * 0.5);
+              width: var(--icon-size);
+              height: var(--icon-size);
+              fill: var(--light-color);
+            }
+
+            &:hover {
+              transform: scale(0.9)
+            }
+          }
+        }
+      }
+      // Interactions
+      &:not(:hover) {
+        .works__portofilio-actions {
+          opacity: 0;
         }
       }
     }

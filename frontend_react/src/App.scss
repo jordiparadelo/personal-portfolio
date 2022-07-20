@@ -32,14 +32,25 @@
   }
   
   .app__wrapper {
+    --max-width: 1200px;
     display: flex;
-    max-width: 1200px;
+    max-width: var(--max-width);
     width: 100%;
     margin-inline: auto;
 
     > * {
       max-width: 100%;
     }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px){
+      --max-width: 768px;
+    }
+  }
+
+  .app__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
   }
 
   .app__section-label {

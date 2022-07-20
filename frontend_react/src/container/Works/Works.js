@@ -5,6 +5,8 @@ import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { urlFor, client } from "../../clients";
 // Styles
 import "./Works.scss";
+// Lib
+import Masonry from "react-masonry-css";
 
 const Works = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -14,6 +16,12 @@ const Works = () => {
   // Methods
   function handleWorkFilter(filter) {
     setActiveFilter(filter);
+
+    if(filter === 'All') {
+      setFilterWork(works)
+    } else {
+      setFilterWork(works.filter(work => work.tags.includes(filter)));
+    }
   }
 
   useEffect(() => {
@@ -27,29 +35,33 @@ const Works = () => {
   return (
     <section id="Works" className="works">
       <div className="app__wrapper">
-        <div className="works__content">
-          <header className="works__header">
-            <div className="app__section-label">Portfolio</div>
-            <h2>All creative Works and Selected projects</h2>
-            <p>Selection of works I've been doing during this time</p>
-          </header>
+        <Masonry
+          breakpointCols={2}
+          className="works__container-grid"
+          columnClassName="works__container-column"
+        >
+          <div className="works__content">
+            <header className="app__header">
+              <div className="app__section-label">Portfolio</div>
+              <h2>All creative Works and Selected projects</h2>
+              <p>Selection of works I've been doing during this time</p>
+            </header>
 
-          <div className="works__filter">
-            {["UI/UX", "Web App", "React Js", "All"].map((filter, index) => (
-              <button
-                className={`works__fiter-item ${
-                  activeFilter == filter ? "active" : ""
-                }`}
-                key={index}
-                onClick={() => handleWorkFilter(filter)}
-              >
-                {filter}
-              </button>
-            ))}
+            <div className="works__filter">
+              {["UI/UX", "Web App", "React Js", "All"].map((filter, index) => (
+                <button
+                  className={`works__fiter-item ${
+                    activeFilter == filter ? "active" : ""
+                  }`}
+                  key={index}
+                  onClick={() => handleWorkFilter(filter)}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="works__portfolio">
           {filterWork.map((work, index) => (
             <figure className="works__portofilio-item" key={index}>
               <figcaption className="works__portfolio-description">
@@ -68,10 +80,30 @@ const Works = () => {
               </figcaption>
               <picture className="works__portofilio-image">
                 <img src={urlFor(work.imgUrl)} alt={work.name} />
+                <div className="works__portofilio-actions">
+                  <a
+                    className="works__portofilio-link"
+                    href={work.projectLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    alt="Live view"
+                  >
+                    <AiFillEye />
+                  </a>
+                  <a
+                    className="works__portofilio-link"
+                    href={work.codeLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    alt="Code view"
+                  >
+                    <AiFillGithub />
+                  </a>
+                </div>
               </picture>
             </figure>
           ))}
-        </div>
+        </Masonry>
       </div>
     </section>
   );

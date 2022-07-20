@@ -38,24 +38,13 @@ const technologies = [
 
 const About = () => {
   const [services, setServices] = useState([]);
+  const [activeServices, setActiveServices] = useState();
 
   useEffect(() => {
     const query = '*[_type == "abouts"] |  order(order asc)';
     client.fetch(query).then((data) => setServices(data));
   }, []);
 
-  function toggleService(event) {
-    const { target, currentTarget } = event;
-    const label = "aria-hidden";
-    const allParagraph = [...currentTarget.querySelectorAll(`[${label}]`)];
-    const paragraphHidden = target.querySelector(`[${label}]`);
-    const currentState = target.getAttribute(`[${label}]`);
-
-    allParagraph.forEach((paragraph) => paragraph.setAttribute(label, true));
-
-    if (!target.classList.contains("about__service-card")) return;
-    paragraphHidden.setAttribute(label, false);
-  }
   return (
     <section id="About" className="about">
       <div className="app__wrapper">
@@ -85,18 +74,19 @@ const About = () => {
             ))}
           </div>
         </div>
-        <div className="about__services" onClick={toggleService}>
+        <div className="about__services" >
           {services.map((service, index) => (
             <figure
-              className="about__service-card"
-              aria-selected="false"
+              className={`about__service-card`}
+              aria-selected={service == activeServices}
               key={`technology-${index}`}
+              onClick={() => setActiveServices(services[index])}
             >
               <picture className="about__card-icon">{service.icon}</picture>
               <figcaption className="about__card-description">
                 <h3>{service.title}</h3>
                 <hr />
-                <p aria-hidden="true">{service.description}</p>
+                <p aria-hidden={service !== activeServices}>{service.description}</p>
               </figcaption>
             </figure>
           ))}

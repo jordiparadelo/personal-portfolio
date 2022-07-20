@@ -53,6 +53,19 @@ body {
   color: var(--fontColor);
 }
 
+/* Font Size  */ 
+body *:is(h1, h2, h3, h4, h5) {
+  --fontSize: clamp(var(--fontBase), 2.4vw , calc(var(--fontSizeRatio) * 1rem));
+  line-height: 1.1;
+  font-size: var(--fontSize);
+}
+
+body h1 {--fontBase: 32px ;--fontSizeRatio: 3} 			/* 26px | 40px */
+body h2 {--fontBase: 32px ;--fontSizeRatio: 3} 		/* 24px | 32px */
+body h3 {--fontBase: 20px ;--fontSizeRatio: 1.5} 		/* 20px | 24px */
+body h4 {--fontBase: 18px ;--fontSizeRatio: 1.25} 		/* 18px | 20px */
+body h5 {--fontBase: 16px ;--fontSizeRatio: 1} 			/* 16px */
+
 a {
   text-decoration: unset;
 }
