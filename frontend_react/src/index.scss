@@ -118,6 +118,17 @@ button,
   }
 }
 
+hr {
+  --size: 1px;
+  --background: rgba(0, 0, 0, 0.05);
+  min-width: var(--size);
+  min-height: var(--size);
+  max-width: 100%;
+  max-height: 100%;
+  border: unset;
+  background-color: var(--background);
+}
+
 /* Form */
 form {
   display: flex;

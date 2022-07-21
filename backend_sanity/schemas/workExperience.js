@@ -26,6 +26,12 @@ export default {
                 name:'actualWork',
                 title:'Actual work',
                 type:"boolean"
-            }
+            },
+            {
+                name: "order",
+                title: "Order",
+                type: "number",
+                hidden: true,
+              },
     ]
 }
