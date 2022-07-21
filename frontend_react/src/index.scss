@@ -51,6 +51,14 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   color: var(--fontColor);
+
+  @media (hover: hover) and (min-width: 768px) {
+    scroll-snap-type: y mandatory;
+
+    section {
+      scroll-snap-align: center;
+    }
+  }
 }
 
 /* Font Size  */ 
@@ -83,6 +91,7 @@ button,
   min-height: var(--size);
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0 var(--padding);
   border: unset;
   border-radius: var(--corners);

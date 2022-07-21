@@ -68,12 +68,13 @@
         .works__tags-container {
           display: flex;
           margin-block-start: var(--spacing-xs);
-          gap: var(--spacing-xs);
+          column-gap: var(--spacing-xs);
           font-weight: bold;
           flex-wrap: wrap;
           align-content: flex-start;
           align-self: flex-start;
           justify-self: flex-end;
+          white-space: nowrap;
         }
       }
 
@@ -128,9 +129,11 @@
         }
       }
       // Interactions
-      &:not(:hover) {
-        .works__portofilio-actions {
-          opacity: 0;
+      @media (hover: hover) {
+        &:not(:hover) {
+          .works__portofilio-actions {
+            opacity: 0;
+          }
         }
       }
     }

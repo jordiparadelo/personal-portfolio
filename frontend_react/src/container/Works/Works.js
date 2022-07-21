@@ -12,6 +12,10 @@ const Works = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [filterWork, setFilterWork] = useState([]);
   const [works, setWorks] = useState([]);
+  const breakpointColumnsObj = {
+    default: 2,
+    500: 1
+  };
 
   // Methods
   function handleWorkFilter(filter) {
@@ -36,7 +40,7 @@ const Works = () => {
     <section id="Works" className="works">
       <div className="app__wrapper">
         <Masonry
-          breakpointCols={2}
+          breakpointCols={breakpointColumnsObj}
           className="works__container-grid"
           columnClassName="works__container-column"
         >
@@ -68,9 +72,6 @@ const Works = () => {
                 <div className="works__description-title-container">
                   <h3>{work.title}</h3>
                   <p>{work.description}</p>
-                  <a href={work.projectLink} target="_blank" rel="noreferrer">
-                    Live project
-                  </a>
                 </div>
                 <div className="works__tags-container">
                   {work.tags.map((tag) => (

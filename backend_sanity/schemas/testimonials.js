@@ -9,9 +9,14 @@ export default {
             type: 'string'
         },
         {
+            name:'job',
+            title:'Job Description',
+            type:'string',
+        },
+        {
             name:'company',
             title:'Company',
-            type:'string'
+            type:'string',
         },
         {
             name:'imgurl',

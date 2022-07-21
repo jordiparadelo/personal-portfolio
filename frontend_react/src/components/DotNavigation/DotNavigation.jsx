@@ -7,9 +7,9 @@ import { scrollToTarget } from "../../utils";
 const navLinks = [
   { name: "Home", url: "Home" },
   { name: "About", url: "About" },
-  { name: "Contact", url: "Footer" },
   { name: "Work", url: "Works" },
   { name: "Skills", url: "Skills" },
+  { name: "Contact", url: "Footer" },
 ];
 
 const DotNavigation = () => {
