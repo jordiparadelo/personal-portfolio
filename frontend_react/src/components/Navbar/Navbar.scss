@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
   --navbar-size: 90px;
   width: 100%;
   display: flex;
@@ -11,7 +11,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   z-index: 999;
 
-  .app__wrapper{
+  .app__wrapper {
     gap: var(--spacing-lg);
     justify-content: space-between;
     align-items: center;
@@ -22,9 +22,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: var(--spacing);
 
-    img {
-      width: 90px;
+    .navbar__logo-name {
+      line-height: 0.95;
+      font-weight: 800;
     }
   }
   .navbar__menu-wrapper {
@@ -81,7 +83,7 @@
         max-width: 100%;
         height: 100vh;
         background-color: var(--white-color);
-        background-image: url('../../assets/bgWhite.png');
+        background-image: url("../../assets/bgWhite.png");
         background-size: cover;
         padding: var(--spacing-xl);
         padding-top: var(--navbar-size);
@@ -89,8 +91,8 @@
         box-shadow: var(--shadow-xl);
 
         &:is([aria-hidden="true"]) {
-            right: -100%;
-          }
+          right: -100%;
+        }
       }
     }
   }

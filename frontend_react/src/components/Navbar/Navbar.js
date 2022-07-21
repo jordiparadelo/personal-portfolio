@@ -29,8 +29,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="app__wrapper">
-        <div className="navbar__logo">
-          <img src={images.logo} alt="logo" />
+        <div className="navbar__logo"> 
+          <img src={images.logo} alt="logo" width="48" height="48"/>
+          <h4 className="navbar__logo-name">Jordi<br/>Paradelo</h4>
         </div>
         <div className="navbar__menu-wrapper">
           <button

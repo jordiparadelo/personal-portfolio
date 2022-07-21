@@ -7,6 +7,7 @@ import { FiLink } from "react-icons/fi";
 import { client, urlFor } from "../../clients";
 
 const Skills = () => {
+  const [workExperiences, setWorkExperiences] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
   const expiriencesByDescYear = experiences.sort(
@@ -18,8 +19,13 @@ const Skills = () => {
     expiriencesByDescYear[expiriencesByDescYear?.length - 1]?.year;
 
   useEffect(() => {
-    const query = '*[_type =="workExperience"]';
+    const query = '*[_type =="experiences"]';
     client.fetch(query).then((data) => setExperiences(data));
+  }, []);
+
+  useEffect(() => {
+    const query = '*[_type =="workExperience"]';
+    client.fetch(query).then((data) => setWorkExperiences(data));
   }, []);
 
   useEffect(() => {
@@ -77,21 +83,35 @@ const Skills = () => {
                   </div>
                 </div>
 
-                <div className="skills__item-description">
-                  {experience.actualWork && <p className="year">Until now</p>}
-                  <h3 className="title">{experience.name}</h3>
-                  <p className="company">
-                    {experience.company}{" "}
-                    <a
-                      href={experience.companyUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="link"
-                    >
-                      <FiLink />
-                    </a>
-                  </p>
-                  <hr className="divider" />
+                <div className="skills__description-container">
+                  {experience.works.map((work) => {
+                    const selectedWork = workExperiences.find(({ _id: id }) =>
+                      id.includes(work._ref)
+                    );
+                    return (
+                      <div
+                        className="skills__item-description"
+                        key={`work-${index}`}
+                      >
+                        {selectedWork.actualWork && (
+                          <p className="year">Until now</p>
+                        )}
+                        <h3 className="title">{selectedWork.name}</h3>
+                        <p className="company">
+                          {selectedWork.company}{" "}
+                          <a
+                            href={selectedWork.companyUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="link"
+                          >
+                            <FiLink />
+                          </a>
+                        </p>
+                        <hr className="divider" />
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             );
