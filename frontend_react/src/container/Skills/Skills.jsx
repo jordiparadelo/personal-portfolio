@@ -4,10 +4,11 @@ import "./Skills.scss";
 // Assets
 import { FiLink } from "react-icons/fi";
 // Data
-import { client } from "../../clients";
+import { client, urlFor } from "../../clients";
 
 const Skills = () => {
-  const [experiences, setSkills] = useState([]);
+  const [experiences, setExperiences] = useState([]);
+  const [skills, setSkills] = useState([]);
   const expiriencesByDescYear = experiences.sort(
     (prevExperience, nextExperience) =>
       nextExperience.year - prevExperience.year
@@ -18,6 +19,11 @@ const Skills = () => {
 
   useEffect(() => {
     const query = '*[_type =="workExperience"]';
+    client.fetch(query).then((data) => setExperiences(data));
+  }, []);
+
+  useEffect(() => {
+    const query = '*[_type =="skills"]';
     client.fetch(query).then((data) => setSkills(data));
   }, []);
 
@@ -40,6 +46,19 @@ const Skills = () => {
                 Satisfied <br /> Companies.
               </div>
             </div>
+          </div>
+
+          <div className="skills__skills-grid">
+            {skills.map((skill, index) => (
+              <div className="skills_skill-disc" key={`skill-${index}`}>
+                <img
+                  src={urlFor(skill.icon)}
+                  alt={skill.name}
+                  width="40"
+                  height="40"
+                />
+              </div>
+            ))}
           </div>
         </header>
 

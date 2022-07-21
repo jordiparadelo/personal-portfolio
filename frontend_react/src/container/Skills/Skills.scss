@@ -1,13 +1,18 @@
 #Skills {
   .app__wrapper {
-    gap: 5vw;
+    gap: var(--spacing-xxl);
     flex-wrap: wrap;
+
+    @media screen and (min-width: 768px) {
+        gap: 5vw;
+    }
   }
 
   .skills__experience-container {
     margin-block-start: var(--spacing);
     display: flex;
     gap: var(--spacing-lg);
+    flex-wrap: wrap;
 
     .skills__experience-count {
       display: flex;
@@ -24,6 +29,31 @@
       .label {
         font-size: 1em;
       }
+    }
+  }
+
+  .skills__skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing);
+    margin-block-start: var(--spacing-xl);
+
+    .skills_skill-disc {
+        --size: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--size);
+        height: var(--size);
+        background: var(--white-color);
+        border-radius: var(--corners-round);
+        box-shadow: var(--shadow-lg);
+
+        img {
+            --icon-size: calc(var(--size) * 0.6);
+            width: var(--icon-size);
+            height: var(--icon-size);
+        }
     }
   }
 
@@ -56,12 +86,6 @@
           &.active {
             --background: var(--dark-color);
             color: white;
-          }
-        }
-
-        &:not(.active, .active ~ *) {
-          .year {
-            --background: var(--gray-color);
           }
         }
 

@@ -35,6 +35,7 @@
         justify-content: center;
         width: var(--size);
         height: var(--size);
+        background: var(--white-color);
         border-radius: var(--corners-round);
         box-shadow: var(--shadow-lg);
 
@@ -81,6 +82,7 @@
       height: 100%;
       background-color: var(--background);
       transition: background-color 150ms linear;
+      cursor: pointer;
 
       > * {
         pointer-events: none;
