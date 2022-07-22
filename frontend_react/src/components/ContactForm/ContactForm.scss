@@ -1,0 +1,37 @@
+.contact-form {
+    gap: var(--spacing-xl);
+    
+    .input-group {
+        gap: var(--spacing-xs);
+
+        &:not([data-input-status="error"]) {
+            .status_message {
+                display: none;
+            }
+        }
+    }
+
+    input {
+        color: var(--light-color);
+    }
+    textarea {
+        min-width: 100%;
+        flex-shrink: 0;
+        flex-grow: 1;
+    }
+
+}
+.form__greeting-message {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    column-gap: var(--spacing-lg);
+    row-gap: var(--spacing-xs);
+    flex-wrap: wrap;
+    align-self: center;
+
+    a {
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
