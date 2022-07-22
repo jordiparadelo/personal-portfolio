@@ -1,8 +1,13 @@
 .App {
+  --navbar-size: 80px;
   background-color: var(--light-color);
   min-height: 100vh;
   max-width: 100%;
   overflow: hidden;
+
+  @media screen and (max-width: 500px) {
+    padding-block-start: var(--navbar-size);
+  }
 }
 
 section, footer {

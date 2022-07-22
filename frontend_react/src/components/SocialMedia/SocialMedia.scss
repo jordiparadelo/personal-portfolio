@@ -1,8 +1,6 @@
 .social-media {
-  position: absolute;
-  bottom: 0;  
   display: flex;
-  gap: var(--spacing-xs);
+  gap: var(--spacing);
 
   .social-media__link {
     --size: 40px;

@@ -1,12 +1,11 @@
 .navbar {
-  --navbar-size: 90px;
   width: 100%;
   display: flex;
   min-height: var(--navbar-size);
-  padding: var(--spacing) var(--spacing-lg);
+  padding-inline: var(--spacing-lg);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  position: sticky;
+  position: fixed;
   top: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   z-index: 999;
@@ -31,7 +30,7 @@
   }
   .navbar__menu-wrapper {
     .navbar__menu-button {
-      --size: 40px;
+      --size: 48px;
       position: relative;
       z-index: 10;
       border-radius: var(--corners-round);
@@ -95,5 +94,10 @@
         }
       }
     }
+  }
+
+  // Medias 
+  @media screen and (min-width: 500px) { 
+    position: sticky;
   }
 }

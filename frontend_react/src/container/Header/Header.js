@@ -13,7 +13,6 @@ const Header = () => {
   
   return (
     <section id="Home" className="header">
-      <SocialMedia/>
       <div className="app__wrapper">
         <div className="header__content">
           <div className="header__title-container">
@@ -38,6 +37,7 @@ const Header = () => {
               Check the Works{" "}
             </a>
           </div>
+          <SocialMedia/>
         </div>
         <div className="header__image">
           <Lottie animationData={images.headerAnimation} loop={true} />
