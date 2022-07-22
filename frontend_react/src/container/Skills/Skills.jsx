@@ -93,14 +93,14 @@ const Skills = () => {
                         className="skills__item-description"
                         key={work._ref}
                       >
-                        {selectedWork.actualWork && (
+                        {selectedWork?.actualWork && (
                           <p className="year">Until now</p>
                         )}
-                        <h3 className="title">{selectedWork.name}</h3>
+                        <h3 className="title">{selectedWork?.name}</h3>
                         <p className="company">
-                          {selectedWork.company}{" "}
+                          {selectedWork?.company}{" "}
                           <a
-                            href={selectedWork.companyUrl}
+                            href={selectedWork?.companyUrl}
                             target="_blank"
                             rel="noreferrer"
                             className="link"

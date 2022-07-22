@@ -81,7 +81,7 @@ const ContactForm = () => {
             placeholder="Tell me about your proyect"
           ></textarea>
           <button className="primary">
-            {loading ? "Sending..." : "Send Preposition"}
+            {loading ? "Sending..." : "Send Proposal"}
           </button>
         </form>
       )}
