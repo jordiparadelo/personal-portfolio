@@ -13,11 +13,13 @@
     height: var(--size);
     border-radius: var(--corners-round);
     box-shadow: var(--shadow-lg);
+    background: var(--white-color);
 
     svg {
       --icon-size: calc(var(--size) * 0.5);
       width: var(--icon-size);
       height: var(--icon-size);
+      fill: var(--dark-color);
     }
   }
 }
