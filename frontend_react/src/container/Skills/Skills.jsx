@@ -91,7 +91,7 @@ const Skills = () => {
                     return (
                       <div
                         className="skills__item-description"
-                        key={`work-${index}`}
+                        key={work._ref}
                       >
                         {selectedWork.actualWork && (
                           <p className="year">Until now</p>

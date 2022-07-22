@@ -61,18 +61,33 @@ body {
   }
 }
 
-/* Font Size  */ 
+/* Font Size  */
 body *:is(h1, h2, h3, h4, h5) {
-  --fontSize: clamp(var(--fontBase), 2.4vw , calc(var(--fontSizeRatio) * 1rem));
+  --fontSize: clamp(var(--fontBase), 2.4vw, calc(var(--fontSizeRatio) * 1rem));
   line-height: 1.1;
   font-size: var(--fontSize);
 }
 
-body h1 {--fontBase: 32px ;--fontSizeRatio: 3} 			/* 26px | 40px */
-body h2 {--fontBase: 32px ;--fontSizeRatio: 3} 		/* 24px | 32px */
-body h3 {--fontBase: 20px ;--fontSizeRatio: 1.5} 		/* 20px | 24px */
-body h4 {--fontBase: 18px ;--fontSizeRatio: 1.25} 		/* 18px | 20px */
-body h5 {--fontBase: 16px ;--fontSizeRatio: 1} 			/* 16px */
+body h1 {
+  --fontBase: 32px;
+  --fontSizeRatio: 3;
+} /* 26px | 40px */
+body h2 {
+  --fontBase: 32px;
+  --fontSizeRatio: 3;
+} /* 24px | 32px */
+body h3 {
+  --fontBase: 20px;
+  --fontSizeRatio: 1.5;
+} /* 20px | 24px */
+body h4 {
+  --fontBase: 18px;
+  --fontSizeRatio: 1.25;
+} /* 18px | 20px */
+body h5 {
+  --fontBase: 16px;
+  --fontSizeRatio: 1;
+} /* 16px */
 
 a {
   text-decoration: unset;
@@ -153,12 +168,24 @@ form {
   .input-group {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
-
-    input:not([type="checkbox"]) {
-      flex-grow: 1;
-      min-width: 100%;
-    }
+    flex-grow: 1;
+  }
+  input {
+    flex-grow: 1;
+    min-width: 100%;
+    background: unset;
+    border: unset;
+    border-bottom: 1px solid var(--gray-color);
+  }
+  textarea {
+    max-width: 100%;
+    width: 100%;
+    min-height: 150px;
+    max-height: 250px;
+    padding: var(--spacing);
+    border: unset;
+    background-color: var(--white-color);
+    border-radius: var(--corners);
   }
 
   .form_conditions {
