@@ -8,13 +8,15 @@ import { useMediaQuery } from "react-responsive";
 import { scrollToTarget } from "../../utils";
 // Syles
 import "./Navbar.scss";
+// Components
+import { SocialMedia } from "../../components";
 
 const navLinks = [
   { name: "Home", url: "Home" },
   { name: "About", url: "About" },
-  { name: "Contact", url: "Contact" },
   { name: "Work", url: "Works" },
   { name: "Skills", url: "Skills" },
+  { name: "Contact", url: "Footer" },
 ];
 
 const Navbar = () => {
@@ -29,9 +31,13 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="app__wrapper">
-        <div className="navbar__logo"> 
-          <img src={images.logo} alt="logo" width="48" height="48"/>
-          <h4 className="navbar__logo-name">Jordi<br/>Paradelo</h4>
+        <div className="navbar__logo">
+          <img src={images.logo} alt="logo" width="48" height="48" />
+          <h4 className="navbar__logo-name">
+            Jordi
+            <br />
+            Paradelo
+          </h4>
         </div>
         <div className="navbar__menu-wrapper">
           <button
@@ -49,12 +55,12 @@ const Navbar = () => {
               <a
                 href={`#${link.url}`}
                 key={`link-${index}`}
-                className="app__flex p-text"
                 onClick={handleNavClick}
               >
                 {link.name}
               </a>
             ))}
+            <SocialMedia />
           </menu>
         </div>
       </div>

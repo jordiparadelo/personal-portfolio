@@ -2,15 +2,15 @@ import React from "react";
 // Lib
 import Lottie from "lottie-react";
 // Utils
-import {scrollToTarget} from "../../utils";
+import { scrollToTarget } from "../../utils";
 // Assets
 import { images } from "../../constants";
 // Styles
 import "./Header.scss";
-import { DotNavigation, SocialMedia } from "../../components";
+// Components
+import { DotNavigation } from "../../components";
 
 const Header = () => {
-  
   return (
     <section id="Home" className="header">
       <div className="app__wrapper">
@@ -27,7 +27,14 @@ const Header = () => {
             </p>
           </div>
           <div className="header__actions">
-            <button className="primary"> Let's Talk</button>
+            <a
+              href="#Footer"
+              className="button primary"
+              onClick={scrollToTarget}
+            >
+              {" "}
+              Let's Talk
+            </a>
             <a
               className="button secondary"
               href="#Works"
@@ -37,13 +44,12 @@ const Header = () => {
               Check the Works{" "}
             </a>
           </div>
-          <SocialMedia/>
         </div>
         <div className="header__image">
           <Lottie animationData={images.headerAnimation} loop={true} />
         </div>
       </div>
-      <DotNavigation/>
+      <DotNavigation />
     </section>
   );
 };
