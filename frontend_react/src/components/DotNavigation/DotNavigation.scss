@@ -9,7 +9,7 @@
     z-index: 10;
 
     .dot-navigation__link {
-        --size: 10px;
+        --size: 14px;
         --background: var(--gray-color);
         height: var(--size);
         width: var(--size);
@@ -39,6 +39,10 @@
             &:before {
                 transform: scale(2)
             }
+        }
+
+        @media screen and (min-width: 768px) {
+            --size: 10px;
         }
     }  
 }
