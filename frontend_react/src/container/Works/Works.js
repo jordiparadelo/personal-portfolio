@@ -16,6 +16,7 @@ const Works = () => {
     default: 2,
     500: 1
   };
+  const filtersCollection = ["All", "UI/UX", "Web App", "React Js"]
 
   // Methods
   function handleWorkFilter(filter) {
@@ -52,7 +53,7 @@ const Works = () => {
             </header>
 
             <div className="works__filter">
-              {["UI/UX", "Web App", "React Js", "All"].map((filter, index) => (
+              {filtersCollection.map((filter, index) => (
                 <button
                   className={`works__fiter-item ${
                     activeFilter == filter ? "active" : ""
@@ -74,7 +75,7 @@ const Works = () => {
                   <p>{work.description}</p>
                 </div>
                 <div className="works__tags-container">
-                  {work.tags.map((tag) => (
+                  {work.tags.filter(tag =>  !tag.includes('All')).map((tag) => (
                     <span key={tag}>{tag}</span>
                   ))}
                 </div>
@@ -82,7 +83,7 @@ const Works = () => {
               <picture className="works__portofilio-image">
                 <img src={urlFor(work.imgUrl)} alt={work.name} />
                 <div className="works__portofilio-actions">
-                  <a
+                  {work.projectLink && (<a
                     className="works__portofilio-link"
                     href={work.projectLink}
                     target="_blank"
@@ -90,8 +91,8 @@ const Works = () => {
                     alt="Live view"
                   >
                     <AiFillEye />
-                  </a>
-                  <a
+                  </a>)}
+                  {work.codeLink && (<a
                     className="works__portofilio-link"
                     href={work.codeLink}
                     target="_blank"
@@ -99,7 +100,8 @@ const Works = () => {
                     alt="Code view"
                   >
                     <AiFillGithub />
-                  </a>
+                    {console.log(work.codeLink)}
+                  </a>)}
                 </div>
               </picture>
             </figure>

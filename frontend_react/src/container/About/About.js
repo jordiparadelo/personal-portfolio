@@ -4,6 +4,8 @@ import "./About.scss";
 // Assets
 import { FaReact, FaFigma, FaSketch } from "react-icons/fa";
 import { SiNextdotjs, SiWebflow } from "react-icons/si";
+import { AiOutlineCode } from "react-icons/ai";
+import { MdOutlineDesignServices, MdOutlineAnalytics } from "react-icons/md";
 
 import { client } from "../../clients";
 
@@ -35,6 +37,12 @@ const technologies = [
     icon: <FaSketch />,
   },
 ];
+
+const ICONS = {
+  MdOutlineAnalytics : <MdOutlineAnalytics/>,
+  AiOutlineCode: <AiOutlineCode/>,
+  MdOutlineDesignServices : <MdOutlineDesignServices/>
+}
 
 const About = () => {
   const [services, setServices] = useState([]);
@@ -77,12 +85,12 @@ const About = () => {
         <div className="about__services" >
           {services.map((service, index) => (
             <figure
-              className={`about__service-card`}
-              aria-selected={service == activeServices}
-              key={`technology-${index}`}
-              onClick={() => setActiveServices(services[index])}
+            className={`about__service-card`}
+            aria-selected={service == activeServices}
+            key={`technology-${index}`}
+            onClick={() => setActiveServices(services[index])}
             >
-              <picture className="about__card-icon">{service.icon}</picture>
+              <picture className="about__card-icon">{ICONS[service.icon]}</picture>
               <figcaption className="about__card-description">
                 <h3>{service.title}</h3>
                 <hr />

@@ -43,6 +43,7 @@
           --icon-size: calc(var(--size) * 0.6);
           width: var(--icon-size);
           height: var(--icon-size);
+          fill: var(--dark-color);
         }
       }
     }
@@ -67,9 +68,16 @@
     flex-direction: row;
     gap: var(--spacing);
     overflow-x: auto;
+    // Hide Scroll bar
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    &:-webkit-scrollbar {
+      display: none;
+    }
 
     .about__service-card {
-      --card-size: 224px;
+      --card-size: 300px;
       --background: var(--white-color);
       flex: 1;
       display: flex;
@@ -86,6 +94,25 @@
 
       > * {
         pointer-events: none;
+      }
+
+      .about__card-icon {
+        --size: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--size);
+        height: var(--size);
+        background: var(--white-color);
+        border-radius: var(--corners-round);
+        // box-shadow: var(--shadow-lg);
+
+        svg {
+          --icon-size: calc(var(--size) * 0.5);
+          width: var(--icon-size);
+          height: var(--icon-size);
+          fill: var(--dark-color);
+        }
       }
 
       .about__card-description {

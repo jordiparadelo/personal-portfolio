@@ -12,7 +12,6 @@ import "./Navbar.scss";
 import { SocialMedia } from "../../components";
 
 const navLinks = [
-  { name: "Home", url: "Home" },
   { name: "About", url: "About" },
   { name: "Work", url: "Works" },
   { name: "Skills", url: "Skills" },

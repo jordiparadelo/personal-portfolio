@@ -47,7 +47,7 @@ const Skills = () => {
               </div>
             </div>
             <div className="skills__experience-count">
-              <div className="year">10</div>
+              <div className="year">+5</div>
               <div className="label">
                 Satisfied <br /> Companies.
               </div>
