@@ -12,7 +12,7 @@ import { DotNavigation } from "../../components";
 
 const Header = () => {
   return (
-    <section id="Home" className="header">
+    <section id="Header" className="header">
       <div className="app__wrapper">
         <div className="header__content">
           <div className="header__title-container">

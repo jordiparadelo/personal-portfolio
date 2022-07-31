@@ -1,1 +1,113 @@
-.Project {}
+#Project {
+  .Project__header {
+    --font-size: clamp(32px, 12vw, 150px);
+    background-color: var(--white-color);
+
+    > .app__wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+      align-items: flex-start;
+    }
+
+    .Project_client {
+      font-size: m#{a}x(20px, calc(var(--font-size) * 0.18));
+    }
+    .Project_title {
+      font-size: var(--font-size);
+      line-height: 1;
+    }
+  }
+  .Project__cover {
+    padding: unset;
+    min-height: 400px;
+    height: 70vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      flex-grow: 1;
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      margin: var(--spacing-xl);
+    }
+  }
+
+  .Project__description {
+    background-color: var(--white-color);
+
+    .app__wrapper {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .Project__detail-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+      min-width: 20ch;
+      flex-grow: 1;
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+
+    .Project__detail-card {
+      background: var(--light-color);
+      border-radius: var(--corners-lg);
+      padding: var(--spacing-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+      min-width: 20ch;
+      flex-grow: 1;
+      align-self: flex-start;
+
+      @media screen and (min-width: 600px) {
+        max-width: 25ch;
+      }
+    }
+
+    .Project__detail {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+      flex-basis: m#{a}x(25ch, 40%);
+      flex-grow: 1;
+      font-size: 20px;
+    }
+  }
+
+  .Project__gallery {
+    .Project__portofilio-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      text-align: center;
+      font-size: 18px;
+
+      .Project__portofilio-image {
+        max-width: 100%;
+        overflow: hidden;
+        position: relative;
+
+        img {
+          transform-origin: 100%;
+          aspect-ratio: 1/1;
+          max-width: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+
+    @media screen and (min-width: 500px) {
+      .masonry__container-column {
+        justify-content: center;
+      }
+    }
+  }
+}

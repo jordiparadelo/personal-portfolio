@@ -10,7 +10,7 @@
   }
 }
 
-section, footer {
+section, footer, .App__section {
   padding-block: 5vw;
   padding-inline: 64px;
   position: relative;
@@ -220,5 +220,19 @@ section, footer {
 
   .copyright {
     padding: 2rem;
+  }
+}
+
+// Masonry
+.masonry__container-grid {
+  --gap: clamp(var(--spacing-xl), 5vw, var(--spacing-xxl));
+  display: flex;
+  gap: var(--gap);
+
+  .masonry__container-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    flex-grow: 1;
   }
 }

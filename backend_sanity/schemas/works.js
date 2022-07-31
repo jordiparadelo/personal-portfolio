@@ -8,11 +8,24 @@ export default {
         title: 'Title',
         type: 'string',
       },
-    
       {
-        name: 'description',
-        title: 'Description',
+        name: 'slug',
+        title: 'Slug',
+        type: 'slug',
+        options: {
+          source: 'title',
+          maxLength: 96,
+        },
+      },
+      {
+        name: 'blurb',
+        title: 'Blurb',
         type: 'string',
+      },
+      {
+        name: 'details',
+        title: 'Project Details',
+        type: 'workDescription',
       },
       {
         name: 'projectLink',

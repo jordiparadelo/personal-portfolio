@@ -13,6 +13,8 @@ import workExperience from "./workExperience";
 import contact from "./contact";
 import socialMedia from "./socialMedia";
 
+import workDescription from './locale/WorkDescription'
+
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -29,5 +31,6 @@ export default createSchema({
     experiences,
     contact,
     socialMedia,
+    workDescription,
   ]),
 });

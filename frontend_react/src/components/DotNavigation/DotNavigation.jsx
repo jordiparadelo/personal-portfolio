@@ -31,8 +31,8 @@ const DotNavigation = () => {
       (entries) => {
         entries.forEach((entry) => {
           const { target } = entry;
-          const activeLink = navLinksRef.current.find(({ current }) =>
-            current.hash.includes(target.id)
+          const activeLink = navLinksRef?.current.find(({ current }) =>
+            current?.hash.includes(target.id)
           );
           activeLink.current.classList.toggle("active", entry.isIntersecting);
         });
