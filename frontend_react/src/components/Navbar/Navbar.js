@@ -5,6 +5,7 @@ import { HiMenuAlt4, HiX } from "react-icons/hi";
 // Lib
 import { useMediaQuery } from "react-responsive";
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 // Utils
 import { scrollToTarget } from "../../utils";
 // Syles
@@ -24,19 +25,58 @@ const navProjectLinks = [
   { name: "Contact", url: "Footer" },
 ];
 
+/* ANIMATIONS */
+// const transition = {duration: 1.4, ease: [0.6, 0.01, 0.05, 0.9]}
+const transition = { duration: 1.4, ease: [0.22, 1, 0.36, 1] };
+
+const navAnimation = {
+  initial: {
+    y: -100,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      ...transition,
+    },
+  },
+};
+const menuAnimation = {
+  animate: {
+    transition: {
+      ...transition,
+      delayChildren: 0.6,
+      staggerChildren: 0.05,
+      staggerDirection: 1,
+    },
+  },
+};
+const linkAnimation = {
+  initial: {
+    y: -100,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {duration: 1, ease: transition.ease}
+  },
+};
+
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [links, setLinks] = useState(navLinks);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 600px)" });
   let location = useLocation();
 
-  useEffect(() =>{
-    if(location.pathname === "/") {
-      setLinks(navLinks)
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setLinks(navLinks);
     } else if (location.pathname.includes("works")) {
-      setLinks(navProjectLinks)
+      setLinks(navProjectLinks);
     }
-  },[location])
+  }, [location]);
 
   function handleNavClick(event) {
     scrollToTarget(event);
@@ -44,7 +84,12 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar">
+    <motion.nav
+      className="navbar"
+      initial="initial"
+      animate="animate"
+      variants={navAnimation}
+    >
       <div className="app__wrapper">
         <Link to="/" className="navbar__logo">
           <img src={images.logo} alt="logo" width="48" height="48" />
@@ -62,24 +107,26 @@ const Navbar = () => {
           >
             {toggle ? <HiX /> : <HiMenuAlt4 />}
           </button>
-          <menu
+          <motion.menu
             className="navbar__navlinks"
             aria-hidden={isTabletOrMobile && !toggle}
+            variants={menuAnimation}
           >
             {links.map((link, index) => (
-              <a
+              <motion.a
                 href={`#${link.url}`}
                 key={`link-${index}`}
                 onClick={handleNavClick}
+                variants={linkAnimation}
               >
                 {link.name}
-              </a>
+              </motion.a>
             ))}
             <SocialMedia />
-          </menu>
+          </motion.menu>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

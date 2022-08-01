@@ -16,15 +16,17 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/works" element={<Works />} />
-        <Route path="/works/:projectId" element={<Project />} />
-      </Routes>
-      <Footer />
-    </div>
+
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/works" element={<Works />} />
+          <Route path="/works/:projectId" element={<Project />} />
+        </Routes>
+        <Footer />
+      </div>
+
   );
 };
 
