@@ -4,7 +4,7 @@ import { images } from "../../constants";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
 // Lib
 import { useMediaQuery } from "react-responsive";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // Utils
 import { scrollToTarget } from "../../utils";
 // Syles
@@ -18,10 +18,25 @@ const navLinks = [
   { name: "Skills", url: "Skills" },
   { name: "Contact", url: "Footer" },
 ];
+const navProjectLinks = [
+  { name: "About", url: "About" },
+  { name: "Work", url: "Works" },
+  { name: "Contact", url: "Footer" },
+];
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const [links, setLinks] = useState(navLinks);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 600px)" });
+  let location = useLocation();
+
+  useEffect(() =>{
+    if(location.pathname === "/") {
+      setLinks(navLinks)
+    } else if (location.pathname.includes("works")) {
+      setLinks(navProjectLinks)
+    }
+  },[location])
 
   function handleNavClick(event) {
     scrollToTarget(event);
@@ -51,7 +66,7 @@ const Navbar = () => {
             className="navbar__navlinks"
             aria-hidden={isTabletOrMobile && !toggle}
           >
-            {navLinks.map((link, index) => (
+            {links.map((link, index) => (
               <a
                 href={`#${link.url}`}
                 key={`link-${index}`}

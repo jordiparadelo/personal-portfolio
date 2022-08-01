@@ -87,7 +87,7 @@ const Project = () => {
             </div>
           </div>
         </section>
-        <section className="Project__gallery" id="Work">
+        <section className="Project__gallery" id="Works">
           <div className="app__wrapper">
             <Masonry
               breakpointCols={breakpointColumnsObj}

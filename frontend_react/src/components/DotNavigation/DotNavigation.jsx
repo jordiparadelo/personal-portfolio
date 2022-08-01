@@ -5,7 +5,7 @@ import "./DotNavigation.scss";
 import { scrollToTarget } from "../../utils";
 
 const navLinks = [
-  { name: "Home", url: "Home" },
+  { name: "Header", url: "Header" },
   { name: "About", url: "About" },
   { name: "Work", url: "Works" },
   { name: "Skills", url: "Skills" },
@@ -34,7 +34,7 @@ const DotNavigation = () => {
           const activeLink = navLinksRef?.current.find(({ current }) =>
             current?.hash.includes(target.id)
           );
-          activeLink.current.classList.toggle("active", entry.isIntersecting);
+          activeLink?.current.classList.toggle("active", entry.isIntersecting);
         });
       },
       {
