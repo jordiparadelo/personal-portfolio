@@ -1,0 +1,246 @@
+#Project {
+  .Project__header {
+    --font-size: clamp(32px, 12vw, 100px);
+    background-color: var(--white-color);
+    display: flex;
+    align-items: center;
+
+    > .app__wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+      align-items: flex-start;
+    }
+
+    .Project_client {
+      font-size: m#{a}x(20px, calc(var(--font-size) * 0.18));
+    }
+    .Project_title {
+      font-size: var(--font-size);
+      line-height: 1;
+    }
+  }
+  .Project__cover {
+    padding: unset;
+    min-height: 400px;
+    height: 70vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      --top-position: 0%;
+      flex-grow: 1;
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      object-position: center var(--top-position);
+    }
+  }
+
+  .Project__description {
+    background-color: var(--white-color);
+
+    .Project__live-link {
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      transition: opacity 0.5s var(--ease);
+      color: var(--primary-color);
+      align-self: flex-start;
+
+      svg {
+        fill: var(--primary-color);
+      }
+
+      // Interactions
+      @media (hover: hover) {
+        &:not(:hover) {
+          color: var(--dark-color);
+
+          svg {
+            fill: var(--dark-color);
+          }
+        }
+      }
+    }
+
+    .app__wrapper {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .Project__detail-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+      min-width: 20ch;
+      flex-grow: 1;
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+
+    .Project__detail-card {
+      background: var(--light-color);
+      border-radius: var(--corners-lg);
+      padding: var(--spacing-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+      min-width: 20ch;
+      flex-grow: 1;
+      align-self: flex-start;
+
+      @media screen and (min-width: 600px) {
+        max-width: 25ch;
+      }
+    }
+
+    .Project__detail {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+      flex-basis: m#{a}x(25ch, 40%);
+      flex-grow: 1;
+      font-size: 20px;
+    }
+  }
+
+  .Project__gallery {
+    .Project__portofilio-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      text-align: center;
+      font-size: 18px;
+
+      .Project__portofilio-image {
+        max-width: 100%;
+        overflow: hidden;
+        position: relative;
+        border-radius: var(--corners);
+        overflow: hidden;
+
+        img {
+          transform-origin: 100%;
+          //   aspect-ratio: 1/1;
+          max-width: 100%;
+          min-height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    @media screen and (min-width: 500px) {
+      .masonry__container-column {
+        justify-content: center;
+      }
+    }
+  }
+
+  .Project__further-projects {
+    background: var(--white-color);
+    min-height: m#{a}x(300px, 30vw);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    .app__wrapper {
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: var(--spacing);
+      text-align: center;
+
+      h2 {
+        font-size: 20px;
+      }
+
+      a {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        font-size: m#{a}x(40px, 5vw);
+        color: inherit;
+        line-height: 1;
+        text-decoration: underline;
+
+        // Interactions
+        @media screen and (hover: hover) {
+          &:not(:hover) {
+            &:after {
+              width: 0%;
+            }
+          }
+        }
+
+        // Media
+        @media screen and (min-width: 500px) {
+          text-decoration: none;
+          &:after {
+            --size: m#{a}x(4px, 0.08em);
+            content: "";
+            height: var(--size);
+            width: 100%;
+            background-color: var(--dark-color);
+            transition: width 0.5s var(--ease);
+            will-change: width;
+          }
+        }
+      }
+
+      .Project__further-projects-cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        opacity: 0.4;
+        transition: opacity 0.5s var(--ease);
+        will-change: opacity;
+
+        > img {
+          color: red;
+          animation: slideUp 10s var(--ease) infinite both;
+          animation-delay: 0.5s;
+          max-width: 100%;
+
+          @keyframes slideUp {
+            0% {
+              transform: translateY(0%);
+            }
+            50% {
+              transform: translateY(-60%);
+              opacity: 0;
+            }
+            51% {
+              transform: translateY(20%);
+            }
+          }
+          @keyframes slideDown {
+            to {
+              transform: translateY(20%);
+            }
+          }
+        }
+
+        // States
+        &:not([aria-hidden="true"]) {
+          opacity: 0;
+
+          img {
+            animation-play-state: paused;
+          }
+        }
+      }
+    }
+  }
+}

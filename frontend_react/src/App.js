@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 // Components
 import { Navbar } from "./components";
-import {About,Footer,Header,Skills,Testimonials,Works} from "./container";
+import { Footer } from "./container";
 // Styles
 import "./App.scss";
+//lib
+import { Routes, Route } from "react-router-dom";
+import { Home, Works, Project } from "./pages";
 
 const App = () => {
   useEffect(() => {
@@ -15,11 +18,11 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
-      <Header />
-      <About />
-      <Works />
-      <Skills />
-      <Testimonials />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/works" element={<Works />} />
+        <Route path="/works/:projectId" element={<Project />} />
+      </Routes>
       <Footer />
     </div>
   );

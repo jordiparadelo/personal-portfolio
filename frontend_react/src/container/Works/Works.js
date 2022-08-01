@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 // Assets
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
+import { RiExternalLinkLine } from "react-icons/ri";
 // Data
 import { urlFor, client } from "../../clients";
 // Styles
 import "./Works.scss";
 // Lib
 import Masonry from "react-masonry-css";
+import { Link } from "react-router-dom";
 
 const Works = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -42,8 +44,8 @@ const Works = () => {
       <div className="app__wrapper">
         <Masonry
           breakpointCols={breakpointColumnsObj}
-          className="works__container-grid"
-          columnClassName="works__container-column"
+          className="masonry__container-grid"
+          columnClassName="masonry__container-column"
         >
           <div className="works__content">
             <header className="app__header">
@@ -72,7 +74,7 @@ const Works = () => {
               <figcaption className="works__portfolio-description">
                 <div className="works__description-title-container">
                   <h3>{work.title}</h3>
-                  <p>{work.description}</p>
+                  <p>{work.blurb}</p>
                 </div>
                 <div className="works__tags-container">
                   {work.tags.filter(tag =>  !tag.includes('All')).map((tag) => (
@@ -90,7 +92,7 @@ const Works = () => {
                     rel="noreferrer"
                     alt="Live view"
                   >
-                    <AiFillEye />
+                    <RiExternalLinkLine />
                   </a>)}
                   {work.codeLink && (<a
                     className="works__portofilio-link"
@@ -100,8 +102,8 @@ const Works = () => {
                     alt="Code view"
                   >
                     <AiFillGithub />
-                    {console.log(work.codeLink)}
                   </a>)}
+                  <Link to={`/works/${work.slug?.current}`} className="works__portofilio-link"><AiFillEye /></Link>
                 </div>
               </picture>
             </figure>

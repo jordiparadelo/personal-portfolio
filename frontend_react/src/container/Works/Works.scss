@@ -3,12 +3,12 @@
     flex-direction: column;
     gap: var(--spacing-lg);
 
-    .works__container-grid {
+    .masonry__container-grid {
       --gap: clamp(var(--spacing-xl), 5vw, var(--spacing-xxl));
       display: flex;
       gap: var(--gap);
 
-      .works__container-column {
+      .masonry__container-column {
         display: flex;
         flex-direction: column;
         gap: var(--gap);
