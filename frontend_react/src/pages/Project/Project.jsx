@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
 // Styles
 import "./Project.scss";
-// Components
-import { About, Header, Skills, Testimonials } from "../../container";
 // Lib
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { client, urlFor } from "../../clients";
 import Masonry from "react-masonry-css";
 
 const Project = () => {
   let { projectId } = useParams();
   const [project, setProject] = useState();
+  const [nextProject, setNextProject] = useState();
   const breakpointColumnsObj = {
     default: 2,
     500: 1
   };
 
   useEffect(() => {
+    window.scroll(0,0)
     const query = `*[_type == 'works' && slug.current == "${projectId}"]`;
+    const nextProjectQuery = `*[_type == "works" && slug.current != "${projectId}"][0]{
+      title,
+      slug
+    }`;
+    
     client.fetch(query).then((data) => setProject(...data));
-  }, []);
+    client.fetch(nextProjectQuery).then((data) => setNextProject(data));
+  }, [projectId]);
 
   return project && (
     <main id="Project">
@@ -30,7 +36,7 @@ const Project = () => {
         </div>
       </header>
       <section className="Project__cover">
-        <img src={urlFor(project?.imgUrl)} alt={`${project?.title} cover image`} width="400" height="400"/>
+        <img src={urlFor(project?.details.imgUrl)} alt={`${project?.title} cover image`} width="400" height="400"/>
       </section>
       <section className="Project__description" id="About">
         <div className="app__wrapper">
@@ -83,7 +89,10 @@ const Project = () => {
         </div>
       </section>
       <section className="Project__further-projects">
-        <div className="app__wrapper"></div>
+        <div className="app__wrapper">
+          <h2>Next Project</h2>
+          <Link to={`/works/${nextProject?.slug.current}`}>{nextProject?.title}</Link>
+        </div>
       </section>
     </main>
   );
