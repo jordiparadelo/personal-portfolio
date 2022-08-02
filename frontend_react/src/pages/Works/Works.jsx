@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 // Styles
 import "./Works.scss";
-// Components
-import {About,Header,Skills,Testimonials} from "../../container";
-// Lib
-import { client } from "../../clients";
+// hooks
+import { useClientData } from "../../hooks/useClientData";
 
 const Works = () => {
-  const [works, setWorks] = useState([]);
-
-  useEffect(() => {
-    const query = '*[_type == "works"]'
-    client.fetch(query).then((data) => setWorks(data));
-  },[])
+  const query = '*[_type == "works"]'
+  const {data: works, isFetching} = useClientData(query);
 
   return (
     <main id="Works">

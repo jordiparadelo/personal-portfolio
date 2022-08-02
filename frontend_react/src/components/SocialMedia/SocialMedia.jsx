@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
 // Styles
 import "./SocialMedia.scss";
 // Assets
 import { FaBehance, FaLinkedinIn, FaDribbble } from "react-icons/fa";
-// Data
-import { client } from "../../clients";
+// Hooks
+import {useClientData} from "../../hooks/useClientData"
 
 const ICONS = {
   FaBehance: <FaBehance />,
@@ -13,16 +12,12 @@ const ICONS = {
 };
 
 const SocialMedia = () => {
-  const [socialMedia, setSocialMedia] = useState([]);
-
-  useEffect(() => {
-    const query = '*[_type == "socialMedia"]';
-    client.fetch(query).then((data) => setSocialMedia(data));
-  }, []);
+  const query = '*[_type == "socialMedia"]';
+  const {data: socialMedia, isFetching} = useClientData(query);
 
   return (
     <div className="social-media">
-      {socialMedia.map((media) => (
+      {!isFetching && (socialMedia.map((media) => (
         <a
           href={media.link}
           target="_blank"
@@ -32,7 +27,7 @@ const SocialMedia = () => {
         >
           {ICONS[media.icon]}
         </a>
-      ))}
+      )))}
     </div>
   );
 };

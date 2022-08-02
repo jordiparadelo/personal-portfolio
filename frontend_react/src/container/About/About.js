@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 // Styles
 import "./About.scss";
 // Assets
@@ -6,8 +6,8 @@ import { FaReact, FaFigma, FaSketch } from "react-icons/fa";
 import { SiNextdotjs, SiWebflow } from "react-icons/si";
 import { AiOutlineCode } from "react-icons/ai";
 import { MdOutlineDesignServices, MdOutlineAnalytics } from "react-icons/md";
-
-import { client } from "../../clients";
+// Hooks
+import {useClientData} from "../../hooks/useClientData"
 
 
 const technologies = [
@@ -45,13 +45,9 @@ const ICONS = {
 }
 
 const About = () => {
-  const [services, setServices] = useState([]);
+  const query = '*[_type == "abouts"] |  order(order asc)';
+  const {data: services} = useClientData(query);
   const [activeServices, setActiveServices] = useState();
-
-  useEffect(() => {
-    const query = '*[_type == "abouts"] |  order(order asc)';
-    client.fetch(query).then((data) => setServices(data));
-  }, []);
 
   return (
     <section id="About" className="about">

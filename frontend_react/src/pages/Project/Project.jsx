@@ -5,13 +5,25 @@ import "./Project.scss";
 import { RiExternalLinkLine } from "react-icons/ri";
 // Lib
 import { Link, useParams } from "react-router-dom";
-import { client, urlFor } from "../../clients";
+import { urlFor } from "../../clients";
 import Masonry from "react-masonry-css";
+// Hooks
+import { useClientData } from "../../hooks/useClientData";
 
 const Project = () => {
   let { projectId } = useParams();
-  const [project, setProject] = useState();
-  const [nextProject, setNextProject] = useState();
+  const query = [
+    `*[_type == 'works' && slug.current == "${projectId}"]`,
+    `*[_type == "works" && slug.current != "${projectId}"][0]{
+    title,
+    slug,
+    imgUrl
+  }`,
+  ];
+  const { data, isFetching } = useClientData(query);
+  const [project, nextProject] = data;
+
+
   const [showBackground, setShowBackground] = useState(false);
   const breakpointColumnsObj = {
     default: 2,
@@ -20,30 +32,22 @@ const Project = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
-    const query = `*[_type == 'works' && slug.current == "${projectId}"]`;
-    const nextProjectQuery = `*[_type == "works" && slug.current != "${projectId}"][0]{
-      title,
-      slug,
-      imgUrl
-    }`;
-
-    client.fetch(query).then((data) => setProject(...data));
-    client.fetch(nextProjectQuery).then((data) => setNextProject(data));
   }, [projectId]);
 
+  if(isFetching) return <p>Loading</p>
+
   return (
-    project && (
       <main id="Project">
         <header className="Project__header App__section">
           <div className="app__wrapper">
-            <p className="Project_client">{project?.details.client}</p>
-            <h1 className="Project_title">{project?.title}</h1>
+            <p className="Project_client">{project[0]?.details.client}</p>
+            <h1 className="Project_title">{project[0]?.title}</h1>
           </div>
         </header>
         <section className="Project__cover">
           <img
-            src={urlFor(project?.details.imgUrl)}
-            alt={`${project?.title} cover image`}
+            src={urlFor(project[0]?.details.imgUrl)}
+            alt={`${project[0]?.title} cover image`}
             width="400"
             height="400"
           />
@@ -52,10 +56,10 @@ const Project = () => {
           <div className="app__wrapper">
             <div className="Project__detail">
               <h2>Project Details</h2>
-              <p>{project?.details.description}</p>
+              <p>{project[0]?.details.description}</p>
               {project.projectLink && (
                 <a
-                className="Project__live-link"
+                  className="Project__live-link"
                   href={project.projectLink}
                   target="_blank"
                   alt={`${project.title} live view`}
@@ -68,21 +72,21 @@ const Project = () => {
             <div className="Project__detail-card">
               <div className="detail-card-module">
                 <h4>Services</h4>
-                {project?.details.services.map((service, index) => (
+                {project[0]?.details.services.map((service, index) => (
                   <p key={`service-${index}`}>{service}</p>
                 ))}
               </div>
               <hr />
               <div className="detail-card-module">
                 <h4>Technology</h4>
-                {project?.details.technologies.map((technology, index) => (
+                {project[0]?.details.technologies.map((technology, index) => (
                   <p key={`technology-${index}`}>{technology}</p>
                 ))}
               </div>
               <hr />
               <div className="detail-card-module">
                 <h4>Date</h4>
-                <p>{project?.details.date}</p>
+                <p>{project[0]?.details.date}</p>
               </div>
             </div>
           </div>
@@ -94,7 +98,7 @@ const Project = () => {
               className="masonry__container-grid"
               columnClassName="masonry__container-column"
             >
-              {project?.details.gallery.map(({ details, imgUrl }, index) => (
+              {project[0]?.details.gallery.map(({ details, imgUrl }, index) => (
                 <figure className="Project__portofilio-item" key={index}>
                   <picture className="Project__portofilio-image">
                     <img src={urlFor(imgUrl)} alt={project.name} />
@@ -111,7 +115,6 @@ const Project = () => {
             </Masonry>
           </div>
         </section>
-        {nextProject && (
           <section className="Project__further-projects">
             <div className="app__wrapper">
               <div
@@ -133,9 +136,7 @@ const Project = () => {
               </Link>
             </div>
           </section>
-        )}
       </main>
-    )
   );
 };
 
