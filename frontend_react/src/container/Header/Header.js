@@ -49,7 +49,7 @@ const Header = () => {
           <Lottie animationData={images.headerAnimation} loop={true} />
         </div>
       </div>
-      {/* <DotNavigation /> */}
+      <DotNavigation />
     </section>
   );
 };
