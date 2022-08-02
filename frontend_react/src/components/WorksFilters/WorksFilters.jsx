@@ -7,20 +7,16 @@ const WorksFilters = ({ filters, works, setFilterWork }) => {
   function handleWorkFilter(filter) {
     setActiveFilter(filter);
 
-    if(filter === 'All') {
-      setFilterWork(works)
-    } else {
-      setFilterWork(works.filter(work => work.tags.includes(filter)));
-    }
+    filter === "All" 
+      ? setFilterWork(works)
+      : setFilterWork(works.filter((work) => work.tags.includes(filter)));
   }
 
   return (
     <div className="works__filter">
       {filters.map((filter, index) => (
         <button
-          className={`works__fiter-item ${
-            activeFilter == filter ? "active" : ""
-          }`}
+          className={`works__fiter-item ${ activeFilter == filter ? "active" : "" }`}
           key={index}
           onClick={() => handleWorkFilter(filter)}
         >

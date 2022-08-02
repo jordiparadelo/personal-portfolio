@@ -4,14 +4,13 @@ import "./Testimonials.scss";
 // Assets
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 // Hooks
-import {useClientData} from "../../hooks/useClientData"
+import { useClientData } from "../../hooks/useClientData";
 import { TestimonialsSlider } from "../../components";
 
 const Testimonials = () => {
   const query = '*[_type == "testimonials"]';
-  const {data: testimonials} = useClientData(query)
+  const { data: testimonials } = useClientData(query);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const isActiveIndex = currentIndex === testimonials[currentIndex];
 
   // Methods
   function handleCurrenSlide(currentSlide) {
@@ -48,7 +47,11 @@ const Testimonials = () => {
             </button>
           </div>
         </header>
-        <TestimonialsSlider testimonials={testimonials} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex}/>
+        <TestimonialsSlider
+          testimonials={testimonials}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+        />
       </div>
     </section>
   );

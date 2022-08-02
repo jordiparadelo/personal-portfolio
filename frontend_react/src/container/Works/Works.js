@@ -4,19 +4,18 @@ import "./Works.scss";
 // Lib
 import Masonry from "react-masonry-css";
 // Hooks
-import {useClientData} from "../../hooks/useClientData"
+import { useClientData } from "../../hooks/useClientData";
 import { PortfolioCard, WorksFilters } from "../../components";
 
 const Works = () => {
   const query = '*[_type == "works"]';
-  const {data: works, isFetching} = useClientData(query);
+  const { data: works, isFetching } = useClientData(query);
   const [filterWork, setFilterWork] = useState(works);
   const breakpointColumnsObj = {
     default: 2,
-    500: 1
+    500: 1,
   };
-  const filtersCollection = ["All", "UI/UX", "Web App", "React Js"]
-
+  const filtersCollection = ["All", "UI/UX", "Web App", "React Js"];
 
   useEffect(() => {
     setFilterWork(works);
@@ -37,10 +36,14 @@ const Works = () => {
               <p>Selection of works I've been doing during this time</p>
             </header>
 
-            <WorksFilters filters={filtersCollection} works={works} setFilterWork={setFilterWork}/>
+            <WorksFilters
+              filters={filtersCollection}
+              works={works}
+              setFilterWork={setFilterWork}
+            />
           </div>
           {filterWork.map((work, index) => (
-            <PortfolioCard portfolio={work} key={index}/>
+            <PortfolioCard portfolio={work} key={index} />
           ))}
         </Masonry>
       </div>

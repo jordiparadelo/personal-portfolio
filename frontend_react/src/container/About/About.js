@@ -1,13 +1,11 @@
-import React, { useState } from "react";
 // Styles
 import "./About.scss";
 // Assets
 import { FaReact, FaFigma, FaSketch } from "react-icons/fa";
 import { SiNextdotjs, SiWebflow } from "react-icons/si";
-import { AiOutlineCode } from "react-icons/ai";
-import { MdOutlineDesignServices, MdOutlineAnalytics } from "react-icons/md";
 // Hooks
 import {useClientData} from "../../hooks/useClientData"
+import { ServicesCards } from "../../components";
 
 
 const technologies = [
@@ -38,16 +36,9 @@ const technologies = [
   },
 ];
 
-const ICONS = {
-  MdOutlineAnalytics : <MdOutlineAnalytics/>,
-  AiOutlineCode: <AiOutlineCode/>,
-  MdOutlineDesignServices : <MdOutlineDesignServices/>
-}
-
 const About = () => {
   const query = '*[_type == "abouts"] |  order(order asc)';
   const {data: services} = useClientData(query);
-  const [activeServices, setActiveServices] = useState();
 
   return (
     <section id="About" className="about">
@@ -78,23 +69,7 @@ const About = () => {
             ))}
           </div>
         </div>
-        <div className="about__services" >
-          {services.map((service, index) => (
-            <figure
-            className={`about__service-card`}
-            aria-selected={service == activeServices}
-            key={`technology-${index}`}
-            onClick={() => setActiveServices(services[index])}
-            >
-              <picture className="about__card-icon">{ICONS[service.icon]}</picture>
-              <figcaption className="about__card-description">
-                <h3>{service.title}</h3>
-                <hr />
-                <p aria-hidden={service !== activeServices}>{service.description}</p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+        <ServicesCards services={services}/>
       </div>
     </section>
   );
