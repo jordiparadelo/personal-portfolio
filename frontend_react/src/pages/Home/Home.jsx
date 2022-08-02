@@ -2,7 +2,7 @@ import React from "react";
 // Styles
 import "./Home.scss";
 // Components
-import {About,Header,Skills,Testimonials,Works} from "../../container";
+import { About, Header, Skills, Testimonials, Works } from "../../container";
 
 const Home = () => {
   return (
