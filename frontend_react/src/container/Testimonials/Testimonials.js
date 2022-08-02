@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // Styles
 import "./Testimonials.scss";
-// Lib
-import { client, urlFor } from "../../clients";
 // Assets
-import { RiDoubleQuotesL } from "react-icons/ri";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+// Hooks
+import { useClientData } from "../../hooks/useClientData";
+import { TestimonialsSlider } from "../../components";
 
 const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState([]);
+  const query = '*[_type == "testimonials"]';
+  const { data: testimonials } = useClientData(query);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const isActiveIndex = currentIndex === testimonials[currentIndex];
 
   // Methods
   function handleCurrenSlide(currentSlide) {
@@ -25,11 +25,6 @@ const Testimonials = () => {
         break;
     }
   }
-
-  useEffect(() => {
-    const query = '*[_type == "testimonials"]';
-    client.fetch(query).then((data) => setTestimonials(data));
-  }, []);
 
   return (
     <section id="Testimonials">
@@ -52,47 +47,11 @@ const Testimonials = () => {
             </button>
           </div>
         </header>
-        {testimonials.length && (
-          <div className="testimonials__slider">
-            <figure className="testimonials__slide">
-              <figcaption className="testimonials__description">
-                <div className="testimonials__quote-container">
-                  <strong className="testimonials__company">
-                    {testimonials[currentIndex].company}
-                  </strong>
-                  <div className="testimonials__qoute">
-                    <RiDoubleQuotesL />
-                    <p>{testimonials[currentIndex]?.feedback}</p>
-                  </div>
-                </div>
-                <div className="testimonials__profile">
-                  <img
-                    src={urlFor(testimonials[currentIndex]?.imgurl)}
-                    className="testimonials__avatar"
-                  />
-                  <div className="testimonials__profile-container">
-                    <strong>{testimonials[currentIndex]?.name}</strong>
-                    <p className="testimonials__profile-job">
-                      {testimonials[currentIndex]?.job}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="testimonials__slider-index-container">
-                  {testimonials?.map((testimonial, index) => (
-                    <button
-                      className={`testimonials__slider-index ${
-                        index === currentIndex ? "active" : ""
-                      }`}
-                      key={testimonial.name}
-                      onClick={() => setCurrentIndex(index)}
-                    ></button>
-                  ))}
-                </div>
-              </figcaption>
-            </figure>
-          </div>
-        )}
+        <TestimonialsSlider
+          testimonials={testimonials}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+        />
       </div>
     </section>
   );

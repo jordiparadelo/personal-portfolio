@@ -15,35 +15,39 @@ const navLinks = [
 const DotNavigation = () => {
   const [activeLink, setActiveLink] = useState(null);
   const navLinksRef = useRef(navLinks.map(() => React.createRef()));
-  // const navLinksRef = useRef(navLinks);
 
   function handleLinkClick(event) {
     scrollToTarget(event);
   }
 
   useEffect(() => {
-    const sectionsColletion = navLinksRef.current.map(({ current }) => {
-      const id = current.hash
-      return document.querySelector(id)
-    });
+    setTimeout(() => {
+      const sectionsColletion = navLinksRef.current.map(({ current }) => {
+        const id = current.hash;
+        return document.querySelector(id);
+      });
 
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const { target } = entry;
-          const activeLink = navLinksRef?.current.find(({ current }) =>
-            current?.hash.includes(target.id)
-          );
-          activeLink?.current.classList.toggle("active", entry.isIntersecting);
-        });
-      },
-      {
-        threshold: [0.2, 0.5],
-      }
-    );
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const { target } = entry;
+            const activeLink = navLinksRef?.current.find(({ current }) =>
+              current?.hash.includes(target.id)
+            );
+            activeLink?.current.classList.toggle(
+              "active",
+              entry.isIntersecting
+            );
+          });
+        },
+        {
+          threshold: [0.2, 0.5],
+        }
+      );
 
-    // // Listeners
-    sectionsColletion.forEach((section) => sectionObserver.observe(section));
+      // // Listeners
+      sectionsColletion.forEach((section) => sectionObserver?.observe(section));
+    }, 1000);
   }, []);
 
   return (
