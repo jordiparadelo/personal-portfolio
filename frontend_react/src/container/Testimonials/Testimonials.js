@@ -3,24 +3,24 @@ import React, { useState } from "react";
 import "./Testimonials.scss";
 // Assets
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-// Hooks
-import { useClientData } from "../../hooks/useClientData";
+// Components
 import { TestimonialsSlider } from "../../components";
+// Context
+import { useClientContext } from "../../context/ClientContext";
 
 const Testimonials = () => {
-  const query = '*[_type == "testimonials"]';
-  const { data: testimonials } = useClientData(query);
+  const { testimonials } = useClientContext();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Methods
   function handleCurrenSlide(currentSlide) {
     switch (currentSlide) {
       case "next":
-        setCurrentIndex((prevState) => (prevState + 1) % testimonials.length);
+        setCurrentIndex((prevState) => (prevState + 1) % testimonials?.length);
         break;
       case "prev":
         setCurrentIndex((prevState) =>
-          prevState - 1 < 0 ? testimonials.length - 1 : prevState - 1
+          prevState - 1 < 0 ? testimonials?.length - 1 : prevState - 1
         );
         break;
     }
