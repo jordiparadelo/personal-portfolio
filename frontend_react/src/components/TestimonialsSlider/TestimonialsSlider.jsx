@@ -3,7 +3,7 @@ import { RiDoubleQuotesL } from "react-icons/ri";
 import { urlFor } from "../../clients";
 
 const TestimonialsSlider = ({ testimonials, currentIndex, setCurrentIndex }) =>
-  testimonials.length && (
+  testimonials?.length && (
     <div className="testimonials__slider">
       <figure className="testimonials__slide">
         <figcaption className="testimonials__description">
