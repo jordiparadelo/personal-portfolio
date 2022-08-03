@@ -47,7 +47,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="app__wrapper">
         <Link to="/" className="navbar__logo">
-          <img src={images.logo} alt="logo" width="48" height="48" />
+          <img src={images.logo} alt="logo" width="48" height="48" loading="lazy"/>
           <h4 className="navbar__logo-name">
             Jordi
             <br />

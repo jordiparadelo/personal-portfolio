@@ -19,7 +19,7 @@ const Works = () => {
 
   useEffect(() => {
     setFilterWork(works);
-  }, [isFetching]);
+  }, [isFetching, works]);
 
   return (
     <section id="Works" className="works">

@@ -27,7 +27,7 @@ const Footer = () => (
       </div>
       <div className="footer__bottom">
         <div className="footer__copyright">
-          <img src={images.logoSquare} alt="logo" width="56" height="56" />
+          <img src={images.logoSquare} alt="logo" width="56" height="56" loading="lazy"/>
           <p>
             Designed and developed by <br />
             <strong>Jordi Paradelo</strong>

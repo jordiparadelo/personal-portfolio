@@ -22,6 +22,7 @@ const SocialMedia = () => {
           <a
             href={media.link}
             target="_blank"
+            rel="noreferrer"
             aria-label={media.name}
             key={`media-${media.name}`}
             className="social-media__link"

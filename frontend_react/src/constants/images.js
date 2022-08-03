@@ -1,5 +1,4 @@
 import figma from '../assets/figma.png';
-import flutter from '../assets/flutter.png';
 import git from '../assets/git.png';
 import html from '../assets/html.png';
 import javascript from '../assets/javascript.png';

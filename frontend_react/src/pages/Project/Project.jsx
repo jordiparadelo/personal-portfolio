@@ -46,9 +46,10 @@ const Project = () => {
       <section className="Project__cover">
         <img
           src={urlFor(project[0]?.details.imgUrl)}
-          alt={`${project[0]?.title} cover image`}
+          alt={`${project[0]?.title} cover`}
           width="400"
           height="400"
+          loading="lazy"
         />
       </section>
       <section className="Project__description" id="About">
@@ -100,7 +101,7 @@ const Project = () => {
             {project[0]?.details.gallery.map(({ details, imgUrl }, index) => (
               <figure className="Project__portofilio-item" key={index}>
                 <picture className="Project__portofilio-image">
-                  <img src={urlFor(imgUrl)} alt={project.name} />
+                  <img src={urlFor(imgUrl)} alt={project.name} width="564" height="564" loading="lazy"/>
                 </picture>
                 {details && (
                   <figcaption className="Project__portfolio-description">
@@ -123,6 +124,8 @@ const Project = () => {
             <img
               src={urlFor(nextProject?.imgUrl)}
               alt={`Next project ${nextProject?.title}`}
+              loading="lazy"
+              width="800" height="400"
             />
           </div>
           <h2>Next Project</h2>

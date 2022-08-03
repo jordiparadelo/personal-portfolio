@@ -16,7 +16,7 @@ const WorksFilters = ({ filters, works, setFilterWork }) => {
     <div className="works__filter">
       {filters.map((filter, index) => (
         <button
-          className={`works__fiter-item ${ activeFilter == filter ? "active" : "" }`}
+          className={`works__fiter-item ${ activeFilter === filter ? "active" : "" }`}
           key={index}
           onClick={() => handleWorkFilter(filter)}
         >

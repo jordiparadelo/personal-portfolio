@@ -23,6 +23,8 @@ const Testimonials = () => {
           prevState - 1 < 0 ? testimonials.length - 1 : prevState - 1
         );
         break;
+      default:
+        break;
     }
   }
 

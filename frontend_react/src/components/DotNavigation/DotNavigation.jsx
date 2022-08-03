@@ -13,7 +13,7 @@ const navLinks = [
 ];
 
 const DotNavigation = () => {
-  const [activeLink, setActiveLink] = useState(null);
+  const [activeLink] = useState(null);
   const navLinksRef = useRef(navLinks.map(() => React.createRef()));
 
   function handleLinkClick(event) {
@@ -57,7 +57,7 @@ const DotNavigation = () => {
           href={`#${link.url}`}
           key={`dot-link-${index}`}
           className={`dot-navigation__link ${
-            activeLink == navLinksRef.current[index].current ? "active" : ""
+            activeLink === navLinksRef.current[index].current ? "active" : ""
           }`}
           onClick={handleLinkClick}
           ref={navLinksRef.current[index]}
