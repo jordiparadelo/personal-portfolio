@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import "./Works.scss";
 // Lib
 import Masonry from "react-masonry-css";
-// Hooks
-import { useClientData } from "../../hooks/useClientData";
+// Components
 import { PortfolioCard, WorksFilters } from "../../components";
+// Hooks
+// import { useClientData } from "../../hooks/useClientData";
+import { useClientContext } from "../../context/ClientContext";
 
 const Works = () => {
-  const query = '*[_type == "works"]';
-  const { data: works, isFetching } = useClientData(query);
+  const {data:works, isFetching} = useClientContext()
   const [filterWork, setFilterWork] = useState(works);
   const breakpointColumnsObj = {
     default: 2,
