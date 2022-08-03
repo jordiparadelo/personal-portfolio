@@ -38,7 +38,7 @@ const technologies = [
 ];
 
 const About = () => {
-  const {data: services} = useClientContext()
+  const {about: services} = useClientContext()
 
   return (
     <section id="About" className="about">

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, Suspense, useContext } from "react";
 import { useClientData } from "../hooks/useClientData";
 
 const ClientContext = createContext();
