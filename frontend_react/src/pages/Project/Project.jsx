@@ -8,16 +8,16 @@ import { Link, useParams } from "react-router-dom";
 import { urlFor } from "../../clients";
 import Masonry from "react-masonry-css";
 // Hooks
-import { useClientData } from "../../hooks/useClientData";
 import { useClientContext } from "../../context/ClientContext";
 
 const Project = () => {
   let { projectId } = useParams();
-  const {data:works, isFetching} = useClientContext()
-  const projectFilterBySlug = works.find(work => work.slug.current == projectId)
-  const nextProjectRelated = works[(works.indexOf(projectFilterBySlug) + 1) % works.length]
-
+  const {works, isFetching} = useClientContext()
   const [showBackground, setShowBackground] = useState(false);
+
+  const projectFilterBySlug = works?.find(work => work.slug.current == projectId)
+  const nextProjectRelated = works && works[(works.indexOf(projectFilterBySlug) + 1) % works.length]
+
   const breakpointColumnsObj = {
     default: 2,
     500: 1,

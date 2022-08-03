@@ -6,12 +6,12 @@ import Masonry from "react-masonry-css";
 // Components
 import { PortfolioCard, WorksFilters } from "../../components";
 // Hooks
-// import { useClientData } from "../../hooks/useClientData";
 import { useClientContext } from "../../context/ClientContext";
 
 const Works = () => {
-  const {data:works, isFetching} = useClientContext()
+  const {works, isFetching} = useClientContext()
   const [filterWork, setFilterWork] = useState(works);
+
   const breakpointColumnsObj = {
     default: 2,
     500: 1,
@@ -43,7 +43,7 @@ const Works = () => {
               setFilterWork={setFilterWork}
             />
           </div>
-          {filterWork.map((work, index) => (
+          {filterWork?.map((work, index) => (
             <PortfolioCard portfolio={work} key={index} />
           ))}
         </Masonry>

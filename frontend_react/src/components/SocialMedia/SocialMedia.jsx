@@ -2,8 +2,8 @@
 import "./SocialMedia.scss";
 // Assets
 import { FaBehance, FaLinkedinIn, FaDribbble } from "react-icons/fa";
-// Hooks
-import { useClientData } from "../../hooks/useClientData";
+// Context
+import { useClientContext } from "../../context/ClientContext";
 
 const ICONS = {
   FaBehance: <FaBehance />,
@@ -12,23 +12,21 @@ const ICONS = {
 };
 
 const SocialMedia = () => {
-  const query = '*[_type == "socialMedia"]';
-  const { data: socialMedia, isFetching } = useClientData(query);
+  const { socialMedia, isFetching } = useClientContext();
 
   return (
     <div className="social-media">
-      {!isFetching &&
-        socialMedia.map((media) => (
-          <a
-            href={media.link}
-            target="_blank"
-            aria-label={media.name}
-            key={`media-${media.name}`}
-            className="social-media__link"
-          >
-            {ICONS[media.icon]}
-          </a>
-        ))}
+      {socialMedia?.map((media) => (
+        <a
+          href={media.link}
+          target="_blank"
+          aria-label={media.name}
+          key={`media-${media.name}`}
+          className="social-media__link"
+        >
+          {ICONS[media.icon]}
+        </a>
+      ))}
     </div>
   );
 };

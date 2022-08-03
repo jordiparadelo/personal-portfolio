@@ -3,9 +3,10 @@ import "./About.scss";
 // Assets
 import { FaReact, FaFigma, FaSketch } from "react-icons/fa";
 import { SiNextdotjs, SiWebflow } from "react-icons/si";
-// Hooks
-import {useClientData} from "../../hooks/useClientData"
+// Components
 import { ServicesCards } from "../../components";
+// Context
+import { useClientContext } from "../../context/ClientContext";
 
 
 const technologies = [
@@ -37,8 +38,7 @@ const technologies = [
 ];
 
 const About = () => {
-  const query = '*[_type == "abouts"] |  order(order asc)';
-  const {data: services} = useClientData(query);
+  const {data: services} = useClientContext()
 
   return (
     <section id="About" className="about">
