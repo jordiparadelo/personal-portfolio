@@ -10,10 +10,14 @@ import { images } from "../../constants";
 import "./Header.scss";
 // Components
 import { DotNavigation } from "../../components";
+// Context
+import { useAnimationContext } from "../../context/AnimationContext";
 // Animations
 import {staggerAnimation , childStaggerAnimation, transition} from './animations'
 
 const Header = () => {
+  const {pageLoading} = useAnimationContext()
+
   return (
     <section id="Header" className="header">
       <div className="app__wrapper">

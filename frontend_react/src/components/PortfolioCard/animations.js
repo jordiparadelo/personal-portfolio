@@ -9,17 +9,23 @@ export const staggerAnimation = {
   },
 };
 
-export const portfolioCardAnimation = {
-  initial: {
-    y: 50,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      ...transition,
+export const portfolioCardAnimation = (index) => {
+  return {
+    initial: {
+      y: 50,
+      opacity: 0,
     },
-  },
-  exit: { opacity: 0 }
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        ...transition,
+        delay: 0.08 * index
+      },
+    },
+    exit: {
+      y: 50,
+      opacity: 0,
+    },
+  };
 };

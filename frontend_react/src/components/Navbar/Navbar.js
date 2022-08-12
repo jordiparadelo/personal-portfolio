@@ -12,6 +12,8 @@ import { scrollToTarget } from "../../utils";
 import "./Navbar.scss";
 // Components
 import { SocialMedia } from "../../components";
+// Animations
+import { navAnimation, linkAnimation } from "./animations";
 
 const navLinks = [
   { name: "About", url: "About" },
@@ -25,44 +27,6 @@ const navProjectLinks = [
   { name: "Contact", url: "Footer" },
 ];
 
-/* ANIMATIONS */
-// const transition = {duration: 1.4, ease: [0.6, 0.01, 0.05, 0.9]}
-const transition = { duration: 1.4, ease: [0.22, 1, 0.36, 1] };
-
-const navAnimation = {
-  initial: {
-    y: -100,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      ...transition,
-    },
-  },
-};
-const menuAnimation = {
-  animate: {
-    transition: {
-      ...transition,
-      delayChildren: 0.6,
-      staggerChildren: 0.05,
-      staggerDirection: 1,
-    },
-  },
-};
-const linkAnimation = {
-  initial: {
-    y: -100,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {duration: 1, ease: transition.ease}
-  },
-};
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -107,10 +71,9 @@ const Navbar = () => {
           >
             {toggle ? <HiX /> : <HiMenuAlt4 />}
           </button>
-          <motion.menu
+          <menu
             className="navbar__navlinks"
             aria-hidden={isTabletOrMobile && !toggle}
-            variants={menuAnimation}
           >
             {links.map((link, index) => (
               <motion.a
@@ -123,7 +86,7 @@ const Navbar = () => {
               </motion.a>
             ))}
             <SocialMedia />
-          </motion.menu>
+          </menu>
         </div>
       </div>
     </motion.nav>

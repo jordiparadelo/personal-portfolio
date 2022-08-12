@@ -7,6 +7,8 @@ import "./App.scss";
 //lib
 import { Routes, Route } from "react-router-dom";
 import { Home, Works, Project } from "./pages";
+import { AnimatePresence } from "framer-motion";
+import { AnimationProvider } from "./context/AnimationContext";
 
 const App = () => {
   useEffect(() => {
@@ -16,17 +18,19 @@ const App = () => {
   }, []);
 
   return (
-
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/works" element={<Works />} />
-          <Route path="/works/:projectId" element={<Project />} />
-        </Routes>
-        <Footer />
-      </div>
-
+    <AnimationProvider>
+      <AnimatePresence>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/works" element={<Works />} />
+            <Route path="/works/:projectId" element={<Project />} />
+          </Routes>
+          <Footer />
+        </div>
+      </AnimatePresence>
+    </AnimationProvider>
   );
 };
 

@@ -1,13 +1,32 @@
-const transition = { duration: 1.4, ease: [0.22, 1, 0.36, 1] };
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger.js";
+gsap.registerPlugin(ScrollTrigger);
+
+export const transition = { duration: 1, ease: [0.22, 1, 0.36, 1] };
+
+export const imgParallax = (element) => {
+
+  const images = [...element.querySelectorAll(".works__portofilio-image img")];
+
+  images.forEach((image) => {
+    gsap.to(image, {
+      y: "50%",
+      scrollTrigger: {
+        id: "images",
+        scrub: true,
+      },
+    });
+  });
+};
 
 export const staggerAnimation = {
-    animate: {
-      transition: {
-        delayChildren: 1.5,
-        staggerChildren: 0.1,
-      },
+  animate: {
+    transition: {
+      delayChildren: 1.5,
+      staggerChildren: 0.1,
     },
-  };
+  },
+};
 
 export const portfolioCardAnimation = {
   initial: {
@@ -20,12 +39,12 @@ export const portfolioCardAnimation = {
     transition: {
       ...transition,
     },
-    exit: { 
+    exit: {
       y: 100,
       opacity: 1,
       transition: {
         ...transition,
       },
-    }
+    },
   },
 };

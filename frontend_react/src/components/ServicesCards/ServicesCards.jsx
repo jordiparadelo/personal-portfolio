@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Assets
 import { AiOutlineCode } from "react-icons/ai";
 import { MdOutlineAnalytics, MdOutlineDesignServices } from "react-icons/md";
-// Lib
-import { motion } from "framer-motion";
 // Animations
-import { transition } from "./animations";
+import { cardIntroAnimation } from "./animations";
 
 const ICONS = {
   MdOutlineAnalytics: <MdOutlineAnalytics />,
@@ -15,7 +13,7 @@ const ICONS = {
 
 const ServicesCards = ({ services }) => {
   const [activeServices, setActiveServices] = useState();
-
+  let container = useRef(null)
   // Methods
   function handleClick(event) {
     const { currentTarget } = event;
@@ -28,26 +26,18 @@ const ServicesCards = ({ services }) => {
     setActiveServices(services[index]);
   }
 
+  useEffect(() => {
+    cardIntroAnimation(container)
+  },[services])
+
   return (
-      <div className="about__services">
-        {services.map((service, index) => (
-          <motion.figure
-            className={`about__service-card`}
+      <div className="about__services" ref={(el) => container = el}>
+        {services?.map((service, index) => (
+          <figure
+            className="about__service-card"
             aria-selected={service == activeServices}
             data-index={index}
             key={`technology-${index}`}
-            initial={{
-              x: 50,
-              opacity: 0,
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-              transition: {
-                ...transition,
-                delay: index * 0.2,
-              },
-            }}
             onClick={handleClick}
           >
             <picture className="about__card-icon">
@@ -60,7 +50,7 @@ const ServicesCards = ({ services }) => {
                 {service.description}
               </p>
             </figcaption>
-          </motion.figure>
+          </figure>
         ))}
       </div>
   );

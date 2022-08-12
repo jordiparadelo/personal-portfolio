@@ -1,3 +1,4 @@
+import { useRef } from "react";
 // Styles
 import "./Skills.scss";
 // Data
@@ -6,6 +7,8 @@ import { urlFor } from "../../clients";
 import { SkillsList } from "../../components";
 // Context
 import { useClientContext } from "../../context/ClientContext";
+import { useInView } from "framer-motion";
+
 
 const Skills = () => {
   const {experiences, workExperiences, skills, isFetching} = useClientContext()
@@ -17,7 +20,7 @@ const Skills = () => {
   const yearsOfExperience =
     expiriencesByDescYear &&
     expiriencesByDescYear[0]?.year -
-      expiriencesByDescYear[expiriencesByDescYear?.length - 1]?.year;
+      expiriencesByDescYear[expiriencesByDescYear?.length - 1]?.year; 
 
   return (
     !isFetching && (

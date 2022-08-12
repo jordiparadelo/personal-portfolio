@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // Styles
 import "./Works.scss";
 // Lib
@@ -7,10 +7,14 @@ import Masonry from "react-masonry-css";
 import { PortfolioCard, WorksFilters } from "../../components";
 // Hooks
 import { useClientContext } from "../../context/ClientContext";
+// Animations
+import { imgParallax } from "./animations";
+import { AnimatePresence } from "framer-motion";
 
 const Works = () => {
-  const {works, isFetching} = useClientContext()
+  const { works, isFetching } = useClientContext();
   const [filterWork, setFilterWork] = useState(works);
+  let worksRef = useRef(null);
 
   const breakpointColumnsObj = {
     default: 2,
@@ -22,33 +26,39 @@ const Works = () => {
     setFilterWork(works);
   }, [isFetching]);
 
-  return (
-    <section id="Works" className="works">
-      <div className="app__wrapper">
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="masonry__container-grid"
-          columnClassName="masonry__container-column"
-        >
-          <div className="works__content">
-            <header className="app__header">
-              <div className="app__section-label">Portfolio</div>
-              <h2>All creative Works and Selected projects</h2>
-              <p>Selection of works I've been doing during this time</p>
-            </header>
+  useEffect(() => {
+    imgParallax(worksRef);
+  }, [works]);
 
-            <WorksFilters
-              filters={filtersCollection}
-              works={works}
-              setFilterWork={setFilterWork}
-            />
-          </div>
-          {filterWork?.map((work, index) => (
-            <PortfolioCard portfolio={work} key={index} />
-          ))}
-        </Masonry>
-      </div>
-    </section>
+  return (
+    <AnimatePresence>
+      <section id="Works" className="works" ref={(el) => (worksRef = el)}>
+        <div className="app__wrapper">
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="masonry__container-grid"
+            columnClassName="masonry__container-column"
+          >
+            <div className="works__content">
+              <header className="app__header">
+                <div className="app__section-label">Portfolio</div>
+                <h2>All creative Works and Selected projects</h2>
+                <p>Selection of works I've been doing during this time</p>
+              </header>
+
+              <WorksFilters
+                filters={filtersCollection}
+                works={works}
+                setFilterWork={setFilterWork}
+              />
+            </div>
+            {filterWork?.map((work, index) => (
+              <PortfolioCard portfolio={work} key={index} index={index} />
+            ))}
+          </Masonry>
+        </div>
+      </section>
+    </AnimatePresence>
   );
 };
 
