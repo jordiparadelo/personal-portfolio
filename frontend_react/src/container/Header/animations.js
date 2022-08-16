@@ -33,20 +33,3 @@ export const headerAnimation = (element) => {
     stagger: 0.08
   }, '-=0.8');
 };
-
-export const staggerAnimation = {
-  animate: {
-    transition: {
-      delayChildren: 1.5,
-      staggerChildren: 0.1,
-    },
-  },
-};
-export const childStaggerAnimation = {
-  initial: { opacity: 0, y: 40 },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 1, ease: transition.ease },
-  },
-};
