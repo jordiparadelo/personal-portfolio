@@ -7,6 +7,7 @@ import { RiExternalLinkLine } from "react-icons/ri";
 import { Link, useParams } from "react-router-dom";
 import { urlFor } from "../../clients";
 import Masonry from "react-masonry-css";
+import { Helmet } from "react-helmet";
 // Hooks
 import { useClientData } from "../../hooks/useClientData";
 
@@ -37,6 +38,24 @@ const Project = () => {
 
   return (
     <main id="Project">
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Portfolio</title>
+        <link rel="canonical" href="http://jordiparadelo.com/" />
+        <meta
+          name="description"
+          content={project[0]?.details.description}
+        />
+        <meta property="og:url" content="https://jordiparadelo.com/" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content={project[0]?.details.description}
+        />
+        <meta property="og:image" content={urlFor(project[0]?.details.imgUrl)}></meta>
+      </Helmet>
+
       <header className="Project__header App__section">
         <div className="app__wrapper">
           <p className="Project_client">{project[0]?.details.client}</p>
@@ -101,7 +120,13 @@ const Project = () => {
             {project[0]?.details.gallery.map(({ details, imgUrl }, index) => (
               <figure className="Project__portofilio-item" key={index}>
                 <picture className="Project__portofilio-image">
-                  <img src={urlFor(imgUrl)} alt={project.name} width="564" height="564" loading="lazy"/>
+                  <img
+                    src={urlFor(imgUrl)}
+                    alt={project.name}
+                    width="564"
+                    height="564"
+                    loading="lazy"
+                  />
                 </picture>
                 {details && (
                   <figcaption className="Project__portfolio-description">
@@ -125,7 +150,8 @@ const Project = () => {
               src={urlFor(nextProject?.imgUrl)}
               alt={`Next project ${nextProject?.title}`}
               loading="lazy"
-              width="800" height="400"
+              width="800"
+              height="400"
             />
           </div>
           <h2>Next Project</h2>

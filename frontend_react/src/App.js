@@ -6,7 +6,7 @@ import { Footer } from "./container";
 import "./App.scss";
 //lib
 import { Routes, Route } from "react-router-dom";
-import { Home, Works, Project } from "./pages";
+import { Home, Works, Project } from "./pages"
 
 const App = () => {
   useEffect(() => {
