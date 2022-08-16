@@ -7,6 +7,7 @@ import { RiExternalLinkLine } from "react-icons/ri";
 import { Link, useParams } from "react-router-dom";
 import { urlFor } from "../../clients";
 import Masonry from "react-masonry-css";
+import { Helmet } from "react-helmet";
 // Hooks
 import { useClientContext } from "../../context/ClientContext";
 
@@ -31,6 +32,17 @@ const Project = () => {
 
   return (
     <main id="Project">
+       <Helmet>
+        <meta charSet="utf-8" />
+        <title>Portfolio | {projectFilterBySlug?.title}</title>
+        <link rel="canonical" href="https://www.jordiparadelo.com/works/" />
+        <meta name="description" content={projectFilterBySlug?.details.description}/>
+        <meta property="og:url" content="https://www.jordiparadelo.com/works/"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:description" content={projectFilterBySlug?.details.description}/>
+        <meta property="og:image" content={urlFor(projectFilterBySlug?.details.imgUrl)}></meta>
+      </Helmet>
+
       <header className="Project__header App__section">
         <div className="app__wrapper">
           <p className="Project_client">{projectFilterBySlug?.details.client}</p>
