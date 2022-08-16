@@ -2,18 +2,13 @@
 import "./Skills.scss";
 // Data
 import { urlFor } from "../../clients";
-// Hooks
-import { useClientData } from "../../hooks/useClientData";
+// Components
 import { SkillsList } from "../../components";
+// Context
+import { useClientContext } from "../../context/ClientContext";
 
 const Skills = () => {
-  const query = [
-    '*[_type =="experiences"]',
-    '*[_type =="workExperience"]',
-    '*[_type =="skills"]',
-  ];
-  const { data, isFetching } = useClientData(query);
-  const [experiences, workExperiences, skills] = data;
+  const {experiences, workExperiences, skills, isFetching} = useClientContext()
 
   const expiriencesByDescYear = experiences?.sort(
     (prevExperience, nextExperience) =>

@@ -7,24 +7,17 @@ import { RiExternalLinkLine } from "react-icons/ri";
 import { Link, useParams } from "react-router-dom";
 import { urlFor } from "../../clients";
 import Masonry from "react-masonry-css";
-import { Helmet } from "react-helmet";
 // Hooks
-import { useClientData } from "../../hooks/useClientData";
+import { useClientContext } from "../../context/ClientContext";
 
 const Project = () => {
   let { projectId } = useParams();
-  const query = [
-    `*[_type == 'works' && slug.current == "${projectId}"]`,
-    `*[_type == "works" && slug.current != "${projectId}"][0]{
-    title,
-    slug,
-    imgUrl
-  }`,
-  ];
-  const { data, isFetching } = useClientData(query);
-  const [project, nextProject] = data;
-
+  const {works, isFetching} = useClientContext()
   const [showBackground, setShowBackground] = useState(false);
+
+  const projectFilterBySlug = works?.find(work => work.slug.current == projectId)
+  const nextProjectRelated = works && works[(works.indexOf(projectFilterBySlug) + 1) % works.length]
+
   const breakpointColumnsObj = {
     default: 2,
     500: 1,
@@ -38,50 +31,31 @@ const Project = () => {
 
   return (
     <main id="Project">
-
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Portfolio</title>
-        <link rel="canonical" href="http://jordiparadelo.com/" />
-        <meta
-          name="description"
-          content={project[0]?.details.description}
-        />
-        <meta property="og:url" content="https://jordiparadelo.com/" />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:description"
-          content={project[0]?.details.description}
-        />
-        <meta property="og:image" content={urlFor(project[0]?.details.imgUrl)}></meta>
-      </Helmet>
-
       <header className="Project__header App__section">
         <div className="app__wrapper">
-          <p className="Project_client">{project[0]?.details.client}</p>
-          <h1 className="Project_title">{project[0]?.title}</h1>
+          <p className="Project_client">{projectFilterBySlug?.details.client}</p>
+          <h1 className="Project_title">{projectFilterBySlug?.title}</h1>
         </div>
       </header>
       <section className="Project__cover">
         <img
-          src={urlFor(project[0]?.details.imgUrl)}
-          alt={`${project[0]?.title} cover`}
+          src={urlFor(projectFilterBySlug?.details.imgUrl)}
+          alt={`${projectFilterBySlug?.title} cover image`}
           width="400"
           height="400"
-          loading="lazy"
         />
       </section>
       <section className="Project__description" id="About">
         <div className="app__wrapper">
           <div className="Project__detail">
             <h2>Project Details</h2>
-            <p>{project[0]?.details.description}</p>
-            {project.projectLink && (
+            <p>{projectFilterBySlug?.details.description}</p>
+            {projectFilterBySlug.projectLink && (
               <a
                 className="Project__live-link"
-                href={project.projectLink}
+                href={projectFilterBySlug.projectLink}
                 target="_blank"
-                alt={`${project.title} live view`}
+                alt={`${projectFilterBySlug.title} live view`}
                 rel="noreferrer"
               >
                 View Live <RiExternalLinkLine />
@@ -91,21 +65,21 @@ const Project = () => {
           <div className="Project__detail-card">
             <div className="detail-card-module">
               <h4>Services</h4>
-              {project[0]?.details.services.map((service, index) => (
+              {projectFilterBySlug?.details.services.map((service, index) => (
                 <p key={`service-${index}`}>{service}</p>
               ))}
             </div>
             <hr />
             <div className="detail-card-module">
               <h4>Technology</h4>
-              {project[0]?.details.technologies.map((technology, index) => (
+              {projectFilterBySlug?.details.technologies.map((technology, index) => (
                 <p key={`technology-${index}`}>{technology}</p>
               ))}
             </div>
             <hr />
             <div className="detail-card-module">
               <h4>Date</h4>
-              <p>{project[0]?.details.date}</p>
+              <p>{projectFilterBySlug?.details.date}</p>
             </div>
           </div>
         </div>
@@ -117,16 +91,10 @@ const Project = () => {
             className="masonry__container-grid"
             columnClassName="masonry__container-column"
           >
-            {project[0]?.details.gallery.map(({ details, imgUrl }, index) => (
+            {projectFilterBySlug?.details.gallery.map(({ details, imgUrl }, index) => (
               <figure className="Project__portofilio-item" key={index}>
                 <picture className="Project__portofilio-image">
-                  <img
-                    src={urlFor(imgUrl)}
-                    alt={project.name}
-                    width="564"
-                    height="564"
-                    loading="lazy"
-                  />
+                  <img src={urlFor(imgUrl)} alt={projectFilterBySlug.name} />
                 </picture>
                 {details && (
                   <figcaption className="Project__portfolio-description">
@@ -147,20 +115,17 @@ const Project = () => {
             aria-hidden={showBackground}
           >
             <img
-              src={urlFor(nextProject?.imgUrl)}
-              alt={`Next project ${nextProject?.title}`}
-              loading="lazy"
-              width="800"
-              height="400"
+              src={urlFor(nextProjectRelated?.imgUrl)}
+              alt={`Next project ${nextProjectRelated?.title}`}
             />
           </div>
           <h2>Next Project</h2>
           <Link
-            to={`/works/${nextProject?.slug.current}`}
+            to={`/works/${nextProjectRelated?.slug.current}`}
             onMouseEnter={() => setShowBackground(true)}
             onMouseLeave={() => setShowBackground(false)}
           >
-            {nextProject?.title}
+            {nextProjectRelated?.title}
           </Link>
         </div>
       </section>

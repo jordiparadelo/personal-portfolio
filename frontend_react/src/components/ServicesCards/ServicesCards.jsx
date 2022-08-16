@@ -26,7 +26,7 @@ const ServicesCards = ({ services }) => {
 
   return (
     <div className="about__services">
-      {services.map((service, index) => (
+      {services?.map((service, index) => (
         <figure
           className={`about__service-card`}
           aria-selected={service === activeServices}
