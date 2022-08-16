@@ -69,8 +69,8 @@
     gap: var(--spacing);
     overflow-x: auto;
     // Hide Scroll bar
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 
     &:-webkit-scrollbar {
       display: none;
@@ -137,6 +137,12 @@
             max-height: 300px;
             overflow: hidden;
           }
+          &:not([aria-hidden="false"]) {
+            max-height: 0px;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 500ms var(--ease);
+          }
         }
       }
 
@@ -145,14 +151,6 @@
         --background: var(--dark-color);
         color: var(--light-color);
         box-shadow: var(--shadow-lg);
-      }
-      &:not(:hover) {
-        .about__card-description p:not([aria-hidden="false"]) {
-          max-height: 0px;
-          overflow: hidden;
-          opacity: 0;
-          transition: all 500ms var(--ease);
-        }
       }
     }
 

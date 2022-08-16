@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 // Lib
 import Lottie from "lottie-react";
 import { motion } from "framer-motion";
@@ -13,73 +13,68 @@ import { DotNavigation } from "../../components";
 // Context
 import { useAnimationContext } from "../../context/AnimationContext";
 // Animations
-import {staggerAnimation , childStaggerAnimation, transition} from './animations'
+import {headerAnimation} from './animations'
 
 const Header = () => {
   const {pageLoading} = useAnimationContext()
+  let header = useRef(null)
+
+  useLayoutEffect(() => {
+    headerAnimation(header)
+  },[])
 
   return (
-    <section id="Header" className="header">
+    <section id="Header" className="header" ref = {(current) => header = current}>
       <div className="app__wrapper">
-        <motion.div
+        <div
           className="header__content"
-          variants={staggerAnimation}
-          initial="initial"
-          animate="animate"
         >
           <div className="header__title-container">
-            <motion.div
-              variants={childStaggerAnimation}
+            <div
               className="app__section-label"
             >
               Freelancer
-            </motion.div>
-            <motion.h1
-              variants={childStaggerAnimation}
+            </div>
+            <h1
               className="header__title"
             >
               Web Designer And Developer
-            </motion.h1>
+            </h1>
           </div>
 
-          <motion.div
+          <div
             className="header__description"
-            variants={childStaggerAnimation}
           >
             <p>
               Hi<span className="header__title-icon">👋</span> i'm Jordi, I'm a
               based designer who develop webs and app, from the concept design
               to the execution.
             </p>
-          </motion.div>
+          </div>
 
           <div className="header__actions">
-            <motion.a
+            <a
               href="#Footer"
               className="button primary"
               onClick={scrollToTarget}
-              variants={childStaggerAnimation}
             >
               Let's Talk
-            </motion.a>
-            <motion.a
+            </a>
+            <a
               className="button secondary"
               href="#Works"
               onClick={scrollToTarget}
-              variants={childStaggerAnimation}
             >
               Check the Works
-            </motion.a>
+            </a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
+        <div
           className="header__image"
-          initial={{ x: "-50%" }}
-          animate={{ x: "0", transition: { ...transition, delay: 1 } }}
         >
           <Lottie animationData={images.headerAnimation} loop={true} />
-        </motion.div>
+        </div>
       </div>
       <DotNavigation />
     </section>

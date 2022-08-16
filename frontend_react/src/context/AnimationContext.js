@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useReducer, useState } from "react";
+import React, { createContext, useContext, useEffect, useLayoutEffect, useReducer, useState } from "react";
 import { useClientContext } from "./ClientContext";
 // Lib
 import {gsap} from "gsap";
@@ -11,14 +11,14 @@ export const AnimationProvider = ({ children }) => {
   const [animations, setAnimations] = useReducer((prev, next) => [...prev ,next], []);
   const mainTimeLine = gsap.timeline()
 
-  // useEffect(() => {
-  //   setPageLoading(isFetching)
+  useLayoutEffect(() => {
+    setPageLoading(isFetching)
 
-  //   if(!pageLoading) {
-  //     console.log(animations)
-  //     animations?.forEach(animation => animation())
-  //   }
-  // }, [isFetching, animations])
+    if(!pageLoading) {
+      console.log(animations)
+      animations?.forEach(animation => animation())
+    }
+  }, [isFetching, animations])
   
 
   return (

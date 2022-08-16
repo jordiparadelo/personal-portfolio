@@ -1,40 +1,22 @@
-const transition = { duration: 1.4, ease: [0.22, 1, 0.36, 1] };
+import { gsap } from "gsap";
+export const transition = { duration: 1.4, ease: [0.6, 0.01, 0.05, 0.9] };
 
-export const navAnimation = {
-  initial: {
-    y: -100,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      ...transition,
-      delay: 1,
-      delayChildren: 1 + 0.6,
-      staggerChildren: 0.05,
-      staggerDirection: 1,
-    },
-  },
-};
-export const menuAnimation = {
-  animate: {
-    transition: {
-      ...transition,
-      delayChildren: 0.6,
-      staggerChildren: 0.05,
-      staggerDirection: 1,
-    },
-  },
-};
-export const linkAnimation = {
-  initial: {
-    y: -100,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 1, ease: transition.ease },
-  },
+export const navbarAnimation = (element) => {
+  const [logo, logoName, links] = [element.querySelector('.navbar__logo'), element.querySelector('.navbar__logo-name'),element.querySelectorAll('.navbar__navlinks *')];
+  const tl = gsap.timeline(transition.ease)
+  
+  tl.from(element, {
+    y: -100, 
+    duration: transition.duration
+  })
+  .from(logoName , {
+    opacity: 0
+  })
+  .from(links, {
+    y: -100, 
+    duration: 1,
+    ease: transition.ease,
+    stagger: 0.1
+
+  }, "-=0.8")
 };

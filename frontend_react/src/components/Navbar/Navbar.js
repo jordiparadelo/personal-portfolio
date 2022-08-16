@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 // Assets
 import { images } from "../../constants";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
@@ -13,7 +13,7 @@ import "./Navbar.scss";
 // Components
 import { SocialMedia } from "../../components";
 // Animations
-import { navAnimation, linkAnimation } from "./animations";
+import { navbarAnimation } from "./animations";
 
 const navLinks = [
   { name: "About", url: "About" },
@@ -31,6 +31,7 @@ const navProjectLinks = [
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [links, setLinks] = useState(navLinks);
+  let navbar = useRef(null)
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 600px)" });
   let location = useLocation();
 
@@ -42,17 +43,19 @@ const Navbar = () => {
     }
   }, [location]);
 
+  useLayoutEffect(() => {
+    navbarAnimation(navbar)
+  },[])
+
   function handleNavClick(event) {
     scrollToTarget(event);
     setToggle((prevState) => !prevState);
   }
 
   return (
-    <motion.nav
+    <nav
       className="navbar"
-      initial="initial"
-      animate="animate"
-      variants={navAnimation}
+      ref={(current) => navbar = current}
     >
       <div className="app__wrapper">
         <Link to="/" className="navbar__logo">
@@ -76,20 +79,19 @@ const Navbar = () => {
             aria-hidden={isTabletOrMobile && !toggle}
           >
             {links.map((link, index) => (
-              <motion.a
+              <a
                 href={`#${link.url}`}
                 key={`link-${index}`}
                 onClick={handleNavClick}
-                variants={linkAnimation}
               >
                 {link.name}
-              </motion.a>
+              </a>
             ))}
             <SocialMedia />
           </menu>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 

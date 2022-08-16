@@ -5,7 +5,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const cardIntroAnimation = (element) => {
   const cards = [...element.children];
-
   cards.forEach((card, index) => {
     gsap.from(
       card, {

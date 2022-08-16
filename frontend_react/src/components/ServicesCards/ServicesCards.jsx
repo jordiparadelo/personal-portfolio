@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 // Assets
 import { AiOutlineCode } from "react-icons/ai";
 import { MdOutlineAnalytics, MdOutlineDesignServices } from "react-icons/md";
@@ -26,7 +26,7 @@ const ServicesCards = ({ services }) => {
     setActiveServices(services[index]);
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     cardIntroAnimation(container)
   },[services])
 
