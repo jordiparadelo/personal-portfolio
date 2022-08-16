@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 // Styles
 import "./Works.scss";
 // Lib
@@ -8,8 +8,7 @@ import { PortfolioCard, WorksFilters } from "../../components";
 // Hooks
 import { useClientContext } from "../../context/ClientContext";
 // Animations
-import { imgParallax } from "./animations";
-import { AnimatePresence } from "framer-motion";
+import { worksAnimation } from "./animations";
 
 const Works = () => {
   const { works, isFetching } = useClientContext();
@@ -26,12 +25,9 @@ const Works = () => {
     setFilterWork(works);
   }, [isFetching]);
 
-  useEffect(() => {
-    imgParallax(worksRef);
-  }, [works]);
+  useEffect(() => worksAnimation(worksRef), [])
 
   return (
-    <AnimatePresence>
       <section id="Works" className="works" ref={(el) => (worksRef = el)}>
         <div className="app__wrapper">
           <Masonry
@@ -58,7 +54,6 @@ const Works = () => {
           </Masonry>
         </div>
       </section>
-    </AnimatePresence>
   );
 };
 

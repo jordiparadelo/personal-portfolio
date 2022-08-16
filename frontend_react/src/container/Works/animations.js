@@ -4,47 +4,36 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const transition = { duration: 1, ease: [0.22, 1, 0.36, 1] };
 
-export const imgParallax = (element) => {
+export const worksAnimation = (element) => {
+  const [headerChilds, filters] = [
+    element.querySelectorAll(".app__header *"),
+    element.querySelectorAll(".works__filter *"),
+  ];
+  const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-  const images = [...element.querySelectorAll(".works__portofilio-image img")];
+  tl.from( headerChilds, {
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      stagger: 0.2,
+    },
+    "header"
+  )
+  .from(filters,{
+      x: 20,
+      opacity: 0,
+      stagger: 0.2,
+    },
+    "-=0.8"
+  )
 
-  images.forEach((image) => {
-    gsap.to(image, {
-      y: "50%",
-      scrollTrigger: {
-        id: "images",
-        scrub: true,
-      },
-    });
+  // Scroll
+  ScrollTrigger.create({
+    id: "works",
+    trigger: element,
+    start: "0% 75%",
+    end: "0% 75%",
+    // markers: true,
+    animation: tl,
   });
-};
-
-export const staggerAnimation = {
-  animate: {
-    transition: {
-      delayChildren: 1.5,
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-export const portfolioCardAnimation = {
-  initial: {
-    y: -50,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      ...transition,
-    },
-    exit: {
-      y: 100,
-      opacity: 1,
-      transition: {
-        ...transition,
-      },
-    },
-  },
 };

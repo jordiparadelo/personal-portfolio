@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { RiExternalLinkLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { urlFor } from "../../clients";
-import { motion, useScroll, useTransform } from "framer-motion";
 // Animations
 import { portfolioCardAnimation } from "./animations";
 
@@ -11,18 +10,19 @@ const PortfolioCard = ({ portfolio, index }) => {
   const { title, blurb, name, tags, imgUrl, codeLink, slug, projectLink } =
     portfolio;
 
-  const card = useRef(null);
+  let card = useRef(null);
 
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [-100, 300])
+  useEffect(()=> {
+    portfolio && portfolioCardAnimation(card, index)
+    return () => {
+      portfolioCardAnimation(card, index).killAnim()
+    }
+  },[portfolio])
 
   return (
-    <motion.figure
+    <figure
       className="works__portofilio-item"
-      ref={card}
-      initial="initial"
-      animate="animate"
-      variants={portfolioCardAnimation(index)}
+      ref={(element) => card = element}
     >
       <figcaption className="works__portfolio-description">
         <div className="works__description-title-container">
@@ -38,10 +38,10 @@ const PortfolioCard = ({ portfolio, index }) => {
         </div>
       </figcaption>
       <picture className="works__portofilio-image">
-        <motion.img
+        <img
           src={urlFor(imgUrl)}
           alt={name}
-          style={{ y, rotate: -15 }}
+          // style={{ y, rotate: -15 }}
         />
         <div className="works__portofilio-actions">
           {projectLink && (
@@ -74,7 +74,7 @@ const PortfolioCard = ({ portfolio, index }) => {
           </Link>
         </div>
       </picture>
-    </motion.figure>
+    </figure>
   );
 };
 

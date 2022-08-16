@@ -10,10 +10,7 @@
     gap: var(--spacing);
     align-items: center;
 
-    .about__title-container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xs);
+    .app__header {
     }
     .about__description {
       display: flex;

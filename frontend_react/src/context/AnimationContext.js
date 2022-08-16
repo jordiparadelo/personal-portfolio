@@ -15,7 +15,7 @@ export const AnimationProvider = ({ children }) => {
     setPageLoading(isFetching)
 
     if(!pageLoading) {
-      console.log(animations)
+      // console.log(animations)
       animations?.forEach(animation => animation())
     }
   }, [isFetching, animations])
