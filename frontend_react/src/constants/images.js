@@ -1,9 +1,9 @@
 import figma from '../assets/figma.png';
-import flutter from '../assets/flutter.png';
 import git from '../assets/git.png';
 import html from '../assets/html.png';
 import javascript from '../assets/javascript.png';
 import react from '../assets/react.png';
+import HomeImage from '../assets/HomeImage.png'
 
 import logo from '../assets/logo.svg';
 import logoSquare from '../assets/logoSquare.svg';
@@ -18,5 +18,6 @@ export default {
   react,
   logo,
   logoSquare,
-  headerAnimation
+  headerAnimation,
+  HomeImage
 };

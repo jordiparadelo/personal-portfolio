@@ -23,7 +23,7 @@ const PortfolioCard = ({ portfolio }) => {
         </div>
       </figcaption>
       <picture className="works__portofilio-image">
-        <img src={urlFor(imgUrl)} alt={name} />
+        <img src={urlFor(imgUrl)} alt={name} width="564" height="564" loading="lazy"/>
         <div className="works__portofilio-actions">
           {projectLink && (
             <a

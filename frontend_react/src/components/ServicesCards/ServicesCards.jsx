@@ -29,7 +29,7 @@ const ServicesCards = ({ services }) => {
       {services?.map((service, index) => (
         <figure
           className={`about__service-card`}
-          aria-selected={service == activeServices}
+          aria-selected={service === activeServices}
           data-index={index}
           key={`technology-${index}`}
           onClick={handleClick}

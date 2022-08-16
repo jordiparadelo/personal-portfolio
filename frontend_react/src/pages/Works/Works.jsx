@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 // Styles
 import "./Works.scss";
 // hooks
@@ -6,7 +5,7 @@ import { useClientData } from "../../hooks/useClientData";
 
 const Works = () => {
   const query = '*[_type == "works"]'
-  const {data: works, isFetching} = useClientData(query);
+  const {data: works} = useClientData(query);
 
   return (
     <main id="Works">

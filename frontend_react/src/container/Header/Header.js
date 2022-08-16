@@ -26,7 +26,6 @@ const Header = () => (
         </div>
         <div className="header__actions">
           <a href="#Footer" className="button primary" onClick={scrollToTarget}>
-            {" "}
             Let's Talk
           </a>
           <a
@@ -34,13 +33,12 @@ const Header = () => (
             href="#Works"
             onClick={scrollToTarget}
           >
-            {" "}
-            Check the Works{" "}
+            Check the Works
           </a>
         </div>
       </div>
       <div className="header__image">
-        <Lottie animationData={images.headerAnimation} loop={true} />
+        <Lottie animationData={images.headerAnimation} loop={true} width="564" height="564" loading="lazy"/>
       </div>
     </div>
     <DotNavigation />

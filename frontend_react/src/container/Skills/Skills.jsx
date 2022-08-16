@@ -49,6 +49,7 @@ const Skills = () => {
                     alt={skill.name}
                     width="40"
                     height="40"
+                    loading="lazy"
                   />
                 </div>
               ))}
