@@ -10,12 +10,12 @@ export const headerAnimation = (element) => {
   const tl = gsap.timeline(transition.ease);
 
   function handleScrollBody(condition) {
-    condition 
-    ? document.body.style.overflowY = 'hidden'
-    : document.body.removeAttribute('style');
+    condition
+      ? (document.body.style.overflowY = "hidden")
+      : document.body.removeAttribute("style");
   }
 
-  handleScrollBody(true)
+  handleScrollBody(true);
 
   tl.from(image, {
     position: "relative",
@@ -25,11 +25,15 @@ export const headerAnimation = (element) => {
     duration: 1,
     ease: transition.ease,
     onComplete: () => handleScrollBody(false),
-  }).from(headerChilds, {
-    opacity: 0,
-    y: 20,
-    duration: 0.8,
-    ease: transition.ease,
-    stagger: 0.08
-  }, '-=0.8');
+  }).from(
+    headerChilds,
+    {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      ease: transition.ease,
+      stagger: 0.08,
+    },
+    "-=0.8"
+  );
 };

@@ -1,20 +1,19 @@
 // Assets
 import { useEffect, useRef } from "react";
 import { FiLink } from "react-icons/fi";
-// Lib
-import { useAnimation, useInView } from "framer-motion";
+// Animations
+import { skillAnimation } from './animations.js'
 
 const SkillsList = ({ skills, experiences }) => {
   const container = useRef(null)
-  const isInView = useInView({container})
-  // const animation = useAnimation()
+  let skillListRef = useRef(null)
 
   useEffect(() => {
-    // isInView && animation.start()
-  }, [isInView])
+    skills && skillAnimation(skillListRef)
+  }, [skills])
 
   return (
-  <div className="skills__list-container" role="list" ref={container}>
+  <div className="skills__list-container" role="list"  ref={(element) => skillListRef = element}>
     {skills.map((experience, index) => {
       return (
         <div
@@ -37,7 +36,7 @@ const SkillsList = ({ skills, experiences }) => {
               return (
                 <div className="skills__item-description" key={work._ref}>
                   {selectedWork?.actualWork && (
-                    <p className="year">Until now</p>
+                    <p>Until now</p>
                   )}
                   <h3 className="title">{selectedWork?.name}</h3>
                   <p className="company">

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 // Styles
 import "./Skills.scss";
 // Data
@@ -7,11 +7,13 @@ import { urlFor } from "../../clients";
 import { SkillsList } from "../../components";
 // Context
 import { useClientContext } from "../../context/ClientContext";
-import { useInView } from "framer-motion";
-
+// Animations
+import { skillsAnimation } from "./animations.js";
 
 const Skills = () => {
-  const {experiences, workExperiences, skills, isFetching} = useClientContext()
+  const { experiences, workExperiences, skills, isFetching } =
+    useClientContext();
+  let skillsRef = useRef(null);
 
   const expiriencesByDescYear = experiences?.sort(
     (prevExperience, nextExperience) =>
@@ -20,11 +22,19 @@ const Skills = () => {
   const yearsOfExperience =
     expiriencesByDescYear &&
     expiriencesByDescYear[0]?.year -
-      expiriencesByDescYear[expiriencesByDescYear?.length - 1]?.year; 
+      expiriencesByDescYear[expiriencesByDescYear?.length - 1]?.year;
+
+  useEffect(() => {
+    skills && skillsAnimation(skillsRef);
+  }, [skills]);
 
   return (
     !isFetching && (
-      <section id="Skills" className="skills">
+      <section
+        id="Skills"
+        className="skills"
+        ref={(element) => (skillsRef = element)}
+      >
         <div className="app__wrapper">
           <header className="app__header">
             <div className="app__section-label">Experience</div>
@@ -57,7 +67,10 @@ const Skills = () => {
               ))}
             </div>
           </header>
-          <SkillsList skills={expiriencesByDescYear} experiences={workExperiences}/>
+          <SkillsList
+            skills={expiriencesByDescYear}
+            experiences={workExperiences}
+          />
         </div>
       </section>
     )
