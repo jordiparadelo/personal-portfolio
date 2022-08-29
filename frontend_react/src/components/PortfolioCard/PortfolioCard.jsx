@@ -12,17 +12,17 @@ const PortfolioCard = ({ portfolio, index }) => {
 
   let card = useRef(null);
 
-  useEffect(()=> {
-    portfolio && portfolioCardAnimation(card, index)
+  useEffect(() => {
+    portfolio && portfolioCardAnimation(card, index);
     return () => {
-      portfolioCardAnimation(card, index).killAnim()
-    }
-  },[portfolio])
+      portfolioCardAnimation(card, index).killAnim();
+    };
+  }, [portfolio]);
 
   return (
     <figure
       className="works__portofilio-item"
-      ref={(element) => card = element}
+      ref={(element) => (card = element)}
     >
       <figcaption className="works__portfolio-description">
         <div className="works__description-title-container">
