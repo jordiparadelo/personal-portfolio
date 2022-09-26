@@ -3,6 +3,10 @@ import React, { useState, useRef, useEffect } from "react";
 import "./DotNavigation.scss";
 // Utils
 import { scrollToTarget } from "../../utils";
+// Lib
+import { motion } from "framer-motion";
+// Animations
+import {dotContainerAnimation,  dotAnimation } from "./animations";
 
 const navLinks = [
   { name: "Header", url: "Header" },
@@ -51,9 +55,10 @@ const DotNavigation = () => {
   }, []);
 
   return (
-    <nav className="dot-navigation">
+    <motion.nav className="dot-navigation" variants={dotContainerAnimation} initial="initial"
+    animate="animate">
       {navLinks.map((link, index) => (
-        <a
+        <motion.a
           href={`#${link.url}`}
           key={`dot-link-${index}`}
           className={`dot-navigation__link ${
@@ -61,9 +66,10 @@ const DotNavigation = () => {
           }`}
           onClick={handleLinkClick}
           ref={navLinksRef.current[index]}
-        ></a>
+          variants={dotAnimation(index)}
+        ></motion.a>
       ))}
-    </nav>
+    </motion.nav>
   );
 };
 

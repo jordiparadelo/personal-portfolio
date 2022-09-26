@@ -7,6 +7,7 @@ import { RiExternalLinkLine } from "react-icons/ri";
 import { Link, useParams } from "react-router-dom";
 import { urlFor } from "../../clients";
 import Masonry from "react-masonry-css";
+import {motion} from 'framer-motion'
 // Hooks
 import { useClientContext } from "../../context/ClientContext";
 
@@ -30,7 +31,7 @@ const Project = () => {
   if (isFetching) return <p>Loading</p>;
 
   return (
-    <main id="Project">
+    <motion.main id="Project" animate={{opacity: [0,1]}}>
       <header className="Project__header App__section">
         <div className="app__wrapper">
           <p className="Project_client">{projectFilterBySlug?.details.client}</p>
@@ -129,7 +130,7 @@ const Project = () => {
           </Link>
         </div>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

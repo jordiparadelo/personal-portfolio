@@ -5,3 +5,4 @@ export {default as Skills} from './Skills/Skills';
 export {default as Testimonials} from './Testimonials/Testimonials';
 export {default as Works} from './Works/Works';
 export {default as PageNavigation} from './PageNavigation/PageNavigation';
+export {default as LoadingScreen} from './LoadingScreen/LoadingScreen';

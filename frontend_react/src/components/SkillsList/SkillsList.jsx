@@ -1,8 +1,19 @@
 // Assets
+import { useEffect, useRef } from "react";
 import { FiLink } from "react-icons/fi";
+// Animations
+import { skillAnimation } from './animations.js'
 
-const SkillsList = ({ skills, experiences }) => (
-  <div className="skills__list-container" role="list">
+const SkillsList = ({ skills, experiences }) => {
+  const container = useRef(null)
+  let skillListRef = useRef(null)
+
+  useEffect(() => {
+    skills && skillAnimation(skillListRef)
+  }, [skills])
+
+  return (
+  <div className="skills__list-container" role="list"  ref={(element) => skillListRef = element}>
     {skills.map((experience, index) => {
       return (
         <div
@@ -25,7 +36,7 @@ const SkillsList = ({ skills, experiences }) => (
               return (
                 <div className="skills__item-description" key={work._ref}>
                   {selectedWork?.actualWork && (
-                    <p className="year">Until now</p>
+                    <p>Until now</p>
                   )}
                   <h3 className="title">{selectedWork?.name}</h3>
                   <p className="company">
@@ -48,6 +59,6 @@ const SkillsList = ({ skills, experiences }) => (
       );
     })}
   </div>
-);
+)};
 
 export default SkillsList;

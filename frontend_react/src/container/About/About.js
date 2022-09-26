@@ -7,6 +7,9 @@ import { SiNextdotjs, SiWebflow } from "react-icons/si";
 import { ServicesCards } from "../../components";
 // Context
 import { useClientContext } from "../../context/ClientContext";
+import { useEffect, useLayoutEffect, useRef } from "react";
+// Animations
+import {aboutAnimation} from './animations.js'
 
 
 const technologies = [
@@ -39,12 +42,17 @@ const technologies = [
 
 const About = () => {
   const {about: services} = useClientContext()
+  let aboutRef = useRef(null)
+
+  useEffect(()=> {
+    aboutAnimation(aboutRef)
+  },[])
 
   return (
-    <section id="About" className="about">
+    <section id="About" className="about" ref={(element) => aboutRef = element}>
       <div className="app__wrapper">
         <div className="about__content">
-          <div className="about__title-container">
+          <div className="app__header">
             <div className="app__section-label">About</div>
             <h2 className="about__title">
               Providing <strong>quality</strong> on all services

@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 // Assets
 import { images } from "../../constants";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
 // Lib
 import { useMediaQuery } from "react-responsive";
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 // Utils
 import { scrollToTarget } from "../../utils";
 // Syles
 import "./Navbar.scss";
 // Components
 import { SocialMedia } from "../../components";
+// Animations
+import { navbarAnimation } from "./animations";
 
 const navLinks = [
   { name: "About", url: "About" },
@@ -24,19 +27,25 @@ const navProjectLinks = [
   { name: "Contact", url: "Footer" },
 ];
 
+
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [links, setLinks] = useState(navLinks);
+  let navbar = useRef(null)
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 600px)" });
   let location = useLocation();
 
-  useEffect(() =>{
-    if(location.pathname === "/") {
-      setLinks(navLinks)
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setLinks(navLinks);
     } else if (location.pathname.includes("works")) {
-      setLinks(navProjectLinks)
+      setLinks(navProjectLinks);
     }
-  },[location])
+  }, [location]);
+
+  useLayoutEffect(() => {
+    navbarAnimation(navbar)
+  },[])
 
   function handleNavClick(event) {
     scrollToTarget(event);
@@ -44,7 +53,10 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar">
+    <nav
+      className="navbar"
+      ref={(current) => navbar = current}
+    >
       <div className="app__wrapper">
         <Link to="/" className="navbar__logo">
           <img src={images.logo} alt="logo" width="48" height="48" />
