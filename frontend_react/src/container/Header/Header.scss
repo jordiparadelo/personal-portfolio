@@ -1,78 +1,80 @@
 #Header {
+  --header-size: clamp(48px, 10.5vw, 146px);
+  color: var(--light-color);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+
   .app__wrapper {
+    display: flex;
     flex-direction: column;
-    gap: var(--spacing-xxl);
+    gap: var(--spacing);
     align-items: center;
     justify-content: space-between;
 
     & > * {
-      flex-grow: 1;
+      grid-area: 1/1;
     }
 
-    .header__content {
+    .Header__title {
+      font-size: var(--header-size);
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-lg);
-      font-size: 20px;
+      font-weight: 100;
 
-      .header__title-container {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-xs);
-      }
-
-      .header__title {
-        --font-size: clamp(40px, 5vw, 72px);
-        font-size: var(--font-size);
-        font-weight: bold;
-        line-height: 1.1;
-      }
-      .header__title-icon {
+      .title-line {
+        position: relative;
+        overflow: hidden;
         display: inline-block;
-        width: 1em;
-        height: 1em;
-        margin-inline: 0.3em;
-        cursor: pointer;
 
-        &:hover {
-          animation: wave-animation 1s infinite;
-          transform-origin: 50% 100%;
-        }
+        .line-text {
+          display: inherit;
+          animation: showUp 1s;
 
-        @keyframes wave-animation {
-          0%,
-          100% {
-            transform: rotate(0deg);
-          }
-          25% {
-            transform: rotate(20deg);
-          }
-          75% {
-            transform: rotate(-20deg);
+          .highlight {
+            font-family: ManuscribeRegular;
+            color: var(--primary-color);
           }
         }
-      }
-
-      .header__actions {
-        display: flex;
-        flex-direction: row;
-        gap: var(--spacing);
-        flex-wrap: wrap;
-
-        @media screen and (max-width: 500px) {
-            & > * {
-                flex-grow: 1;
-            }
-          }
-      }
-
-      @media screen and (min-width: 768px) {
-        max-width: 35ch;
-        gap: var(--spacing-xl);
       }
     }
-    @media screen and (min-width: 768px) {
-        flex-direction: row;
+
+    .Header__description {
+      max-width: 200px;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      align-self: start;
+      justify-self: flex-end;
+
+      .word {
+        position: relative;
       }
+    }
+
+    .ScrollButton {
+      --size: var(--header-size);
+      align-self: end;
+      justify-self: flex-end;
+    }
+
+    @media screen and (min-width: 600px) {
+      display: grid;
+      gap: var(--spacing-xxl);
+
+      .Header__title {
+        white-space: nowrap;
+      }
+
+      .Header__description {
+        margin-block-start: 2vw;
+      }
+    }
+  }
+  hr {
+    --background: var(--light-color);
+    max-width: 1200px;
+    width: 100%;
+    margin-inline: auto;
   }
 }

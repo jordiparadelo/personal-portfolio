@@ -2,89 +2,34 @@
   background-color: var(--dark-color);
   color: var(--light-color);
   .app__wrapper {
-    flex-direction: column;
     gap: var(--spacing-xxl);
 
-    .footer__body {
-      display: flex;
-      gap: var(--spacing-xxl);
-      flex-wrap: wrap;
-      .app__header {
-        min-width: 20ch;
-      }
-      .footer__email {
-        font-size: 20px;
-        color: var(--light-color);
-        margin-block-start: var(--spacing-lg);
+    .Footer__header {
+      --header-size: clamp(48px, 10.5vw, 146px);
+      text-align: center;
 
-        &:hover {
-          color: var(--primary-color);
-        }
-      }
+      h2 {
+        font-size: var(--header-size);
+        display: flex;
+        flex-direction: column;
+        font-weight: 100;
 
-      @media screen and (min-width: 768px) {
-        > * {
-          flex-grow: 1;
+        * {
+          color: inherit;
         }
 
-        .app__header {
-          max-width: 35ch;
+        .header-top {
+          font-size: 24px;
         }
-        .contact-form {
-          flex-basis: 50%;
+
+        .highlight{
+          font-family: ManuscribeRegular;
         }
       }
     }
 
-    .footer__bottom {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding-block-start: var(--spacing-xxl);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      gap: var(--spacing-xxl);
-
-      .footer__copyright {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--spacing);
-        text-align: center;
-
-        img {
-          filter: invert(1);
-        }
-      }
-      .social-media {
-        position: static;
-
-        .social-media__link {
-          --size: 40px;
-        }
-
-      }
-
-      //   Media
-      @media screen and (min-width: 500px) {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: nowrap;
-
-        .footer__copyright {
-          flex-direction: row;
-          text-align: initial;
-
-          p {
-              font-size: 14px;
-              white-space: nowrap;
-            strong {
-                font-size: 1.2em;
-            }
-          }
-        }
-      }
+    hr {
+      --background: var(--light-color);
     }
   }
 }

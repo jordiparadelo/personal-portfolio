@@ -1,4 +1,6 @@
 #Works {
+  color: var(--light-color);
+  
   .app__wrapper {
     flex-direction: column;
     gap: var(--spacing-lg);
@@ -20,23 +22,41 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: var(--spacing-lg);
+      gap: var(--spacing);
 
-      .works__filter {
+      .WorksFilters {
         display: flex;
         gap: var(--spacing-xs);
         flex-wrap: wrap;
+        font-size: 24px;
 
-        .works__fiter-item {
+        .WorksFilters__fiter-item {
           --corners: var(--corners-round);
           --size: 32px;
           --background: var(--dark-color);
           color: var(--light-color);
+          font-size: inherit;
+
+          .WorksFilters__projects-number {
+            font-size: 0.6em;
+            margin-block-end: auto;
+          }
+
           &:not(.active) {
-            --background: transparent;
-            color: var(--dark-color);
+            opacity: 0.5;
           }
         }
+
+        hr {
+          --size: 6px;
+          --background: var(--light-color);
+          align-self: center;
+          border-radius: var(--corners-round);
+        }
+      }
+
+      hr {
+        --background: var(--light-color);
       }
     }
 
@@ -85,7 +105,7 @@
             justify-content: center;
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: var(--corners-round);
-            padding-inline: 8px; 
+            padding-inline: 8px;
           }
         }
       }
@@ -135,7 +155,7 @@
             }
 
             &:hover {
-              transform: scale(0.9)
+              transform: scale(0.9);
             }
           }
         }
@@ -152,7 +172,7 @@
       // Media Query
       @media screen and (max-width: 768px) {
         .works__portfolio-description {
-        flex-wrap: wrap;
+          flex-wrap: wrap;
         }
       }
     }

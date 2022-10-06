@@ -1,0 +1,159 @@
+#Services {
+  background: var(--light-color);
+  overflow: hidden;
+
+  .app__wrapper {
+    flex-direction: column;
+    gap: var(--spacing-xxl);
+  }
+
+  .app__header {
+    .Services__description {
+      display: flex;
+      font-size: m#{a}x(18px, 1.2vw);
+      flex-direction: row;
+      align-items: flex-start;
+      gap: var(--spacing-xl);
+    }
+
+    @media screen and (min-width: 768px) {
+      *:is(.Services__title-container, .Services__description p) {
+        max-width: 35ch;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+
+      .Services__technologies {
+        margin-inline: unset;
+        gap: var(--spacing);
+      }
+    }
+  }
+
+  .Services__container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+
+    > * {
+      grid-area: 1/1;
+      justify-self: center;
+    }
+
+    .HorizontalScroll {
+      z-index: -1;
+    }
+  }
+
+  .ServicesCards {
+    display: grid;
+    flex-direction: row;
+    max-width: 100vw;
+    gap: var(--spacing);
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    max-width: 40ch;
+    width: 100%;
+
+    .ServicesCards__card {
+      --card-size: 300px;
+      --background: var(--white-color);
+      grid-area: 1/1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+      align-items: flex-start;
+      padding: var(--spacing-xl);
+      min-width: 25ch;
+      min-height: var(--card-size);
+      height: 100%;
+      background-color: var(--background);
+      transition: background-color 150ms linear;
+      overflow: hidden;
+
+      > * {
+        pointer-events: none;
+      }
+
+      .card-icon {
+        --size: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--size);
+        height: var(--size);
+        background: var(--white-color);
+        border-radius: var(--corners-round);
+        // box-shadow: var(--shadow-lg);
+
+        svg {
+          --icon-size: calc(var(--size) * 0.5);
+          width: var(--icon-size);
+          height: var(--icon-size);
+          fill: var(--dark-color);
+        }
+      }
+
+      .card-description {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing);
+        margin-block-start: auto;
+
+        hr {
+          --stroke: 3px;
+          width: 20%;
+          min-height: var(--stroke);
+          margin: unset;
+          border: unset;
+          border-radius: var(--corners-round);
+          background: var(--gray-color);
+        }
+
+        p {
+          transition: all 800ms var(--ease);
+          &:is([aria-hidden="false"]) {
+            max-height: 300px;
+            overflow: hidden;
+          }
+        }
+      }
+
+      //   Interactions
+      &:is([aria-selected="true"]) {
+        --background: var(--dark-color);
+        color: var(--light-color);
+        box-shadow: var(--shadow-lg);
+      }
+      &:not(:hover) {
+        .card-description p:not([aria-hidden="false"]) {
+          max-height: 0px;
+          overflow: hidden;
+          opacity: 0;
+          transition: all 500ms var(--ease);
+        }
+      }
+      &:not([aria-selected="true"]) {
+       visibility: hidden;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 8px 40px;
+      margin-inline: -40px;
+      min-width: 100vw;
+      scroll-snap-type: x mandatory;
+
+      .ServicesCards__card {
+        scroll-snap-align: center;
+      }
+    }
+  }
+}

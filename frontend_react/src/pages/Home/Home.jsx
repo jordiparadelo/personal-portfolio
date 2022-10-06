@@ -2,16 +2,16 @@ import React from "react";
 // Styles
 import "./Home.scss";
 // Components
-import { About, Header, Skills, Testimonials, Works } from "../../container";
+import { Services, Header, Skills, Testimonials, Works, LastProject } from "../../container";
 
 const Home = () => {
   return (
     <main id="Home">
       <Header />
-      <About />
+      <LastProject />
+      <Services />
       <Works />
       <Skills />
-      <Testimonials />
     </main>
   );
 };

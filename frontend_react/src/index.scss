@@ -1,14 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@font-face {
+  font-family: "ClashDisplayRegular";
+  src: local("ClashDisplay-Regular"),
+    url("./assets/fonts/ClashDisplay-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "ClashDisplayBold";
+  src: local("ClashDisplay-Bold"),
+    url("./assets/fonts/ClashDisplay-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "ManuscribeRegular";
+  src: local("ManuscribeFree-Regular"),
+    url("./assets/fonts/ManuscribeFree-Regular.otf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "ManuscribeItalic";
+  src: local("ManuscribeFree-Italic"),
+    url("./assets/fonts/ManuscribeFree-Italic.otf") format("truetype");
+  font-weight: italic;
+}
+
 
 :root {
   /* Colors */
-  --key-color: 218;
-  --primary-color: hsl(var(--key-color), 100%, 40%);
+  --key-color: 29;
+  --primary-color: hsl(var(--key-color), 100%, 60%);
   --hover-color: hsl(var(--key-color), 100%, 64%);
   --active-color: hsl(var(--key-color), 100%, 52%);
   --gray-color: hsl(var(--key-color), 50%, 80%);
-  --dark-color: hsl(var(--key-color), 100%, 10%);
-  --light-color: hsl(var(--key-color), 100%, 98%);
+  --dark-color: hsl(0, 0%, 8%);
+  --light-color: hsl(0, 0%, 96%);
   --white-color: hsl(var(--key-color), 100%, 100%);
   --font-color: hsl(var(--key-color), 100%, 6%);
   /* Spacing */
@@ -26,7 +51,7 @@
   --corners-xxl: calc(var(--corners) * 3);
   --corners-round: 999px;
   /* Fonts */
-  --font-family: "DM Sans", system-ui, sans-serif;
+  --font-family: "ClashDisplayRegular", system-ui, sans-serif;
   /* Transitions */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   /* Shadows */
@@ -41,6 +66,7 @@
   padding: unset;
   box-sizing: border-box;
   text-rendering: geometricPrecision;
+  font-family: inherit;
 }
 
 body {

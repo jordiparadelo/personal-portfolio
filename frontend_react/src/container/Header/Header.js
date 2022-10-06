@@ -1,50 +1,47 @@
-// Lib
-import Lottie from "lottie-react";
-// Utils
-import { scrollToTarget } from "../../utils";
-// Assets
-import { images } from "../../constants";
+import { useEffect, useRef } from "react";
 // Styles
 import "./Header.scss";
 // Components
-import { DotNavigation } from "../../components";
+import { ScrollButton } from "../../components";
+// Animations
+import { initAnimation } from "./animations.js";
 
-const Header = () => (
-  <section id="Header" className="header">
-    <div className="app__wrapper">
-      <div className="header__content">
-        <div className="header__title-container">
-          <div className="app__section-label">Freelancer</div>
-          <h1 className="header__title">Web Designer And Developer</h1>
-        </div>
-        <div className="header__description">
-          <p>
-            Hi<span className="header__title-icon">👋</span> i'm Jordi, I'm a
-            based designer who develop webs and app, from the concept design to
-            the execution.
-          </p>
-        </div>
-        <div className="header__actions">
-          <a href="#Footer" className="button primary" onClick={scrollToTarget}>
-            {" "}
-            Let's Talk
-          </a>
-          <a
-            className="button secondary"
-            href="#Works"
-            onClick={scrollToTarget}
-          >
-            {" "}
-            Check the Works{" "}
-          </a>
-        </div>
+const Header = () => {
+  let sectionRef = useRef(null);
+
+  useEffect(() => {
+    sectionRef && initAnimation(sectionRef);
+  }, [sectionRef]);
+
+  return (
+    <section
+      id="Header"
+      className="header"
+      ref={(ref) => (sectionRef = ref)}
+    >
+      <div className="app__wrapper">
+        <h1 className="Header__title">
+          <span className="title-line">
+            <span className="line-text">I’m Jordi</span>
+          </span>
+          <span className="title-line">
+            <span className="line-text">
+              a <span className="highlight">digital</span> designer
+            </span>
+          </span>
+          <span className="title-line">
+            <span className="line-text">and developer</span>
+          </span>
+        </h1>
+        <p className="Header__description">
+          I'm a based designer who develop webs and app, from the
+          concept design to the execution.
+        </p>
+        <ScrollButton />
       </div>
-      <div className="header__image">
-        <Lottie animationData={images.headerAnimation} loop={true} />
-      </div>
-    </div>
-    <DotNavigation />
-  </section>
-);
+      <hr />
+    </section>
+  );
+};
 
 export default Header;
