@@ -1,0 +1,25 @@
+.ShowcaseTitle {
+  --font-size: max(40px, 15vw);
+  --rotation: 0deg;
+
+  align-self: center;
+  z-index: 0;
+  font-size: var(--font-size);
+  white-space: nowrap;
+  max-height: 1.2em;
+  overflow: hidden;
+  margin-inline: -64px;
+  min-width: 100%;
+  font-family: ManuscribeRegular;
+  animation: marquee 1s infinite linear;
+  display: grid;
+
+  > * {
+    grid-area: 1/1;
+    transition: opacity 0.5s linear;
+  }
+
+  > *:not(.active) {
+    opacity: 0;
+  }
+}

@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 // Styles
 import "./Works.scss";
-// Lib
-import Masonry from "react-masonry-css";
 // Components
-import { PortfolioCard, ProjectsSlider, WorksFilters } from "../../components";
+import { ProjectsShowCase, WorksFilters } from "../../components";
 // Hooks
 import { useClientContext } from "../../context/ClientContext";
+// Animations
+import { initAnimation } from "./animations.js";
+
+import { ShowcaseProvider } from "../../context/ShowcaseContext";
 
 const Works = () => {
   const { works, isFetching } = useClientContext();
@@ -14,12 +16,15 @@ const Works = () => {
 
   const filtersCollection = ["New", "UI/UX", "Web App", "React Js"];
 
+  const sectionRef = useRef(null);
+
   useEffect(() => {
     setFilterWork(works);
+    sectionRef.current && !isFetching && initAnimation(sectionRef.current);
   }, [isFetching]);
 
   return (
-    <section id="Works" className="works">
+    <section id="Works" className="works" ref={sectionRef}>
       <div className="app__wrapper">
         <div className="works__content">
           <WorksFilters
@@ -27,9 +32,11 @@ const Works = () => {
             works={works}
             setFilterWork={setFilterWork}
           />
-          <hr/>
+          <hr />
         </div>
-        <ProjectsSlider projects={filterWork}/>
+        <ShowcaseProvider>
+          <ProjectsShowCase projects={filterWork} />
+        </ShowcaseProvider>
       </div>
     </section>
   );

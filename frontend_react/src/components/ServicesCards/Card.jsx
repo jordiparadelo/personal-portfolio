@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 // Assets
 import { AiOutlineCode } from "react-icons/ai";
 import { MdOutlineAnalytics, MdOutlineDesignServices } from "react-icons/md";
 // Animation
-import { initAnimation } from "./animations.js";
+import { initAnimation, restartAnimation } from "./animations.js";
 
 const ICONS = {
   MdOutlineAnalytics: <MdOutlineAnalytics />,
@@ -12,10 +12,11 @@ const ICONS = {
 };
 
 const Card = ({ service, index, activeService }) => {
-  let cardRef = null;
+  let cardRef = useRef(null);
 
-  useEffect(() => {
-    cardRef && initAnimation(cardRef);
+  useLayoutEffect(() => {
+    initAnimation(cardRef.current);
+    return () => restartAnimation()
   }, [activeService]);
 
   return (
@@ -23,8 +24,7 @@ const Card = ({ service, index, activeService }) => {
       className={`ServicesCards__card`}
       aria-selected={index == activeService}
       data-index={index}
-      ref={(current) => (cardRef = current)}
-      //   onClick={handleClick}
+      ref={cardRef}
     >
       <picture className="card-icon">{ICONS[service.icon]}</picture>
       <figcaption className="card-description">

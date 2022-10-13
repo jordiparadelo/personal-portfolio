@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 // Styles
 import "./Services.scss";
 // Components
@@ -11,14 +11,14 @@ import { initAnimation } from "./animations.js";
 const Services = () => {
   const { about: services } = useClientContext();
   const [activeService, setActiveService] = useState(null);
-  let sectionRef = useRef(null);
+  const sectionRef = useRef(null);
 
-  useEffect(() => {
-    sectionRef && initAnimation(sectionRef);
-  }, [sectionRef]);
+  useLayoutEffect(() => {
+    sectionRef && initAnimation(sectionRef.current);
+  }, []);
 
   return (
-    <section id="Services" ref={(ref) => (sectionRef = ref)}>
+    <section id="Services" ref={sectionRef}>
       <div className="app__wrapper">
         <hr />
         <header className="app__header">

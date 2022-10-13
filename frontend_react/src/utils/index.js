@@ -1,3 +1,6 @@
+// Lib
+import Splitting from "splitting";
+
 export function scrollToTarget(event, target) {
   event.preventDefault();
   const selectedTarget =
@@ -80,3 +83,10 @@ export const formValidator = {
     }
   },
 };
+
+export const splitContent = ({content, type}) => {
+  const split = Splitting({ target: content, by: type || "chars" });
+  const words = split[0].words;
+
+  return words
+}

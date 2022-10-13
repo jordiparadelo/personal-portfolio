@@ -2,27 +2,30 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 gsap.registerPlugin(ScrollTrigger);
 
+
 export const initAnimation = (mainEl) => {
   // console.log({ mainEl });
-  const [header, servicesCards, scrollRows] = [
+  const [line, header, scrollRows] = [
+    mainEl.querySelector(".app__wrapper > hr"),
     mainEl.querySelector(".app__header"),
-    mainEl.querySelector(".ServicesCards"),
     mainEl.querySelectorAll(".HorizontalScroll__row"),
   ];
-
+  
   // Animation Timlines
   const masterTl = gsap.timeline({
-    default: { duration: 2000, ease: "power3.out" },
+   default: { duration: 2000, ease: "power3.out" },
   });
   const scrollRowsTl = gsap.timeline( {onComplete: () => initScrollRows()});
 
-  // gsap.set(servicesCards, {  visibility: "hidden",});
-
   masterTl
+    .from(line, {
+      width: 0,
+      duration: 1
+    })
     .from(header.children, {
       opacity: 0,
       stagger: 0.5,
-    })
+    }, '-=0.8')
     .add(scrollRowsTl);
 
   // scrollRows Animation
@@ -62,6 +65,6 @@ export const initAnimation = (mainEl) => {
     start: "-20% 50%",
     end: "120% 50%",
     animation: masterTl,
-    markers: true,
+    // markers: true,
   });
 };

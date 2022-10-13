@@ -1,12 +1,23 @@
+import { useEffect, useRef } from "react";
 // Styles
 import "./ExperienceList.scss";
 // Assets
 import { FiLink } from "react-icons/fi";
 // Constants
 import { listHeader } from "./constants";
+// Animations
+import {initAnimation} from "./animations.js"
 
-const ExperienceList = ({ experiences }) => (
-  <div className="ExperienceList" role="list">
+const ExperienceList = ({ experiences }) => {
+  const listRef = useRef(null)
+
+  // useEffect(() => {
+  //   listRef.current && initAnimation(listRef.current)
+  // }, [listRef])
+  
+
+  return(
+  <div className="ExperienceList" role="list" ref={listRef}>
     <header className="ExperienceList__header">
       {listHeader.map((item, index) => (
         <div className="ExperienceList__column-title" key={item + index}>
@@ -41,6 +52,6 @@ const ExperienceList = ({ experiences }) => (
       );
     })}
   </div>
-);
+)};
 
 export default ExperienceList;
