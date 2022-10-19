@@ -1,40 +1,41 @@
 import React, { useEffect, useState } from "react";
 // Assets
-import { images } from "../../constants";
+import { images } from "constants";
 import { HiMenuAlt4, HiX } from "react-icons/hi";
 // Lib
 import { useMediaQuery } from "react-responsive";
 import { Link, useLocation } from "react-router-dom";
 // Utils
-import { scrollToTarget } from "../../utils";
+import { scrollToTarget } from "utils";
 // Syles
 import "./Navbar.scss";
 // Components
-import { SocialMedia } from "../../components";
+import { SocialMedia, PageNavIndex } from "components";
 
 const navLinks = [
-  { name: "About", url: "About" },
-  { name: "Work", url: "Works" },
-  { name: "Skills", url: "Skills" },
-  { name: "Contact", url: "Footer" },
+  { name: "Portfolio", url: "works" },
 ];
-const navProjectLinks = [
-  { name: "About", url: "About" },
-  { name: "Work", url: "Works" },
+let navProjectLinks = [
+  { name: "Services", url: "Services" },
+  { name: "Works", url: "Works" },
+  { name: "Experience", url: "Experience" },
   { name: "Contact", url: "Footer" },
 ];
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [links, setLinks] = useState(navLinks);
+  const [navMenu, setNavMenu] = useState(navProjectLinks);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 600px)" });
   let location = useLocation();
 
   useEffect(() =>{
     if(location.pathname === "/") {
       setLinks(navLinks)
+      setNavMenu(navProjectLinks)
     } else if (location.pathname.includes("works")) {
       setLinks(navProjectLinks)
+      setNavMenu(null)
     }
   },[location])
 
@@ -48,12 +49,13 @@ const Navbar = () => {
       <div className="app__wrapper">
         <Link to="/" className="navbar__logo">
           <img src={images.logo} alt="logo" width="48" height="48" />
-          <h4 className="navbar__logo-name">
+          <span className="navbar__logo-name">
             Jordi
             <br />
             Paradelo
-          </h4>
+          </span>
         </Link>
+        <PageNavIndex links={navMenu}/>
         <div className="navbar__menu-wrapper">
           <button
             className="navbar__menu-button"
@@ -67,15 +69,13 @@ const Navbar = () => {
             aria-hidden={isTabletOrMobile && !toggle}
           >
             {links.map((link, index) => (
-              <a
-                href={`#${link.url}`}
+              <Link
+                to={`/${link.url}`}
                 key={`link-${index}`}
-                onClick={handleNavClick}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <SocialMedia />
           </menu>
         </div>
       </div>

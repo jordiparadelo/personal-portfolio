@@ -5,10 +5,10 @@ import "./Project.scss";
 import { RiExternalLinkLine } from "react-icons/ri";
 // Lib
 import { Link, useParams } from "react-router-dom";
-import { urlFor } from "../../clients";
+import { urlFor } from "clients";
 import Masonry from "react-masonry-css";
 // Hooks
-import { useClientContext } from "../../context/ClientContext";
+import { useClientContext } from "context/ClientContext";
 
 const Project = () => {
   let { projectId } = useParams();

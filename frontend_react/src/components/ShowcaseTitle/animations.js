@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 // Utils
-import { splitContent } from "../../utils";
+import { splitContent } from "utils";
 gsap.registerPlugin(ScrollTrigger);
 
 const animationCtx = gsap.context()

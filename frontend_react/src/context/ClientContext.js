@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { useClientData } from "../hooks/useClientData";
+import { useClientData } from "hooks/useClientData";
 
 const ClientContext = createContext();
 

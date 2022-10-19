@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 // Data
-import { client } from "../clients";
+import { client } from "clients";
 
 export const useClientData = (query) => {
   const queries = Array.isArray(query) ? [...query] : [query];

@@ -25,9 +25,19 @@
         -webkit-text-stroke-color: var(--dark-color);
       }
     }
+
+  
   }
 
   &:hover > .HorizontalScroll__row:not(:hover) {
     opacity: 0.5;
+  }
+}
+
+[data-services-selected] {
+  .HorizontalScroll__row {
+    &:not(:hover):not([data-selected="true"]) {
+      opacity: 0.5;
+    }
   }
 }

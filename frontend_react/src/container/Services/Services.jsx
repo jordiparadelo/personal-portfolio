@@ -2,9 +2,9 @@ import { useLayoutEffect, useRef, useState } from "react";
 // Styles
 import "./Services.scss";
 // Components
-import { ServicesCards, HorizontalScrollServices } from "../../components";
+import { ServicesCards, HorizontalScrollServices } from "components";
 // Context
-import { useClientContext } from "../../context/ClientContext";
+import { useClientContext } from "context/ClientContext";
 // Animations
 import { initAnimation } from "./animations.js";
 
@@ -18,7 +18,7 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="Services" ref={sectionRef}>
+    <section id="Services" ref={sectionRef} data-services-selected={activeService}>
       <div className="app__wrapper">
         <hr />
         <header className="app__header">
@@ -31,7 +31,7 @@ const Services = () => {
           </div>
         </header>
         <div className="Services__container">
-          <HorizontalScrollServices setActiveService={setActiveService} />
+          <HorizontalScrollServices setActiveService={setActiveService} activeService={activeService}/>
           <ServicesCards services={services} activeService={activeService} />
         </div>
       </div>

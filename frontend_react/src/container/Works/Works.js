@@ -2,13 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 // Styles
 import "./Works.scss";
 // Components
-import { ProjectsShowCase, WorksFilters } from "../../components";
+import { ProjectsShowCase, WorksFilters } from "components";
 // Hooks
-import { useClientContext } from "../../context/ClientContext";
+import { useClientContext } from "context/ClientContext";
 // Animations
 import { initAnimation } from "./animations.js";
 
-import { ShowcaseProvider } from "../../context/ShowcaseContext";
+import { ShowcaseProvider } from "context/ShowcaseContext";
 
 const Works = () => {
   const { works, isFetching } = useClientContext();

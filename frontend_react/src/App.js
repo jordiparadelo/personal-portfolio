@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 // Components
-import { Navbar } from "./components";
-import { Footer } from "./container";
+import { Navbar } from "components";
+import { Footer } from "container";
 // Styles
-import "./App.scss";
+import "App.scss";
 //lib
 import { Routes, Route } from "react-router-dom";
-import { Home, Works, Project } from "./pages";
+import { Home, Works, ProjectPage } from "pages";
 
 const App = () => {
   useEffect(() => {
@@ -21,7 +21,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/works" element={<Works />} />
-        <Route path="/works/:projectId" element={<Project />} />
+        <Route path="/works/:projectId" element={<ProjectPage />} />
       </Routes>
       <Footer />
     </div>

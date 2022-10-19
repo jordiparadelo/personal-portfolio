@@ -1,6 +1,6 @@
 // Assets
 import { RiDoubleQuotesL } from "react-icons/ri";
-import { urlFor } from "../../clients";
+import { urlFor } from "clients";
 
 const TestimonialsSlider = ({ testimonials, currentIndex, setCurrentIndex }) =>
   testimonials?.length && (

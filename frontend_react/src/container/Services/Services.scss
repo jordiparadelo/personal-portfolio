@@ -45,6 +45,7 @@
 
     .HorizontalScroll {
       z-index: -1;
+      transition: all 0.5s var(--ease);
     }
   }
 
@@ -141,7 +142,7 @@
         }
       }
       &:not([aria-selected="true"]) {
-       visibility: hidden;
+        visibility: hidden;
       }
     }
 
@@ -153,6 +154,18 @@
 
       .ServicesCards__card {
         scroll-snap-align: center;
+      }
+    }
+  }
+
+  // Actions
+  &[data-services-selected] {
+    .Services__container {
+      perspective: 1000px;
+      perspective-origin: bottom center;
+
+      .HorizontalScroll {
+        transform: rotateY(25deg);
       }
     }
   }

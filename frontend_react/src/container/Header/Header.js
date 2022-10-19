@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 // Styles
 import "./Header.scss";
 // Components
-import { ScrollButton } from "../../components";
+import { ScrollButton } from "components";
 // Animations
 import { initAnimation } from "./animations.js";
 
@@ -14,7 +14,7 @@ const Header = () => {
   }, [sectionRef]);
 
   return (
-    <section
+    <header
       id="Header"
       className="header"
       ref={(ref) => (sectionRef = ref)}
@@ -40,7 +40,7 @@ const Header = () => {
         <ScrollButton />
       </div>
       <hr />
-    </section>
+    </header>
   );
 };
 

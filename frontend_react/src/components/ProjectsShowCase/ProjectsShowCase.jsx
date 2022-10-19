@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 // Assets
-import { urlFor } from "../../clients";
+import { urlFor } from "clients";
 // Styles
 import "./ProjectsShowCase.scss";
 // Import Swiper React components
@@ -12,10 +12,10 @@ import "swiper/css/mousewheel";
 import { initAnimation, restartAnimation } from "./animations.js";
 // Constants
 import { swiperProps } from "./constants";
-import { Slider, ShowcaseTitle } from "../index";
-import { useSlider } from "../../hooks/useSlider";
+import { Slider, ShowcaseTitle } from "components";
+import { useSlider } from "hooks/useSlider";
 // Context
-import { useShowcaseContext } from "../../context/ShowcaseContext";
+import { useShowcaseContext } from "context/ShowcaseContext";
 
 const Circle = () => (
   <svg

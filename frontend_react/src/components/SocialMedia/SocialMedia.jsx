@@ -3,7 +3,7 @@ import "./SocialMedia.scss";
 // Assets
 import { FaBehance, FaLinkedinIn, FaDribbble } from "react-icons/fa";
 // Context
-import { useClientContext } from "../../context/ClientContext";
+import { useClientContext } from "context/ClientContext";
 
 const ICONS = {
   FaBehance: <FaBehance />,

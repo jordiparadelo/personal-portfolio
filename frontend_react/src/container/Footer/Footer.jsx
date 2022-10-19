@@ -1,8 +1,8 @@
 // Styles
 import "./Footer.scss";
 // Components
-import { ContactForm, SocialMedia } from "../../components";
-import { images } from "../../constants";
+import { ContactForm, SocialMedia } from "components";
+import { images } from "constants";
 
 const Footer = () => (
   <footer id="Footer">

@@ -1,51 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Styles
 import "./HorizontalScrollServices.scss";
+// Const
+import { servicesObj } from "./constants.js";
+// hooks
+import useEventListener from "hooks/useEventListener";
 
-const HorizontalScrollServices = ({ setActiveService }) => {
-  
+const HorizontalScrollServices = ({ setActiveService, activeService }) => {
+  const buttonsRef = useRef([]);
+
   // Methods
   function handleActiveService(event) {
-    const {currentTarget} = event
+    const { currentTarget } = event;
     const serviceSelected = currentTarget.dataset.index;
-    setActiveService(serviceSelected)
+    setActiveService(serviceSelected);
   }
+  function closeActiveService({ target }) {
+    const hasButtonSelected = target.closest('button')?.classList.contains('HorizontalScroll__row') || null
+    if(hasButtonSelected) return
+    console.log(hasButtonSelected)
+    setActiveService(null);
+  }
+  function closeByEsc({ key }) {
+    if(!key) return
+    key.includes("Escape") && closeActiveService()
+  }
+
+   // Add event listener using our hook
+   useEventListener("click", closeActiveService, document);
+   useEventListener("keyup", closeByEsc);
 
   return (
     <div className="HorizontalScroll">
-      <button
-        className="HorizontalScroll__row"
-        data-index="0"
-        onClick={handleActiveService}
-      >
-        <div className="line-wrapper">
-          <p>Themes*</p>
-          <p className="highlight">Web Design*</p>
-          <p className="outline">Stylization*</p>
-        </div>
-      </button>
-      <button
-        className="HorizontalScroll__row"
-        data-index="1"
-        onClick={handleActiveService}
-      >
-        <div className="line-wrapper">
-          <p className="outline">Development*</p>
-          <p>Frontend*</p>
-          <p className="highlight">Web enhacement*</p>
-        </div>
-      </button>
-      <button
-        className="HorizontalScroll__row"
-        data-index="2"
-        onClick={handleActiveService}
-      >
-        <div className="line-wrapper">
-          <p>UI / UX*</p>
-          <p className="highlight">Usability*</p>
-          <p className="outline">User Testing*</p>
-        </div>
-      </button>
+      {Object.values(servicesObj).map((services, index) => (
+        <button
+          className="HorizontalScroll__row"
+          data-selected={index == activeService}
+          onClick={() => setActiveService(index)}
+          key={index}
+        >
+          <div className="line-wrapper">
+            {Object.entries(services).map(([className, value], index) => {
+              return (
+                <p className={className} key={`${index} ${value}`}>
+                  {value}
+                </p>
+              );
+            })}
+          </div>
+        </button>
+      ))}
     </div>
   );
 };

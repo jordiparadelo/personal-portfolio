@@ -4,7 +4,7 @@ import "./ContactForm.scss";
 // Lib
 import { useForm } from "react-hook-form";
 // Data
-import { client } from "../../clients";
+import { client } from "clients";
 
 const ContactForm = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);

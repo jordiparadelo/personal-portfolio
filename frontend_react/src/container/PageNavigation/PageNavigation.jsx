@@ -1,6 +1,6 @@
 import React from "react";
 // Components
-import { SocialMedia, DotNavigation } from "../../components";
+import { SocialMedia, DotNavigation } from "components";
 // Styles
 import "./PageNavigation.scss";
 const PageNavigation = ({ children }) => (

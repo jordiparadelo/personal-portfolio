@@ -16,10 +16,17 @@
         transition: transform 1s var(--ease);
         background-color: var(--dark-color);
 
-        > img {
+        figure {
+            max-height: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        img {
             flex-grow: 1;
             object-fit: cover;
-            transition: all 2s var(--ease);
+            transition: all 1s var(--ease)
         }
 
         &:not(.active) {
@@ -28,6 +35,12 @@
             img {
                 transform: scale(1.1);
                 opacity: 0;
+            }
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.1);
             }
         }
     }

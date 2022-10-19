@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 // Contenxt
-import { useShowcaseContext } from "../../context/ShowcaseContext";
+import { useShowcaseContext } from "context/ShowcaseContext";
 // Animations
 import {
   initAnimation,

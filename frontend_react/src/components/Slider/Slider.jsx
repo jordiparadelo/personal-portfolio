@@ -1,39 +1,33 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { urlFor } from "../../clients";
+import React, { useEffect, useRef, useState } from "react";
+import { urlFor } from "clients";
 // Syles
 import "./Slider.scss";
 // Animations
 import { initAnimation, transitionIn, transitionOut } from "./animations.js";
-import { useShowcaseContext } from "../../context/ShowcaseContext";
+import { useShowcaseContext } from "context/ShowcaseContext";
 // Lib
 import { Transition } from "react-transition-group";
 import { Link } from "react-router-dom";
 
 const Slider = ({ slides, initialSlide, className }) => {
-  const {currentIndex} = useShowcaseContext()
+  const { currentIndex } = useShowcaseContext();
   const [active, setActive] = useState(currentIndex);
-
-  
 
   let sliderRef = useRef(null);
 
   useEffect(() => {
-    setActive(initialSlide)
-  },[initialSlide])
+    setActive(initialSlide);
+  }, [initialSlide]);
 
   useEffect(() => {
     initAnimation(sliderRef);
-    const slideWidth = slides[0].clientWidths
+    const slideWidth = slides[0].clientWidths;
   }, [slides]);
 
   return (
     <div
       className={className ? `Slider ${className}` : "Slider"}
-      ref={current => sliderRef = current}
+      ref={(current) => (sliderRef = current)}
     >
       {slides.map((project, index) => {
         const activeProject = active == index;
@@ -45,18 +39,16 @@ const Slider = ({ slides, initialSlide, className }) => {
             // onExit={transitionOut}
             key={`${project.title}-${index}`}
           >
-            <figure
-              className={
-                activeProject ? "Slider__card active" : "Slider__card"
-              }
-              key={project.title + index}
+            <Link
+              to={`/works/${project.slug.current}`}
+              className={activeProject ? "Slider__card active" : "Slider__card"}
               hidden={!activeProject}
             >
-              <Link to={`/project/${project.title}`}>
-              <img src={urlFor(project.imgUrl)} alt={project.title} />
-              <figcaption></figcaption>
-              </Link>
-            </figure>
+              <figure>
+                <img src={urlFor(project.imgUrl)} alt={project.title} />
+                <figcaption></figcaption>
+              </figure>
+            </Link>
           </Transition>
         );
       })}

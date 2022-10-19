@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 // Styles
 import "./LastProject.scss";
 // Assets
-import Cover from "../../assets/movistarDetailsCover.jpg";
+import Cover from "assets/movistarDetailsCover.jpg";
 // Animations
 import { initAnimation } from "./animations.js";
 

@@ -1,16 +1,16 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 // Styles
-import "./Skills.scss";
+import "./Experience.scss";
 // Data
-import { urlFor } from "../../clients";
+import { urlFor } from "clients";
 // Components
-import { ExperienceList } from "../../components";
+import { ExperienceList } from "components";
 // Context
-import { useClientContext } from "../../context/ClientContext";
+import { useClientContext } from "context/ClientContext";
 // Animations
 import {initAnimation} from "./animations.js"
 
-const Skills = () => {
+const Experience = () => {
   const {experiences, workExperiences, skills, isFetching} = useClientContext()
   const sectionRef = useRef(null);
 
@@ -26,7 +26,7 @@ const Skills = () => {
 
   return (
     !isFetching && (
-      <section id="Skills" className="skills" ref={sectionRef}>
+      <section id="Experience" className="Experience" ref={sectionRef}>
         <div className="app__wrapper">
           <header className="app__header">
             <h2 className="app__header-title">Experience</h2>
@@ -38,4 +38,4 @@ const Skills = () => {
   );
 };
 
-export default Skills;
+export default Experience;

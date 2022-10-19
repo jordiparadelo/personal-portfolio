@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 // Styles
 import "./DotNavigation.scss";
 // Utils
-import { scrollToTarget } from "../../utils";
+import { scrollToTarget } from "utils";
 
 const navLinks = [
   { name: "Header", url: "Header" },

@@ -2,7 +2,7 @@ import React from "react";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { RiExternalLinkLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { urlFor } from "../../clients";
+import { urlFor } from "clients";
 
 const PortfolioCard = ({ portfolio }) => {
   const { title, blurb, name, tags, imgUrl, codeLink, slug, projectLink } = portfolio;

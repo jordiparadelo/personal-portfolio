@@ -4,9 +4,9 @@ import "./Testimonials.scss";
 // Assets
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 // Components
-import { TestimonialsSlider } from "../../components";
+import { TestimonialsSlider } from "components";
 // Context
-import { useClientContext } from "../../context/ClientContext";
+import { useClientContext } from "context/ClientContext";
 
 const Testimonials = () => {
   const { testimonials } = useClientContext();

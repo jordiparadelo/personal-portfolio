@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // Styles
 import "./Works.scss";
 // hooks
-import { useClientData } from "../../hooks/useClientData";
+import { useClientData } from "hooks/useClientData";
 
 const Works = () => {
   const query = '*[_type == "works"]'

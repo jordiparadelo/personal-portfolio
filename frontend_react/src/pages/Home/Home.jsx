@@ -2,7 +2,7 @@ import React from "react";
 // Styles
 import "./Home.scss";
 // Components
-import { Services, Header, Skills, Testimonials, Works, LastProject } from "../../container";
+import { Services, Header, Experience, Testimonials, Works, LastProject } from "container";
 
 const Home = () => {
   return (
@@ -11,7 +11,7 @@ const Home = () => {
       <LastProject />
       <Services />
       <Works />
-      <Skills />
+      <Experience />
     </main>
   );
 };
