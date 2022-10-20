@@ -19,6 +19,7 @@ const Works = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    console.log({works})
     setFilterWork(works);
     sectionRef.current && !isFetching && initAnimation(sectionRef.current);
   }, [isFetching]);

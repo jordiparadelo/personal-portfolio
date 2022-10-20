@@ -18,7 +18,7 @@ const HorizontalScrollServices = ({ setActiveService, activeService }) => {
   function closeActiveService({ target }) {
     const hasButtonSelected = target.closest('button')?.classList.contains('HorizontalScroll__row') || null
     if(hasButtonSelected) return
-    console.log(hasButtonSelected)
+    // console.log(hasButtonSelected)
     setActiveService(null);
   }
   function closeByEsc({ key }) {

@@ -13,7 +13,7 @@ import "./Navbar.scss";
 import { SocialMedia, PageNavIndex } from "components";
 
 const navLinks = [
-  { name: "Portfolio", url: "works" },
+  { name: "Portfolio", url: "portfolio" },
 ];
 let navProjectLinks = [
   { name: "Services", url: "Services" },
@@ -30,10 +30,11 @@ const Navbar = () => {
   let location = useLocation();
 
   useEffect(() =>{
+    // console.log({location: location.pathname});
     if(location.pathname === "/") {
       setLinks(navLinks)
       setNavMenu(navProjectLinks)
-    } else if (location.pathname.includes("works")) {
+    } else if (location.pathname.includes("portfolio")) {
       setLinks(navProjectLinks)
       setNavMenu(null)
     }

@@ -31,7 +31,6 @@ const Circle = () => (
 
 const ProjectsShowCase = ({ projects }) => {
   const { currentIndex, setCurrentIndex } = useShowcaseContext();
-  // const [currentIndex, setCurrentIndex] = useState(0);
   const projectQty = projects?.length;
 
   const sectionRef = useRef(null);
@@ -47,14 +46,11 @@ const ProjectsShowCase = ({ projects }) => {
   useEffect(() => {
     setCurrentIndex(0);
     sectionRef.current && projects && initAnimation(sectionRef.current);
-
     return () => restartAnimation();
   }, [projects]);
 
   useEffect(() => {
     sectionRef.current && initAnimation(sectionRef.current);
-    // let swiper
-
     return () => restartAnimation();
   }, [currentIndex]);
 
@@ -117,53 +113,6 @@ const ProjectsShowCase = ({ projects }) => {
           </div>
           <ShowcaseTitle projects={projects} />
           <div className="ProjectsShowCase__slider" ref={sliderRef}>
-            {/* <Swiper
-            {...swiperProps}
-            navigation={{
-              prevEl: navigationPrevRef.current,
-              nextEl: navigationNextRef.current,
-            }}
-            onBeforeInit={(swiper) => {
-              swiper.params.navigation.prevEl = navigationPrevRef.current;
-              swiper.params.navigation.nextEl = navigationNextRef.current;
-            }}
-            onSlideChange={handleSliderChange}
-          >
-            {projects.map((project, index) => (
-              <SwiperSlide key={project.title + index}>
-                <figure className="Slider__card">
-                  <img src={urlFor(project.imgUrl)} alt={project.title} />
-                  <figcaption></figcaption>
-                </figure>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <Swiper
-            ref={swiperRef}
-            {...swiperProps}
-            // initialSlide={(currentIndex + 1) % projectQty}
-            onSwiper={(swiper) =>
-              (swiper.activeIndex = (currentIndex + 1) % projectQty)
-            }
-            navigation={{
-              prevEl: navigationPrevRef.current,
-              nextEl: navigationNextRef.current,
-            }}
-            onBeforeInit={(swiper) => {
-              // swiper.activeIndex = (currentIndex + 1) % projectQty
-              swiper.params.navigation.prevEl = navigationPrevRef.current;
-              swiper.params.navigation.nextEl = navigationNextRef.current;
-            }}
-          >
-            {projects.map((project, index) => (
-              <SwiperSlide key={project.title + index}>
-                <figure className="Slider__card">
-                  <img src={urlFor(project.imgUrl)} alt={project.title} />
-                  <figcaption></figcaption>
-                </figure>
-              </SwiperSlide>
-            ))}
-          </Swiper> */}
             <Slider slides={projects} initialSlide={currentIndex} />
             <Slider
               slides={projects}

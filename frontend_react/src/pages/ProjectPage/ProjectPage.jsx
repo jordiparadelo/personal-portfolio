@@ -121,7 +121,7 @@ const Project = () => {
           </div>
           <h2>Next Project</h2>
           <Link
-            to={`/works/${nextProjectRelated?.slug.current}`}
+            to={`/portfolio/${nextProjectRelated?.slug.current}`}
             onMouseEnter={() => setShowBackground(true)}
             onMouseLeave={() => setShowBackground(false)}
           >

@@ -6,7 +6,7 @@ import { Footer } from "container";
 import "App.scss";
 //lib
 import { Routes, Route } from "react-router-dom";
-import { Home, Works, ProjectPage } from "pages";
+import { Home, Portfolio, ProjectPage } from "pages";
 
 const App = () => {
   useEffect(() => {
@@ -20,8 +20,8 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/works" element={<Works />} />
-        <Route path="/works/:projectId" element={<ProjectPage />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/portfolio/:projectId" element={<ProjectPage />} />
       </Routes>
       <Footer />
     </div>

@@ -37,7 +37,7 @@ const Header = () => {
           I'm a based designer who develop webs and app, from the
           concept design to the execution.
         </p>
-        <ScrollButton />
+        <ScrollButton/>
       </div>
       <hr />
     </header>

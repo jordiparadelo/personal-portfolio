@@ -40,7 +40,7 @@ const Slider = ({ slides, initialSlide, className }) => {
             key={`${project.title}-${index}`}
           >
             <Link
-              to={`/works/${project.slug.current}`}
+              to={`/portfolio/${project.slug.current}`}
               className={activeProject ? "Slider__card active" : "Slider__card"}
               hidden={!activeProject}
             >

@@ -8,6 +8,8 @@ export function scrollToTarget(event, target) {
     document.querySelector(event.currentTarget.hash);
   // window.location.hash = event.currentTarget.hash
 
+  console.log({selectedTarget})
+
   selectedTarget?.scrollIntoView({
     behavior: "smooth",
     block: "start",
@@ -84,8 +86,8 @@ export const formValidator = {
   },
 };
 
-export const splitContent = ({content, type}) => {
-  const split = Splitting({ target: content, by: type || "chars" });
+export const splitContent = ({content, type = 'chars'}) => {
+  const split = Splitting({ target: content, by: type });
   const words = split[0].words;
 
   return words

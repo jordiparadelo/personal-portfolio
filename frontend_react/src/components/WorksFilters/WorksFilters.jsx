@@ -5,13 +5,14 @@ const WorksFilters = ({ filters, works, setFilterWork }) => {
   // Methods
   function getWorksByTag(tag) {
     if (!tag || typeof tag !== "string") return;
-    const filteredWorks = works?.filter((work) => work.tags.includes(tag));
+    const filteredWorks = works?.filter((work) => work.tags?.includes(tag));
     if (filteredWorks?.lenght === 0) return;
     return filteredWorks;
   }
 
   function handleWorkFilter(filter) {
     setActiveFilter(filter);
+    console.log({filter})
 
     filter === "New"
       ? setFilterWork(works)
@@ -37,7 +38,6 @@ const WorksFilters = ({ filters, works, setFilterWork }) => {
         ))}
         <button
           className="WorksFilters__fiter-item"
-          // onClick={}
         >
           All
         </button>

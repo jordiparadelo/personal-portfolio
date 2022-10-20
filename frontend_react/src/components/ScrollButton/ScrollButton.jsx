@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
+// Utils
+import { scrollToTarget } from "utils";
 // Styles
 import "./ScrollButton.scss";
 
 const ScrollButton = () => {
   return (
-    <button className="ScrollButton">
+    <button className="ScrollButton" onClick={(event)=> scrollToTarget(event, "#Services")}>
       <svg
         className="iconArrow"
         viewBox="0 0 100 100"
