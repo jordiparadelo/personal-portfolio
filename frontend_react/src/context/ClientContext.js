@@ -5,7 +5,7 @@ const ClientContext = createContext();
 
 export const ClientProvider = ({ children }) => {
   const query = [
-    '*[_type == "works && !(_id in path("drafts.**"))]"]',
+    '*[_type == "works" && !(_id in path("drafts.**"))]',
     '*[_type == "socialMedia"]',
     '*[_type == "abouts"] |  order(order asc)',
     '*[_type =="experiences"]',
