@@ -13,10 +13,6 @@ export const initAnimation = (mainEl) => {
 
   //   Animation Timlines
   const masterTl = gsap.timeline({  default: { duration: 2000, ease: "power3.out" },});
-  const detailsTl = gsap.timeline({
-    default: { duration: 2000, ease: "power3.out" },
-  });
-
 
   masterTl
     .from(

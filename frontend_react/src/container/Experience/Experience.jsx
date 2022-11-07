@@ -1,8 +1,6 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 // Styles
 import "./Experience.scss";
-// Data
-import { urlFor } from "clients";
 // Components
 import { ExperienceList } from "components";
 // Context
@@ -11,7 +9,7 @@ import { useClientContext } from "context/ClientContext";
 import {initAnimation} from "./animations.js"
 
 const Experience = () => {
-  const {experiences, workExperiences, skills, isFetching} = useClientContext()
+  const {experiences, workExperiences, isFetching} = useClientContext()
   const sectionRef = useRef(null);
 
   const worksByDescYear = workExperiences?.sort(

@@ -1,6 +1,5 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
-import Splitting from "splitting";
 gsap.registerPlugin(ScrollTrigger);
 
 //   Timelines
@@ -10,11 +9,9 @@ const masterTl = gsap.timeline({
 
 export const initAnimation = (mainEl) => {
   // console.log("init");
-  const [projectHeader, projectContent, projectNavigation, backgroundTitle] = [
+  const [projectHeader, projectContent] = [
     mainEl.querySelector(".project-header"),
     mainEl.querySelector(".project-content"),
-    mainEl.querySelector(".ProjectsSlider__navigation"),
-    mainEl.querySelector(".ProjectSlider_background-title"),
   ];
 
   // // Splitting Text

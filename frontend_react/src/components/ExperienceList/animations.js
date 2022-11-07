@@ -8,8 +8,7 @@ const masterTl = gsap.timeline({
 });
 
 export const initAnimation = (mainEl) => {
-  const [header, listItems] = [
-    mainEl.querySelector(".ExperienceList__header"),
+  const [listItems] = [
     mainEl.querySelectorAll(".ExperienceList__item"),
     ];
 

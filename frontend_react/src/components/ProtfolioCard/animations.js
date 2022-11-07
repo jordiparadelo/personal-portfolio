@@ -56,9 +56,8 @@ export const initAnimation = (mainEl) => {
     const tl = gsap.timeline({delay: delay});
 
     // Loop nodes and add to timeline
-    [detail, title, link].forEach((item, index) => {
+    [detail, title, link].forEach((item) => {
       const stringTl = gsap.timeline();
-      const delay = 0.08 * (index + 1);
       // Splitting Text
       const splitString = splitContent({ content: item });
 

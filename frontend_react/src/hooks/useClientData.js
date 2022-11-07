@@ -17,7 +17,7 @@ export const useClientData = (query) => {
         })
       )
       .finally(() => setIsFetching(false));
-  }, []);
+  }, [request]);
 
   return { data, isFetching };
 };

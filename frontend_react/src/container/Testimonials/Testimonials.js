@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 // Styles
 import "./Testimonials.scss";
 // Assets
@@ -14,16 +14,19 @@ const Testimonials = () => {
 
   // Methods
   function handleCurrenSlide(currentSlide) {
-    switch (currentSlide) {
-      case "next":
-        setCurrentIndex((prevState) => (prevState + 1) % testimonials?.length);
-        break;
-      case "prev":
-        setCurrentIndex((prevState) =>
-          prevState - 1 < 0 ? testimonials?.length - 1 : prevState - 1
-        );
-        break;
-    }
+    const slideLength = testimonials?.length
+    
+    const SLIDES = {
+      'next': () => setCurrentIndex(
+        (prevState) => (prevState + 1) % slideLength,
+      ),
+      'prev': () => setCurrentIndex((prevState) =>
+        prevState - 1 < 0 ? slideLength - 1 : prevState - 1
+      ),
+    };
+    const slide = SLIDES[currentSlide]
+
+    slide()
   }
 
   return (

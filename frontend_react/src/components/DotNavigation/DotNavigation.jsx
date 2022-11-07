@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import  { useRef, useEffect, createRef } from "react";
 // Styles
 import "./DotNavigation.scss";
 // Utils
@@ -13,8 +13,8 @@ const navLinks = [
 ];
 
 const DotNavigation = () => {
-  const [activeLink, setActiveLink] = useState(null);
-  const navLinksRef = useRef(navLinks.map(() => React.createRef()));
+  let activeLink = null
+  const navLinksRef = useRef(navLinks.map(() => createRef()));
 
   function handleLinkClick(event) {
     scrollToTarget(event);
@@ -31,7 +31,7 @@ const DotNavigation = () => {
         (entries) => {
           entries.forEach((entry) => {
             const { target } = entry;
-            const activeLink = navLinksRef?.current.find(({ current }) =>
+            activeLink = navLinksRef?.current.find(({ current }) =>
               current?.hash.includes(target.id)
             );
             activeLink?.current.classList.toggle(
@@ -57,7 +57,7 @@ const DotNavigation = () => {
           href={`#${link.url}`}
           key={`dot-link-${index}`}
           className={`dot-navigation__link ${
-            activeLink == navLinksRef.current[index].current ? "active" : ""
+            activeLink === navLinksRef.current[index].current ? "active" : ""
           }`}
           onClick={handleLinkClick}
           ref={navLinksRef.current[index]}

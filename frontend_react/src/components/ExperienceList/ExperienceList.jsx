@@ -11,9 +11,9 @@ import {initAnimation} from "./animations.js"
 const ExperienceList = ({ experiences }) => {
   const listRef = useRef(null)
 
-  // useEffect(() => {
-  //   listRef.current && initAnimation(listRef.current)
-  // }, [listRef])
+  useEffect(() => {
+    listRef.current && initAnimation(listRef.current)
+  }, [listRef])
   
 
   return(

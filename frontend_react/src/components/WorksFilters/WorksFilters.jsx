@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const WorksFilters = ({ filters, works, setFilterWork }) => {
   const [activeFilter, setActiveFilter] = useState("New");
@@ -26,7 +26,7 @@ const WorksFilters = ({ filters, works, setFilterWork }) => {
             <button
               key={filter+index}
               className={`WorksFilters__fiter-item ${
-                activeFilter == filter ? "active" : ""
+                activeFilter === filter ? "active" : ""
               }`}
               onClick={() => handleWorkFilter(filter)}
             >

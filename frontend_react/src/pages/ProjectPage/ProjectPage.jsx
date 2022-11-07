@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // Styles
 import "./Project.scss";
 // Assets
@@ -15,7 +15,7 @@ const Project = () => {
   const {works, isFetching} = useClientContext()
   const [showBackground, setShowBackground] = useState(false);
 
-  const projectFilterBySlug = works?.find(work => work.slug.current == projectId)
+  const projectFilterBySlug = works?.find(work => work.slug.current === projectId)
   const nextProjectRelated = works && works[(works.indexOf(projectFilterBySlug) + 1) % works.length]
 
   const breakpointColumnsObj = {
@@ -40,7 +40,7 @@ const Project = () => {
       <section className="Project__cover">
         <img
           src={urlFor(projectFilterBySlug?.details.imgUrl)}
-          alt={`${projectFilterBySlug?.title} cover image`}
+          alt={`${projectFilterBySlug?.title} cover`}
           width="400"
           height="400"
         />

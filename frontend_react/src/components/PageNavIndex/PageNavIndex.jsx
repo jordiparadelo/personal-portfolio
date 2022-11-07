@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // Styles
 import "./PageNavIndex.scss";
 // Utils
@@ -65,6 +65,7 @@ const PageNavIndex = ({ links }) => {
             onMouseLeave={handleHover}
             data-menu-index={index}
             aria-selected={index === activeLink}
+            href="#"
           >
             {link.name}
           </a>

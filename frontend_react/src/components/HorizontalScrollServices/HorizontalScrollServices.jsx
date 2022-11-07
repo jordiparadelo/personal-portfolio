@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
 // Styles
 import "./HorizontalScrollServices.scss";
 // Const
@@ -7,14 +6,8 @@ import { servicesObj } from "./constants.js";
 import useEventListener from "hooks/useEventListener";
 
 const HorizontalScrollServices = ({ setActiveService, activeService }) => {
-  const buttonsRef = useRef([]);
 
   // Methods
-  function handleActiveService(event) {
-    const { currentTarget } = event;
-    const serviceSelected = currentTarget.dataset.index;
-    setActiveService(serviceSelected);
-  }
   function closeActiveService({ target }) {
     const hasButtonSelected = target.closest('button')?.classList.contains('HorizontalScroll__row') || null
     if(hasButtonSelected) return
@@ -35,7 +28,7 @@ const HorizontalScrollServices = ({ setActiveService, activeService }) => {
       {Object.values(servicesObj).map((services, index) => (
         <button
           className="HorizontalScroll__row"
-          data-selected={index == activeService}
+          data-selected={index === activeService}
           onClick={() => setActiveService(index)}
           key={index}
         >

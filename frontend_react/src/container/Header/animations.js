@@ -2,10 +2,8 @@ import { gsap } from "gsap";
 import Splitting from "splitting";
 
 export const initAnimation = (mainEl) => {
-  const [headerTitle, titleLines, highlight, iconArrow, description] = [
-    mainEl.querySelector(".Header__title"),
+  const [ titleLines, iconArrow, description] = [
     mainEl.querySelectorAll(".line-text"),
-    mainEl.querySelector(".highlight"),
     mainEl.querySelector(".iconArrow"),
     mainEl.querySelector(".Header__description"),
   ];

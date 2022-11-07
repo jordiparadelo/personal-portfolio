@@ -4,17 +4,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { splitContent } from "utils";
 gsap.registerPlugin(ScrollTrigger);
 
-const animationCtx = gsap.context()
-
 export const initAnimation = (mainEl) => {
   //   Master Timeline
   const masterTl = gsap.timeline({
     default: { ease: "power3.out" },
   });
 
-  const [titles, active] = [
-    mainEl.querySelectorAll("p"),
-    mainEl.querySelectorAll(".active"),
+  const [titles] = [
+    mainEl.querySelectorAll("p")
   ];
 
   // Splitting Text

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 // Styles
 import "./ProtfolioCard.scss";
 // Lib
@@ -15,7 +15,6 @@ const ProtfolioCard = ({ data, index , setAnimationEnd}) => {
   }, [data]);
 
   useEffect(() => {
-    console.log(hasAnimationComplete)
     // masterTl && masterTl.onComplete((progress) => {console.log(progress)})
     setAnimationEnd(hasAnimationComplete)
   },[hasAnimationComplete])

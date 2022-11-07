@@ -19,6 +19,7 @@ const TestimonialsSlider = ({ testimonials, currentIndex, setCurrentIndex }) =>
           <div className="testimonials__profile">
             <img
               src={urlFor(testimonials[currentIndex]?.imgurl)}
+              alt="avatar"
               className="testimonials__avatar"
             />
             <div className="testimonials__profile-container">

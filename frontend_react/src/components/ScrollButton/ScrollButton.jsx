@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 // Utils
 import { scrollToTarget } from "utils";
 // Styles

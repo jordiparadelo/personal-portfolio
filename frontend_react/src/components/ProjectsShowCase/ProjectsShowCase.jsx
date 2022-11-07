@@ -1,17 +1,12 @@
-import React from "react";
-import { useEffect, useRef, useState } from "react";
-// Assets
-import { urlFor } from "clients";
+import { useEffect, useRef } from "react";
 // Styles
 import "./ProjectsShowCase.scss";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/mousewheel";
 // Animations
 import { initAnimation, restartAnimation } from "./animations.js";
 // Constants
-import { swiperProps } from "./constants";
 import { Slider, ShowcaseTitle } from "components";
 import { useSlider } from "hooks/useSlider";
 // Context
@@ -37,7 +32,6 @@ const ProjectsShowCase = ({ projects }) => {
 
   const newSliderRef = useRef(null);
   const sliderRef = useRef(null);
-  let swiperRef = useRef(null);
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
@@ -53,12 +47,6 @@ const ProjectsShowCase = ({ projects }) => {
     sectionRef.current && initAnimation(sectionRef.current);
     return () => restartAnimation();
   }, [currentIndex]);
-
-  function handleSliderChange(event) {
-    const { slides, activeIndex } = event;
-    // animActiveSlide(Array.from(slides)[activeIndex]);
-    setCurrentIndex(activeIndex % projectQty);
-  }
 
   function handleNextSlide(nextState) {
     const STATE_REDUCER = {

@@ -1,4 +1,4 @@
-import React, { useEffect,useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 // Styles
 import "./Portfolio.scss";
 // Hooks
@@ -15,23 +15,22 @@ const Portfolio = () => {
   const query = '*[_type == "works"]';
   const { data: works, isFetching } = useClientData(query);
 
-  let sectionRef = useRef(null);
   let slideshowRef = useRef(null);
 
   useLayoutEffect(() => {
     setPortfolio(works);
     // isFetching && animationEnd && scrollAnimation(slideshowRef);
     // return () => !isFetching && restartScroolAnimation()
-  }, [isFetching]);
+  }, [isFetching, works]);
 
   useLayoutEffect(() => {
     animationEnd && scrollAnimation(slideshowRef);
     return () => !isFetching && restartScroolAnimation()
-  },[animationEnd])
+  },[animationEnd, isFetching])
 
 
   return (
-    <main id="Portfolio" ref={(current) => (sectionRef = current)}>
+    <main id="Portfolio">
       <div className="Porfolio__slideshow">
         <div
           className="slideshow-wrapper"

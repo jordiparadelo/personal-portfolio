@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 // Styles
 import "./Works.scss";
 // Components
@@ -19,7 +19,6 @@ const Works = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    console.log({works})
     setFilterWork(works);
     sectionRef.current && !isFetching && initAnimation(sectionRef.current);
   }, [isFetching]);

@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 // Contenxt
 import { useShowcaseContext } from "context/ShowcaseContext";
 // Animations
 import {
   initAnimation,
-  restartAnimation,
   transitionIn,
   transitionOut,
 } from "./animations.js";
@@ -24,7 +23,7 @@ const ShowcaseTitle = ({ projects }) => {
   return (
     <div className="ShowcaseTitle" ref={(current) => (showcaseTitle = current)}>
       {projects?.map((project, index) => {
-        const activeProject = currentIndex == index;
+        const activeProject = currentIndex === index;
         return (
           <Transition
             in={activeProject}

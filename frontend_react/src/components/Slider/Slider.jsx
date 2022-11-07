@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { urlFor } from "clients";
 // Syles
 import "./Slider.scss";
 // Animations
-import { initAnimation, transitionIn, transitionOut } from "./animations.js";
+import { initAnimation } from "./animations.js";
 import { useShowcaseContext } from "context/ShowcaseContext";
 // Lib
 import { Transition } from "react-transition-group";
@@ -21,7 +21,6 @@ const Slider = ({ slides, initialSlide, className }) => {
 
   useEffect(() => {
     initAnimation(sliderRef);
-    const slideWidth = slides[0].clientWidths;
   }, [slides]);
 
   return (
@@ -30,7 +29,7 @@ const Slider = ({ slides, initialSlide, className }) => {
       ref={(current) => (sliderRef = current)}
     >
       {slides.map((project, index) => {
-        const activeProject = active == index;
+        const activeProject = active === index;
         return (
           <Transition
             in={activeProject}

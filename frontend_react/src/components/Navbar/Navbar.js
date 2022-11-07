@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // Assets
 import { images } from "constants";
 import { HiMenuAlt4, HiX } from "react-icons/hi";

@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
-import { useClientData } from "hooks/useClientData";
+import { createContext, useContext, useState } from "react";
 
 const ShowcaseContext = createContext();
 

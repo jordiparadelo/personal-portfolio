@@ -19,7 +19,7 @@ export function scrollToTarget(event, target) {
 
 export const formValidator = {
   checkFormFieldsValidation(form) {
-    let validation = new Object();
+    let validation = {};
     let isValid;
 
     [...form.elements]
