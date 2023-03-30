@@ -1,0 +1,181 @@
+#Works {
+  color: var(--light-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  .app__wrapper {
+    --max-width: 100%;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    flex-grow: 1;
+
+    .works__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: var(--spacing);
+      overflow: hidden;
+
+      .WorksFilters {
+        display: flex;
+        gap: var(--spacing-xs);
+        flex-wrap: wrap;
+        font-size: 24px;
+        overflow: hidden;
+
+        .WorksFilters__fiter-item {
+          --corners: var(--corners-round);
+          --size: 32px;
+          --background: var(--dark-color);
+          color: var(--light-color);
+          font-size: inherit;
+
+          .WorksFilters__projects-number {
+            font-size: 0.6em;
+            margin-block-end: auto;
+          }
+
+          &:not(.active) {
+            opacity: 0.5;
+          }
+          &:is(.active) {
+            pointer-events: none;
+          }
+        }
+
+        hr {
+          --size: 6px;
+          --background: var(--light-color);
+          align-self: center;
+          border-radius: var(--corners-round);
+        }
+      }
+
+      hr {
+        --background: var(--light-color);
+      }
+    }
+
+    // .works__portofilio-item {
+    //   display: flex;
+    //   flex-direction: column;
+    //   background: var(--dark-color);
+    //   color: var(--light-color);
+
+    //   .works__portfolio-description {
+    //     padding: var(--spacing-xl);
+    //     display: flex;
+    //     flex-direction: row;
+    //     justify-content: space-between;
+    //     gap: var(--spacing);
+
+    //     .works__description-title-container {
+    //       display: flex;
+    //       flex-direction: column;
+    //       gap: var(--spacing-xs);
+
+    //       h3 {
+    //         font-size: 32px;
+    //         line-height: 1;
+    //       }
+    //     }
+
+    //     .works__tags-container {
+    //       display: flex;
+    //       margin-block-start: var(--spacing-xs);
+    //       gap: var(--spacing-xs);
+    //       font-weight: bold;
+    //       flex-wrap: wrap;
+    //       align-content: flex-start;
+    //       align-self: flex-start;
+    //       justify-self: flex-end;
+    //       white-space: nowrap;
+    //       font-size: 13px;
+    //       flex-basis: 28ch;
+
+    //       > * {
+    //         --size: 24px;
+    //         min-height: var(--size);
+    //         display: flex;
+    //         align-items: center;
+    //         justify-content: center;
+    //         background-color: rgba(255, 255, 255, 0.2);
+    //         border-radius: var(--corners-round);
+    //         padding-inline: 8px;
+    //       }
+    //     }
+    //   }
+
+    //   .works__portofilio-image {
+    //     max-width: 100%;
+    //     overflow: hidden;
+    //     position: relative;
+
+    //     img {
+    //       transform: rotate(-10deg);
+    //       transform-origin: 100%;
+    //       aspect-ratio: 1/1;
+    //       max-width: 100%;
+    //       object-fit: contain;
+    //     }
+
+    //     .works__portofilio-actions {
+    //       position: absolute;
+    //       top: 0;
+    //       height: 100%;
+    //       width: 100%;
+    //       display: flex;
+    //       align-items: center;
+    //       justify-content: center;
+    //       gap: var(--spacing);
+    //       background: linear-gradient(0deg, var(--dark-color), transparent);
+    //       transition: all 500ms var(--ease);
+
+    //       .works__portofilio-link {
+    //         --size: 48px;
+    //         display: flex;
+    //         align-items: center;
+    //         justify-content: center;
+    //         width: var(--size);
+    //         height: var(--size);
+    //         background: rgba(0, 0, 0, 0.5);
+    //         border-radius: var(--corners-round);
+    //         box-shadow: var(--shadow-lg);
+    //         transition: transform 300ms var(--ease);
+
+    //         svg {
+    //           --icon-size: calc(var(--size) * 0.5);
+    //           width: var(--icon-size);
+    //           height: var(--icon-size);
+    //           fill: var(--light-color);
+    //         }
+
+    //         &:hover {
+    //           transform: scale(0.9);
+    //         }
+    //       }
+    //     }
+    //   }
+    //   // Interactions
+    //   @media (hover: hover) {
+    //     &:not(:hover) {
+    //       .works__portofilio-actions {
+    //         opacity: 0;
+    //       }
+    //     }
+    //   }
+
+    //   // Media Query
+    //   @media screen and (max-width: 768px) {
+    //     .works__portfolio-description {
+    //       flex-wrap: wrap;
+    //     }
+    //   }
+    // }
+
+    .ProjectsSlider {
+      flex-grow: 1;
+    }
+  }
+}

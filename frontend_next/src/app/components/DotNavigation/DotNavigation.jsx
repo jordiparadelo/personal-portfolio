@@ -1,0 +1,72 @@
+"use client"
+
+import  { useRef, useEffect, createRef } from "react";
+// Styles
+import "./DotNavigation.scss";
+// Utils
+import { scrollToTarget } from "utils";
+
+const navLinks = [
+  { name: "Header", url: "Header" },
+  { name: "About", url: "About" },
+  { name: "Work", url: "Works" },
+  { name: "Skills", url: "Skills" },
+  { name: "Contact", url: "Footer" },
+];
+
+const DotNavigation = () => {
+  let activeLink = null
+  const navLinksRef = useRef(navLinks.map(() => createRef()));
+
+  function handleLinkClick(event) {
+    scrollToTarget(event);
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      const sectionsColletion = navLinksRef.current.map(({ current }) => {
+        const id = current.hash;
+        return document.querySelector(id);
+      });
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const { target } = entry;
+            activeLink = navLinksRef?.current.find(({ current }) =>
+              current?.hash.includes(target.id)
+            );
+            activeLink?.current.classList.toggle(
+              "active",
+              entry.isIntersecting
+            );
+          });
+        },
+        {
+          threshold: [0.2, 0.5],
+        }
+      );
+
+      // // Listeners
+      sectionsColletion.forEach((section) => sectionObserver?.observe(section));
+    }, 1000);
+  }, []);
+
+  return (
+    <nav className="dot-navigation">
+      {navLinks.map((link, index) => (
+        <a
+          href={`#${link.url}`}
+          key={`dot-link-${index}`}
+          className={`dot-navigation__link ${
+            activeLink === navLinksRef.current[index].current ? "active" : ""
+          }`}
+          onClick={handleLinkClick}
+          ref={navLinksRef.current[index]}
+        ></a>
+      ))}
+    </nav>
+  );
+};
+
+export default DotNavigation;

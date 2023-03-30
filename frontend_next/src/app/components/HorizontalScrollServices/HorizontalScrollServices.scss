@@ -1,0 +1,43 @@
+.HorizontalScroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .HorizontalScroll__row {
+    --background: unset;
+    --corners: unset;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-family: ClashDisplayBold;
+    font-size: m#{a}x(80px, 10vw);
+    transform: rotate(-10deg);
+    transition: opacity 0.2s linear;
+    .line-wrapper {
+      display: flex;
+      flex-direction: row;
+
+      > .highlight {
+        color: var(--primary-color);
+      }
+      > .outline {
+        color: transparent;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: var(--dark-color);
+      }
+    }
+
+  
+  }
+
+  &:hover > .HorizontalScroll__row:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+[data-services-selected] {
+  .HorizontalScroll__row {
+    &:not(:hover):not([data-selected="true"]) {
+      opacity: 0.5;
+    }
+  }
+}
