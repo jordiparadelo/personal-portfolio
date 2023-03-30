@@ -1,0 +1,34 @@
+.PortfolioCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+  color: inherit;
+
+  .PortfolioCard__cover {
+    overflow: hidden;
+    a {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    img {
+      object-fit: cover;
+      min-width: 100%;
+    }
+  }
+
+  .PortfolioCard__description {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+
+    .title {
+      font-size: clamp(40px, 5vw, 4em);
+    }
+
+    .link {
+      color: inherit;
+    }
+  }
+}
