@@ -7,7 +7,7 @@ import { initAnimation } from "./animations.js";
 import { useShowcaseContext } from "context/ShowcaseContext";
 // Lib
 import { Transition } from "react-transition-group";
-import { Link } from "react-router-dom";
+import Link from 'next/link';
 
 const Slider = ({ slides, initialSlide, className }) => {
   const { currentIndex } = useShowcaseContext();

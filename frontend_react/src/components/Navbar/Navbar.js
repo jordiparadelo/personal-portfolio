@@ -48,7 +48,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="app__wrapper">
-        <Link to="/" className="navbar__logo">
+        <Link href="/" className="navbar__logo">
           <img src={images.logo} alt="logo" width="48" height="48" />
           <span className="navbar__logo-name">
             Jordi

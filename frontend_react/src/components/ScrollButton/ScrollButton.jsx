@@ -1,6 +1,5 @@
-import React from "react";
 // Utils
-import { scrollToTarget } from "utils";
+import { scrollToTarget } from "../../utils";
 // Styles
 import "./ScrollButton.scss";
 

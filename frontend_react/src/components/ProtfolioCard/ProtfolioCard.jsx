@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 // Styles
 import "./ProtfolioCard.scss";
 // Lib
-import { Link } from "react-router-dom";
+import Link from 'next/link';
 import { urlFor } from "clients";
 // Animations
 import { initAnimation, hasAnimationComplete } from "./animations.js";
@@ -26,7 +26,7 @@ const ProtfolioCard = ({ data, index , setAnimationEnd}) => {
       data-index = {index}
     >
       <figure className="ProtfolioCard__cover">
-        <Link to={`/portfolio/${data.slug.current}`}>
+        <Link href={`/portfolio/${data.slug.current}`}>
           <img
             src={urlFor(data.details.imgUrl)}
             width="500"
@@ -38,7 +38,7 @@ const ProtfolioCard = ({ data, index , setAnimationEnd}) => {
       <div className="ProtfolioCard__description">
         <div className="detail">{data.title}</div>
         <h2 className="title">{data.details.client}</h2>
-        <Link to={`/portfolio/${data.slug.current}`} className="link">View Project</Link>
+        <Link href={`/portfolio/${data.slug.current}`} className="link">View Project</Link>
       </div>
     </article>
   );
