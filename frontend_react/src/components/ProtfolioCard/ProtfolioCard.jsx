@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 // Styles
 import "./ProtfolioCard.scss";
 // Lib
-import Link from 'next/link';
+import {Link} from 'react-router-dom';
 import { urlFor } from "clients";
 // Animations
 import { initAnimation, hasAnimationComplete } from "./animations.js";
