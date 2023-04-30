@@ -26,7 +26,7 @@ const ProtfolioCard = ({ data, index , setAnimationEnd}) => {
       data-index = {index}
     >
       <figure className="ProtfolioCard__cover">
-        <Link href={`/portfolio/${data.slug.current}`}>
+        <Link to={`/portfolio/${data.slug.current}`}>
           <img
             src={urlFor(data.details.imgUrl)}
             width="500"
@@ -38,7 +38,7 @@ const ProtfolioCard = ({ data, index , setAnimationEnd}) => {
       <div className="ProtfolioCard__description">
         <div className="detail">{data.title}</div>
         <h2 className="title">{data.details.client}</h2>
-        <Link href={`/portfolio/${data.slug.current}`} className="link">View Project</Link>
+        <Link to={`/portfolio/${data.slug.current}`} className="link">View Project</Link>
       </div>
     </article>
   );

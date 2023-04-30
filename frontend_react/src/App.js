@@ -24,22 +24,25 @@ const App = () => {
 	return (
 		<div className='App'>
 			<Navbar />
-			<BrowserRouter>
-				<Switch>
-					<Route
-						path='/'
-						element={<Home />}
-					/>
-					<Route
-						path='/portfolio'
-						element={<Portfolio />}
-					/>
-					<Route
-						path='/portfolio/:projectId'
-						element={<ProjectPage />}
-					/>
-				</Switch>
-			</BrowserRouter>
+			<Switch>
+				<Route exact path='/'>
+					<Home />
+				</Route>
+				<Route path='/portfolio'>
+        <Portfolio />
+				</Route>
+				<Route path='/portfolio/:projectId'>
+        <ProjectPage />
+				</Route>
+				{/* <Route
+					path='/portfolio'
+					element={}
+				/>
+				<Route
+					path='/portfolio/:projectId'
+					element={}
+				/> */}
+			</Switch>
 			<Footer />
 		</div>
 	);
