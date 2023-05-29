@@ -1,0 +1,48 @@
+.ScrollButton {
+  --background: unset;
+  --corners: unset;
+  --padding: unset;
+  z-index: 10;
+
+  @media (min-width: 600px) and (hover: hover){
+    svg {
+      * {
+        transition: all 0.5s var(--ease);
+      }
+  
+      circle {
+          // --strokeLenght: 310.51519775390625;
+          // stroke-dasharray: var(--strokeLenght);
+          transform-origin: center center;
+      }
+    }
+  
+    &:not(:hover) {
+      svg {
+        path:nth-child(3) {
+          d: path("M 50 55 L 50 79");
+          opacity: 0;
+        }
+        path:nth-child(4) {
+          d: path("M 50 55 L 50 79");
+          opacity: 0;
+        }
+      }
+    }
+    &:hover {
+      svg {
+        circle {
+          r: 47;
+          animation: 3s drawCircle 5s var(--ease) infinite;
+        }
+      }
+    }
+    //   Animations
+    @keyframes drawCircle {
+      to {
+        stroke-dashoffset:  var(--strokeLenght);
+        transform: rotate(-1turn);
+      }
+    }
+  }
+}

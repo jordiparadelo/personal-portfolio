@@ -48,6 +48,6 @@ export const initAnimation = (mainEl) => {
     start: "0% 50%",
     end: "120% 50%",
     animation: masterTl,
-    markers: true,
+    // markers: true,
   });
 };

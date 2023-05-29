@@ -7,7 +7,7 @@ import { useMediaQuery } from "react-responsive";
 import { Link, useLocation } from "react-router-dom";
 // Utils
 import { scrollToTarget } from "utils";
-// Syles
+// Styles
 import "./Navbar.scss";
 // Components
 import { SocialMedia, PageNavIndex } from "components";

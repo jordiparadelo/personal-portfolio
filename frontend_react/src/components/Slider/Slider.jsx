@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { urlFor } from "clients";
-// Syles
+// Styles
 import "./Slider.scss";
 // Animations
 import { initAnimation } from "./animations.js";

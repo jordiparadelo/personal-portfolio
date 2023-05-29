@@ -3,18 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8080",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "gsap": "3.11.5",
     "next": "13.3.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "4.8.0",
+    "react-responsive": "9.0.2",
+    "split-type": "^0.3.3",
+    "splitting": "^1.0.6"
   },
   "devDependencies": {
     "eslint": "8.39.0",
-    "eslint-config-next": "13.3.2"
+    "eslint-config-next": "13.3.2",
+    "sass": "^1.62.1"
   }
 }
